@@ -67,7 +67,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "secret-project-app:build"
+            "browserTarget": "secret-project-app:build",
+            "watch": true
           },
           "configurations": {
             "production": {

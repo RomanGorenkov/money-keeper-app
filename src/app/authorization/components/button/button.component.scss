@@ -1,0 +1,23 @@
+.button{
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #2196F3;
+  padding: 5px;
+  margin: 0 10px;
+  border: 2px solid #ffffff;
+  transition: all 0.4s ease 0s;
+}
+
+.button:hover {
+  border-radius: 12px;
+  transition: all 0.4s ease 0s;
+}
+
+.icon-size{
+  height: 12px;
+  width: 12px;
+  margin: 0 5px;
+}

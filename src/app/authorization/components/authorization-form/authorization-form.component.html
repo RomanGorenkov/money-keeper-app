@@ -1,0 +1,25 @@
+<div class="authorization-form__container">
+  <h2 class="authorization-form__title">{{formTitle}}</h2>
+  <form
+    (ngSubmit)="submitHandler(this.authorizationForm)"
+    class="authorization-form"
+    [formGroup]="authorizationForm"
+  >
+    <app-text-input
+      class="authorization-form__input"
+      [type]="input.type"
+      [name]="input.name"
+      [control]="getControl(input.name)"
+      [placeholder]="input.placeholder"
+      *ngFor="let input of inputs"
+    >
+    </app-text-input>
+    <input
+      class="authorization-form__submit"
+      type="submit"
+      value="Send"
+      [disabled]="authorizationForm.invalid"
+    />
+  </form>
+</div>
+

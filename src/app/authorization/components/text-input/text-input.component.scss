@@ -1,0 +1,26 @@
+.text-input {
+  width: 100%;
+  transition: all 0.30s ease-in-out;
+  outline: none;
+  box-sizing: border-box;
+  background: #fff;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  padding: 10px;
+  color: #555;
+  font: 95% Arial, Helvetica, sans-serif;
+
+  &.ng-touched:not(.ng-valid),   {
+    box-shadow: 0 0 5px #f35542;
+    padding: 10px;
+    border: 1px solid #f35542;
+  }
+}
+
+
+
+.text-input:focus {
+  box-shadow: 0 0 5px #2196F3;
+  padding: 10px;
+  border: 1px solid #2196F3;
+}
