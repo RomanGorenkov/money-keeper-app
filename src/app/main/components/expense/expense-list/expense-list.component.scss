@@ -1,0 +1,35 @@
+@import "../../../mixins/date-controller-button.mixin";
+
+.expense-list{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  height: auto;
+  max-height: 100%;
+  width: 100%;
+  overflow-y: auto;
+}
+
+.modal-window__label{
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+
+}
+
+.modal-window__input{
+  font-size: 20px;
+  padding: 5px;
+
+
+}
+
+::-webkit-inner-spin-button {
+  display: none;
+}
+
+.modal-window__button{
+  @include button(100%);
+}
+

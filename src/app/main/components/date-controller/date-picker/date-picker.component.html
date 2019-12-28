@@ -1,0 +1,5 @@
+<div class="date-picker">
+  <button class="date-picker__day-switcher" (click)="changeDate(timeInterval, -1)"> ◄ </button>
+  <button class="day-menu" aria-label="Date" (click)="openDateSwitcher()">{{dateService.valueToDisplay}}</button>
+  <button class="date-picker__day-switcher" (click)="changeDate(timeInterval, 1)"> ► </button>
+</div>

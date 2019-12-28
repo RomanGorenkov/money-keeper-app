@@ -1,16 +1,16 @@
 .text-input {
-  width: 100%;
+  width: calc(100% - 20px);
   transition: all 0.30s ease-in-out;
   outline: none;
   box-sizing: border-box;
   background: #fff;
-  margin: 10px 0;
+  margin: 10px;
   border: 1px solid #ccc;
   padding: 10px;
   color: #555;
   font: 95% Arial, Helvetica, sans-serif;
 
-  &.ng-touched:not(.ng-valid),   {
+  &.ng-touched:not(.ng-valid){
     box-shadow: 0 0 5px #f35542;
     padding: 10px;
     border: 1px solid #f35542;

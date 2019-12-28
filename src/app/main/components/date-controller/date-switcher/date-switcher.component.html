@@ -1,0 +1,24 @@
+<div class="date-switcher" *ngIf="showSwitcherFlag">
+  <ul class="date-switcher__switcher-list">
+    <li class="date-switcher__switcher"
+        *ngFor="let dateSwitcher of dateSwitchers"
+        [ngClass]="{
+          'date-switcher__switcher__full-width': dateSwitcher.customComponent === 'userDate'
+         }"
+    >
+      <div *ngIf="dateSwitcher.customComponent === 'userDate'">
+        <label  class="date-switcher__label">
+          Your date
+        </label>
+        <input class="date-switcher__date-input" type="date" (change)="setCustomDate($event, dateSwitcher)">
+      </div>
+      <button
+        *ngIf="!dateSwitcher.customComponent"
+        class="date-switcher__button"
+        (click)="switchDate(dateSwitcher)"
+      >
+        {{dateSwitcher.switcherPlaceholder}}
+      </button>
+    </li>
+  </ul>
+</div>

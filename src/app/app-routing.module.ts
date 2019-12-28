@@ -1,16 +1,27 @@
 import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
-import {AuthorizationRoutingModule} from './authorization/authorization-routing.module';
+import {RouterModule, Routes} from '@angular/router';
+import {routing} from './global-constants/routing';
 
 
 const routes: Routes = [
-
+  {
+    path: routing.authorisation.root,
+    loadChildren: () => import('./authorization/authorization.module').then(m => m.AuthorizationModule)
+  },
+  {
+    path: routing.main.root,
+    loadChildren: () => import('./main/main.module').then(m => m.MainModule)
+  },
+  {
+    path: '**',
+    redirectTo: routing.authorisation.root,
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({
   imports: [
     RouterModule.forRoot(routes),
-    AuthorizationRoutingModule,
   ],
   exports: [
     RouterModule

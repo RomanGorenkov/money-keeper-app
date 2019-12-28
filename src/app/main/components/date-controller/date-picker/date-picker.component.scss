@@ -1,0 +1,19 @@
+@import "../../../mixins/date-controller-button.mixin";
+
+.date-picker{
+  display: flex;
+  justify-content: space-between;
+  width: 260px;
+  height: 40px;
+  border-radius: .125rem;
+  background-color: #03A9F4;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+
+  .date-picker__day-switcher{
+    @include button(20%);
+  }
+
+  .day-menu{
+    @include button(60%);
+  }
+}

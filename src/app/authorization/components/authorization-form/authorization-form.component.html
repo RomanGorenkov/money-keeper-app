@@ -7,10 +7,8 @@
   >
     <app-text-input
       class="authorization-form__input"
-      [type]="input.type"
-      [name]="input.name"
+      [inputData]="input"
       [control]="getControl(input.name)"
-      [placeholder]="input.placeholder"
       *ngFor="let input of inputs"
     >
     </app-text-input>

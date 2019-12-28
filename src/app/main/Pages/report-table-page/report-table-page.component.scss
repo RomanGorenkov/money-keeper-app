@@ -1,0 +1,5 @@
+@import "../../mixins/page.mixin";
+
+.report-table{
+  @include app-page;
+}

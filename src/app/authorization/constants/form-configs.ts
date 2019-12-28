@@ -44,6 +44,27 @@ const registrationInputs = [
   },
 ];
 
+const addExpenseInputs: FormInput[] = [
+  {
+    type: 'number',
+    name: 'expense',
+    placeholder: 'Expense',
+    validators: [
+      Validators.required,
+      Validators.pattern('^(?!(?:0|0\\.0|0\\.00)$)[+]?\\d+(\\.\\d|\\.\\d[0-9])?$'),
+    ]
+  },
+  {
+    type: 'text',
+    name: 'description',
+    placeholder: 'Description',
+    validators: [
+      Validators.required,
+      Validators.minLength(6),
+    ]
+  },
+];
+
 function repeatPasswordValidator(group: FormGroup): { passwordsNotEqual: boolean } {
   const password = group.controls.password.value;
   const passwordConfirmation = group.controls.passwordConfirm.value;
@@ -60,6 +81,10 @@ export const formConfigs: FormConfigs = {
   },
   login: {
     formInputs: loginInputs,
+    externalValidators: []
+  },
+  addExpenseForm: {
+    formInputs: addExpenseInputs,
     externalValidators: []
   },
 };

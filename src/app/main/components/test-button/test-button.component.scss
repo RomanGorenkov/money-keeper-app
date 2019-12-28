@@ -1,0 +1,60 @@
+$component: '.app-test-button';
+
+$color-primary: #3498db;
+$color-success: #2ecc71;
+$color-danger: #e74c3c;
+$color-neutral: #eee;
+$color-neutral-dark: #ccc;
+
+#{$component} {
+  // Block styling
+  border: 1px solid transparent;
+  border-radius: 3px;
+  color: #ecf0f1;
+  cursor: pointer;
+  display: block;
+  font-size: 16px;
+  margin-top: 1rem;
+  padding: .75rem 1.5rem;
+
+  &--primary {
+    background-color: $color-primary;
+  }
+
+  &--success {
+    background-color: $color-success;
+  }
+
+  &--danger {
+    background-color: $color-danger;
+  }
+
+  // Disabled modifier
+  &--disabled {
+    background-color: $color-neutral;
+    color: $color-neutral-dark;
+    cursor: not-allowed;
+  }
+
+  // Outline modifier
+  &--outline {
+    background-color: transparent;
+    border-color: currentColor;
+
+    &#{$component}--primary {
+      color: $color-primary;
+    }
+
+    &#{$component}--success {
+      color: $color-success;
+    }
+
+    &#{$component}--danger {
+      color: $color-danger;
+    }
+
+    &#{$component}--disabled {
+      color: $color-neutral-dark;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+<div class="toolbar">
+  <button class="toolbar__menu-button" (click)="openToolbar()">☰</button>
+  <div #toolsContainer class="toolbar__tools-container hidden">
+    <ul class="tools-list">
+      <li class="tools-list__item">Settings</li>
+      <li class="tools-list__item">
+        <app-dropdown-menu menuName="currency"></app-dropdown-menu>
+      </li>
+      <li class="tools-list__item">
+        <app-dropdown-menu menuName="language"></app-dropdown-menu>
+      </li>
+    </ul>
+  </div>
+</div>

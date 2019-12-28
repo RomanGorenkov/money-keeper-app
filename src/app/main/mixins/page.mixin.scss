@@ -1,0 +1,8 @@
+$toolbar-height: 45px;
+$navbar-height: 45px;
+$date-picker-height: 60px;
+
+@mixin app-page {
+  height: calc(100vh - #{$navbar-height} - #{$toolbar-height} - #{$date-picker-height});
+  width: 100vw;
+}

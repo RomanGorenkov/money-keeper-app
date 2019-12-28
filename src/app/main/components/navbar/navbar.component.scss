@@ -1,0 +1,41 @@
+/* Add a black background color to the top navigation */
+.navbar {
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+  height: auto;
+  background-color: #2196F3;
+  font-family: sans-serif;
+}
+
+.link-list{
+  display: flex;
+}
+
+.link-list__item{
+  width: auto;
+  height: auto;
+}
+
+/* Style the links inside the navigation bar */
+.link {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.link-list__item:hover {
+  background-color: #BBDEFB;
+  color: black;
+}
+
+/* Add an active class to highlight the current page */
+.active {
+  background-color: #1976D2;
+  color: white;
+}

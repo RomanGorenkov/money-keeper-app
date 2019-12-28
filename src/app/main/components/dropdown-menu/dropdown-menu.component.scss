@@ -1,0 +1,77 @@
+$component: '.app-test-button';
+
+$color-primary: #4a90ff;
+$color-shadow: rgba(255, 255, 255, 0.1);
+
+
+.dropdown__open-button {
+  width: 100px;
+  background-color: $color-primary;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+
+  &::after{
+    content: " ";
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    margin: 0 5px 2px;
+    transform: rotate(45deg);
+    border-bottom: 2px solid white;
+    border-right: 2px solid white;
+  }
+
+  &:hover, &:focus{
+    background-color: $color-shadow;
+  }
+}
+
+.dropdown__name{
+  display: inline-block;
+  width: 120px;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  font-size: 17px;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  display: inline-block;
+  width: 100%;
+  position: relative;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown__content {
+  right: 0;
+  width: auto;
+  display: none;
+  position: absolute;
+  background-color: $color-primary;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown__item{
+  width: 100px;
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  border-bottom: 1px solid gray;
+  background-color: $color-primary;
+  cursor: pointer;
+
+  &:hover{
+    background-color: $color-shadow;
+
+  }
+}
+.show {display:block;}
+
+
+

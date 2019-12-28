@@ -1,0 +1,24 @@
+@import "../../../../mixins/expense-item-button.mixin";
+@import "../../../../mixins/button-font.mixin";
+
+.add-expense-item{
+  @include expense-item-button();
+  font-size: 40px;
+}
+
+.modal-window__label{
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+
+}
+
+.modal-window__input{
+  width: 100%;
+  font-size: 20px;
+  padding: 5px;
+
+  ::-webkit-inner-spin-button {
+    display: none;
+  }
+}

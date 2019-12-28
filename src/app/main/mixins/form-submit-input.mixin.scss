@@ -1,0 +1,19 @@
+@mixin form-submit-input(){
+  box-sizing: border-box;
+  height: 35px;
+  width: 50%;
+  padding: 5px;
+  margin: 10px 0;
+  background: #2196F3;
+  border-bottom: 2px solid #2196F3;
+  border-top-style: none;
+  border-right-style: none;
+  border-left-style: none;
+  text-transform: uppercase;
+  color: #fff;
+
+  &[disabled] {
+    background-color: #555555;
+    border-bottom: 2px solid #555555;
+  }
+}

@@ -1,0 +1,20 @@
+<h3 class="add-expense-form__title" >{{config.data.title}}</h3>
+<form
+  class="add-expense-form__form"
+  [formGroup]="addExpenseForm"
+  (ngSubmit)="onClose()"
+>
+  <app-text-input
+    class="authorization-form__input"
+    [inputData]="input"
+    [control]="getControl(input.name)"
+    *ngFor="let input of inputs"
+  >
+  </app-text-input>
+  <input
+    class="add-expense-form__button"
+    type="submit"
+    value="Send"
+    [disabled]="addExpenseForm.invalid"
+  />
+</form>

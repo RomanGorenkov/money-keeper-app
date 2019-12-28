@@ -1,0 +1,7 @@
+<nav class="navbar">
+  <ul class="link-list">
+    <li class="link-list__item" *ngFor="let link of linkItems">
+      <a class="link" [routerLink]=link.pageUrl routerLinkActive="active">{{link.pageName}}</a>
+    </li>
+  </ul>
+</nav>

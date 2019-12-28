@@ -10,7 +10,7 @@ import {AuthorizationRoutingModule} from './authorization-routing.module';
 import {CommonModule} from '@angular/common';
 import {ReactiveFormsModule} from '@angular/forms';
 import {AuthenticationService} from './services/authentication/authentication.service';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -22,24 +22,24 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
   ],
   declarations: [
     AuthorizationPageComponent,
-    TextInputComponent,
     AuthorizationFormComponent,
     HeaderWrapperComponent,
     ButtonComponent,
     IconSpriteComponent,
     SvgSpritesComponent,
+    TextInputComponent,
   ],
   providers: [
     AuthenticationService,
   ],
   exports: [
     AuthorizationPageComponent,
-    TextInputComponent,
     AuthorizationFormComponent,
     HeaderWrapperComponent,
     ButtonComponent,
     IconSpriteComponent,
     SvgSpritesComponent,
+    TextInputComponent,
   ]
 })
 export class AuthorizationModule {

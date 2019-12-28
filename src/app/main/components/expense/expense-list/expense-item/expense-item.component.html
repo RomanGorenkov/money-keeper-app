@@ -1,0 +1,11 @@
+<button
+  class="expense-item"
+  (click)="openModal()"
+>
+  <ng-container *ngIf="expenseItemConfig">
+    <img class="expense-item__icon" [src]=expenseItemConfig.iconSrc alt="icon">
+    <span class="expense-item__title">{{expenseItemConfig.title}}</span>
+    <span class="expense-item__expense">{{expenseItemConfig.expenseValue}} {{costsService.currency}}</span>
+  </ng-container>
+</button>
+

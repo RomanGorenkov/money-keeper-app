@@ -3,5 +3,11 @@ export const routing = {
     root: 'authorization',
     login: 'login',
     registration: 'registration'
+  },
+  main: {
+    root: 'main',
+    home: 'home',
+    reportTable: 'table',
+    reportGraphs: 'graphs',
   }
 };

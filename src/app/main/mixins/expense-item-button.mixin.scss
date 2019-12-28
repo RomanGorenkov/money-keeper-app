@@ -1,0 +1,12 @@
+@mixin  expense-item-button{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 140px;
+  height: 200px;
+  color: white;
+  background-color: #03A9F4;
+  border-radius: 10px;
+  margin: 10px 5px;
+}
