@@ -11,6 +11,8 @@ import {CommonModule} from '@angular/common';
 import {ReactiveFormsModule} from '@angular/forms';
 import {AuthenticationService} from './services/authentication/authentication.service';
 import {HttpClientModule} from '@angular/common/http';
+import {JWT_OPTIONS, JwtHelperService} from '@auth0/angular-jwt';
+import {AuthGuard} from './guards/main.guars';
 
 
 @NgModule({
@@ -31,6 +33,9 @@ import {HttpClientModule} from '@angular/common/http';
   ],
   providers: [
     AuthenticationService,
+    AuthGuard,
+    JwtHelperService,
+    {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},
   ],
   exports: [
     AuthorizationPageComponent,

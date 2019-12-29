@@ -23,7 +23,7 @@ export class AddExpenseItemComponent implements OnInit {
   //   this.modalService.open(id);
   // }
   openModal() {
-    this.dialog.open(ModalWindowComponent);
+    this.dialog.open(ModalWindowComponent, {data : {}});
   }
 
   closeModal(id: string) {

@@ -5,6 +5,7 @@ import {MainComponent} from './main.component';
 import {routing} from '../global-constants/routing';
 import {ReportTablePageComponent} from './Pages/report-table-page/report-table-page.component';
 import {ReportGraphsPageComponent} from './Pages/report-graphs-page/report-graphs-page.component';
+import {AuthGuard} from '../authorization/guards/main.guars';
 
 
 
@@ -20,15 +21,18 @@ const MainRouting: Routes = [
       },
       {
         path: routing.main.home,
-        component: HomeComponent
+        component: HomeComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: routing.main.reportTable,
-        component: ReportTablePageComponent
+        component: ReportTablePageComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: routing.main.reportGraphs,
-        component: ReportGraphsPageComponent
+        component: ReportGraphsPageComponent,
+        canActivate: [AuthGuard],
       },
     ]
   }
