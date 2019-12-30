@@ -1,8 +1,9 @@
 import {Component, ElementRef, Input, OnInit, AfterViewInit, ViewChild} from '@angular/core';
 import {dropDownMenuConfig} from '../../constants/dropdown-menu-config';
 import {DropdownMenuConfig} from '../../interfaces/dropdown-menu-config.interface';
-import {CostsService} from '../../services/costs/costs.service';
+import {PresetService} from '../../services/preset/preset.service';
 import {DropdownMenuItem} from '../../interfaces/dropdown-menu-item.interfase';
+import {UserService} from '../../../authorization/services/user/user.service';
 
 @Component({
   selector: 'app-dropdown-menu',
@@ -18,26 +19,29 @@ export class DropdownMenuComponent implements OnInit {
 
   menuTitle: string;
   menuItems: DropdownMenuItem[] = [];
-  currentValue = 'select';
+  currentValue = this.presetService[this.menuName];
   action: string;
 
   constructor(
-    private costsService: CostsService,
+    private presetService: PresetService,
+    private usersService: UserService,
   ) {
   }
 
   ngOnInit() {
+    console.log('before' , this.presetService.currency);
     this.createDropDownMenu();
-    // this.setDefaultMenuValue();
+    console.log(this.currentValue);
   }
 
   showMenu() {
     this.dropDownMenu.nativeElement.classList.toggle('show');
+    console.log(this.presetService.language, this.presetService.currency);
   }
 
   selectMenuItem(selectValue: string, symbol = '') {
-    this.currentValue = selectValue + ' ' + symbol;
-    this.costsService[this.action](this.currentValue);
+    this.presetService[this.action](selectValue + ' ' + symbol);
+    this.currentValue = this.presetService[this.menuName];
     this.showMenu();
   }
 
@@ -46,12 +50,8 @@ export class DropdownMenuComponent implements OnInit {
     this.menuTitle = config.menuTitle;
     this.menuItems = config.menuItems;
     this.action = config.action;
-    this.currentValue = this.costsService[this.menuName];
-  }
-
-  setDefaultMenuValue() {
-    const defaultMenuItem = this.menuItems[0];
-    this.selectMenuItem(defaultMenuItem.name, defaultMenuItem.symbol);
+    this.currentValue = this.presetService[this.menuName];
+    console.log('create', this.presetService.currency, this.presetService.language);
   }
 
 // Close the dropdown menu if the user clicks outside of it

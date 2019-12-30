@@ -1,6 +1,6 @@
 <div class="dropdown">
   <span class="dropdown__name">{{menuTitle}}</span>
-  <button (click)="showMenu()" class="dropdown__open-button">{{currentValue}}</button>
+  <button (click)="showMenu()" class="dropdown__open-button">{{presetService[this.menuName]}}</button>
   <div #dropDownMenu class="dropdown__content">
     <button
       class="dropdown__item"

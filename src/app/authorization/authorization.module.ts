@@ -10,9 +10,11 @@ import {AuthorizationRoutingModule} from './authorization-routing.module';
 import {CommonModule} from '@angular/common';
 import {ReactiveFormsModule} from '@angular/forms';
 import {AuthenticationService} from './services/authentication/authentication.service';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {JWT_OPTIONS, JwtHelperService} from '@auth0/angular-jwt';
 import {AuthGuard} from './guards/main.guars';
+import {UserService} from './services/user/user.service';
+import {AuthorizationJwtInterceptor} from './interceptors/authorization-jwt.Interceptor';
 
 
 @NgModule({
@@ -32,9 +34,15 @@ import {AuthGuard} from './guards/main.guars';
     TextInputComponent,
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthorizationJwtInterceptor,
+      multi: true,
+    },
     AuthenticationService,
     AuthGuard,
     JwtHelperService,
+    UserService,
     {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},
   ],
   exports: [

@@ -6,6 +6,9 @@ import {UserRegistrationData} from '../../interfaces/user-registration-data.inte
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {routing} from '../../../global-constants/routing';
 import {Router} from '@angular/router';
+import {LoginAnswer} from '../../interfaces/login-answer.interface';
+import {UserService} from '../user/user.service';
+import {PresetService} from '../../../main/services/preset/preset.service';
 
 @Injectable()
 export class AuthenticationService {
@@ -13,7 +16,9 @@ export class AuthenticationService {
   constructor(
     private http: HttpClient,
     public jwtHelper: JwtHelperService,
-    public router: Router
+    public router: Router,
+    private costsService: PresetService,
+    private userService: UserService,
   ) { }
 
   sendLoginData(email: string, password: string) {
@@ -36,7 +41,11 @@ export class AuthenticationService {
     const formData: UserLoginData = loginFormData.value;
     this.sendLoginData(formData.email, formData.password).subscribe(
       answer => {
-        this.setAccessToken(answer.access_token);
+        const loginAnswer: LoginAnswer = answer;
+        console.log(this.costsService.language);
+        this.setAccessToken(loginAnswer.access_token);
+        // this.costsService.setUserPresets(loginAnswer.userPresets);
+        this.userService.userPreset.next(loginAnswer.userPresets);
         this.router.navigate([routing.main.root]);
       },
       error => {
