@@ -1,0 +1,16 @@
+<div class="report-table">
+  <ul class="all-costs">
+    <li class="cost-category" *ngFor="let costCategory of costService.currentCostList">
+      <ul class="cost-category__cost-list">
+        <h3 class="cost-list__title">{{costCategory._id}}</h3>
+        <li class="cost-category__cost" *ngFor="let cost of costCategory.costList">
+          <div class="cost-list__main-info-container">
+            <span class="cost-list__cost-date">{{cost.costDate | date:'dd/MM/yy'}}</span>
+            <span class="cost-list__cost-value">{{cost.costValue}}</span>
+          </div>
+          <p class="cost-list-description">{{cost.costDescription}}</p>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

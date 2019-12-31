@@ -5,7 +5,7 @@
   <ng-container *ngIf="expenseItemConfig">
     <span class="expense-item__title">{{expenseItemConfig.title}}</span>
     <img class="expense-item__icon" [src]=expenseItemConfig.iconSrc alt="icon">
-    <span class="expense-item__expense">{{expenseItemConfig.expenseValue}} {{costsService.currency.slice(-1)}}</span>
+    <span class="expense-item__expense">{{currentCostValue}} {{presetService.currency.slice(-1)}}</span>
   </ng-container>
 </button>
 

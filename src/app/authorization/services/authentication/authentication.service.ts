@@ -8,7 +8,8 @@ import {routing} from '../../../global-constants/routing';
 import {Router} from '@angular/router';
 import {LoginAnswer} from '../../interfaces/login-answer.interface';
 import {UserService} from '../user/user.service';
-import {PresetService} from '../../../main/services/preset/preset.service';
+import {PresetService} from '../../../services/preset/preset.service';
+import {CostService} from '../../../main/services/cost/cost.service';
 
 @Injectable()
 export class AuthenticationService {
@@ -17,8 +18,8 @@ export class AuthenticationService {
     private http: HttpClient,
     public jwtHelper: JwtHelperService,
     public router: Router,
-    private costsService: PresetService,
-    private userService: UserService,
+    private presetService: PresetService,
+    private costService: CostService,
   ) { }
 
   sendLoginData(email: string, password: string) {
@@ -42,10 +43,10 @@ export class AuthenticationService {
     this.sendLoginData(formData.email, formData.password).subscribe(
       answer => {
         const loginAnswer: LoginAnswer = answer;
-        console.log(this.costsService.language);
+        console.log(this.presetService.language);
         this.setAccessToken(loginAnswer.access_token);
-        // this.costsService.setUserPresets(loginAnswer.userPresets);
-        this.userService.userPreset.next(loginAnswer.userPresets);
+        this.presetService.setUserPresets(loginAnswer.userPresets);
+        this.costService.setCurrentCostList(loginAnswer.userCosts);
         this.router.navigate([routing.main.root]);
       },
       error => {

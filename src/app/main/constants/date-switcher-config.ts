@@ -1,6 +1,8 @@
 import {timeIntervalConst} from './time-interval-const';
 import {DateSwitcherConfig} from '../interfaces/date-switcher-config.interface';
 
+const currentDate = new Date().setHours(0, 0, 0, 0);
+
 const timeInterval: DateSwitcherConfig[] = [
   {
     switcherPlaceholder: 'Your date',
@@ -13,35 +15,36 @@ const timeInterval: DateSwitcherConfig[] = [
   {
     switcherPlaceholder: 'Today',
     switcherName: 'today',
-    value: Date.now(),
+    value: currentDate,
     timeInterval: timeIntervalConst.day,
     valueType: 'date'
   },
   {
     switcherPlaceholder: 'Yesterday',
     switcherName: 'yesterday',
-    value: Date.now() - timeIntervalConst.day,
+    value: currentDate - timeIntervalConst.day,
     timeInterval: timeIntervalConst.day,
     valueType: 'date'
   },
   {
     switcherPlaceholder: 'Last week',
     switcherName: 'lastWeek',
-    value: Date.now() - timeIntervalConst.week,
+    value: currentDate - timeIntervalConst.week,
     timeInterval: timeIntervalConst.week,
     valueType: 'string'
   },
   {
     switcherPlaceholder: 'Last mouth',
     switcherName: 'lastMouth',
-    value: Date.now() - timeIntervalConst.month,
+    // value: Date.now() - timeIntervalConst.month,
+    value: new Date(new Date(currentDate).setDate(0)).setDate(1),
     timeInterval: timeIntervalConst.month,
     valueType: 'string'
   },
   {
     switcherPlaceholder: 'Last year',
     switcherName: 'lastYear',
-    value: Date.now() - timeIntervalConst.year,
+    value: new Date(currentDate).setFullYear(new Date().getFullYear() - 1),
     timeInterval: timeIntervalConst.year,
     valueType: 'string'
   },
@@ -49,7 +52,7 @@ const timeInterval: DateSwitcherConfig[] = [
     switcherPlaceholder: 'All time',
     switcherName: 'allTime',
     value: 0,
-    timeInterval: Date.now(),
+    timeInterval: new Date().setHours(0, 0, 0, 0),
     valueType: 'string'
   },
 ];

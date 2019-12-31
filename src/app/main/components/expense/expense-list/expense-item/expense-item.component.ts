@@ -1,11 +1,12 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ExpenseItemConfig} from '../../../../interfaces/expense-item-config.interface';
-import {PresetService} from '../../../../services/preset/preset.service';
+import {PresetService} from '../../../../../services/preset/preset.service';
 import {ModalWindowServiceService} from '../../../../services/modal-window/modal-window-service.service';
 import {DialogService} from '../../../../../dialog/services/dialog/dialog.service';
 import {AddExpenseModalWindowComponent} from '../../modal-windows/add-expense-modal-window/add-expense-modal-window.component';
 import {DateService} from '../../../../services/date/date.service';
 import {CostListModalWindowComponent} from '../../modal-windows/cost-list-modal-window/cost-list-modal-window.component';
+import {CostService} from '../../../../services/cost/cost.service';
 
 @Component({
   selector: 'app-expense-item',
@@ -13,25 +14,29 @@ import {CostListModalWindowComponent} from '../../modal-windows/cost-list-modal-
   styleUrls: ['./expense-item.component.scss']
 })
 export class ExpenseItemComponent implements OnInit {
-
   @Input() expenseItemConfig: ExpenseItemConfig;
   @Input() iconId: string;
 
-
   constructor(
-    private costsService: PresetService,
+    public presetService: PresetService,
+    public costService: CostService,
     private modalService: ModalWindowServiceService,
     private dialog: DialogService,
     private dateService: DateService,
   ) {
   }
 
-  ngOnInit() {
+  get currentCostValue() {
+    const currentCost = this.getCurrentUserCost();
+    if (currentCost) {
+      return currentCost.costSum;
+    } else {
+      return 0;
+    }
   }
 
-  // openModal(id: string) {
-  //   this.modalService.open(id);
-  // }
+  ngOnInit() {
+  }
 
   openModal() {
     if (this.dateService.currentElement.switcherName === 'today') {
@@ -41,4 +46,7 @@ export class ExpenseItemComponent implements OnInit {
     }
   }
 
+  getCurrentUserCost() {
+    return this.costService.currentCostList.find(costItem => costItem._id === this.expenseItemConfig.title);
+  }
 }

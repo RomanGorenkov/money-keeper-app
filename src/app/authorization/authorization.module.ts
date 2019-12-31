@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {AuthorizationPageComponent} from './pages/authorization-page/authorization-page.component';
-import {TextInputComponent} from './components/text-input/text-input.component';
 import {AuthorizationFormComponent} from './components/authorization-form/authorization-form.component';
 import {HeaderWrapperComponent} from './components/header-wrapper/header-wrapper.component';
 import {ButtonComponent} from './components/button/button.component';
@@ -15,6 +14,7 @@ import {JWT_OPTIONS, JwtHelperService} from '@auth0/angular-jwt';
 import {AuthGuard} from './guards/main.guars';
 import {UserService} from './services/user/user.service';
 import {AuthorizationJwtInterceptor} from './interceptors/authorization-jwt.Interceptor';
+import {SharedModule} from '../shared/shared.module';
 
 
 @NgModule({
@@ -23,6 +23,7 @@ import {AuthorizationJwtInterceptor} from './interceptors/authorization-jwt.Inte
     CommonModule,
     ReactiveFormsModule,
     HttpClientModule,
+    SharedModule
   ],
   declarations: [
     AuthorizationPageComponent,
@@ -31,7 +32,6 @@ import {AuthorizationJwtInterceptor} from './interceptors/authorization-jwt.Inte
     ButtonComponent,
     IconSpriteComponent,
     SvgSpritesComponent,
-    TextInputComponent,
   ],
   providers: [
     {
@@ -52,7 +52,6 @@ import {AuthorizationJwtInterceptor} from './interceptors/authorization-jwt.Inte
     ButtonComponent,
     IconSpriteComponent,
     SvgSpritesComponent,
-    TextInputComponent,
   ]
 })
 export class AuthorizationModule {

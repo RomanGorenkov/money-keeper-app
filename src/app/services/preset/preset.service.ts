@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
-import {dropDownMenuConfig} from '../../constants/dropdown-menu-config';
-import {UserPresets} from '../../../authorization/interfaces/user-presets.interface';
-import {currencyList} from '../../constants/currency-list';
-import {UserService} from '../../../authorization/services/user/user.service';
+import {dropDownMenuConfig} from '../../main/constants/dropdown-menu-config';
+import {UserPresets} from '../../authorization/interfaces/user-presets.interface';
+import {currencyList} from '../../main/constants/currency-list';
+import {UserService} from '../../authorization/services/user/user.service';
 import {HttpClient} from '@angular/common/http';
-import {environment} from '../../../../environments/environment';
+import {environment} from '../../../environments/environment';
 
 @Injectable()
 export class PresetService {
@@ -34,7 +34,7 @@ export class PresetService {
   }
 
   changeLanguage(language: string) {
-    this.http.post(environment.serverUrl + '/users/language', JSON.stringify({language: language.slice(0, -1)})).subscribe(
+    this.http.post(environment.serverUrl + '/users/language', JSON.stringify({language})).subscribe(
       answer => {
         this.language = language;
         console.log(answer);
@@ -46,11 +46,9 @@ export class PresetService {
   }
 
   setUserPresets(userPresets: UserPresets) {
-    console.log(userPresets);
-    this.changeLanguage(userPresets.language);
-    const currency = currencyList.filter(currencyConfig => currencyConfig.name === userPresets.currencyName)[0];
-    this.changeCurrency(currency.name + ' ' + currency.symbol);
-    console.log(this.language, this.currency);
+    this.language = userPresets.language;
+    const currency = currencyList.find(currencyConfig => currencyConfig.name === userPresets.currencyName);
+    this.currency = `${currency.name} ${currency.symbol}`;
   }
 
   setDefaultPresets() {

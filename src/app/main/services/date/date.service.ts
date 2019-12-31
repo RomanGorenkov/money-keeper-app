@@ -1,5 +1,8 @@
 import {EventEmitter, Injectable, Output} from '@angular/core';
 import {DateSwitcherConfig} from '../../interfaces/date-switcher-config.interface';
+import {timeIntervalConst} from '../../constants/time-interval-const';
+import {CostService} from '../cost/cost.service';
+import {UserCosts} from '../../../authorization/interfaces/user-costs.interface';
 
 @Injectable()
 export class DateService {
@@ -8,18 +11,28 @@ export class DateService {
   showDateSwitcherEvent = new EventEmitter<boolean>();
   currentElement: DateSwitcherConfig;
 
-  constructor() {
+  constructor(
+  ) {
   }
 
   get valueToDisplay() {
     if (!this.currentElement) {
       return '';
-    }
-    if (this.currentElement.valueType === 'date') {
-      return this.parseNumberDate(this.currentElement.value);
     } else {
-      return this.currentElement.switcherPlaceholder;
+      if (this.currentElement.valueType === 'date') {
+        return this.parseNumberDate(this.currentElement.value);
+      } else {
+        return this.currentElement.switcherPlaceholder;
+      }
     }
+  }
+
+  getTodayDate() {
+    return new Date(Date.now()).setHours(0, 0, 0, 0);
+  }
+
+  getTomorrowDate() {
+    return this.getTodayDate() + timeIntervalConst.day;
   }
 
 
@@ -34,5 +47,9 @@ export class DateService {
     const monthIndex = date.getMonth();
     const year = date.getFullYear();
     return day + '/' + (monthIndex + 1) + '/' + year;
+  }
+
+  changeCurrentDate(value: number) {
+    this.currentElement.value = value;
   }
 }

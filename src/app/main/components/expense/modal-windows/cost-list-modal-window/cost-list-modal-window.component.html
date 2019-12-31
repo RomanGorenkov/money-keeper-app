@@ -1,6 +1,6 @@
 <h3 class="cost-list__title">{{title}}</h3>
 <ul class="cost-list__list">
-  <li class="cost-list_list-item" *ngFor="let cost of costList">
+  <li class="cost-list__list-item" *ngFor="let cost of costList">
     <div class="cost-list__main-info-container">
       <span class="cost-list__cost-date">{{cost.costDate | date:'dd/MM/yy'}}</span>
       <span class="cost-list__cost-value">{{cost.costValue}}</span>

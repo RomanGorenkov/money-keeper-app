@@ -5,8 +5,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {AuthorizationModule} from './authorization/authorization.module';
 import {MainModule} from './main/main.module';
-import {InsertionDirective} from './dialog/directives/insertion.directive';
-import {TextInputComponent} from './authorization/components/text-input/text-input.component';
+import {PresetService} from './services/preset/preset.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +17,9 @@ import {TextInputComponent} from './authorization/components/text-input/text-inp
     AuthorizationModule,
     MainModule,
   ],
-  providers: [],
+  providers: [
+    PresetService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

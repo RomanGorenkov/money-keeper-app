@@ -18,13 +18,13 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ExpenseListComponent} from './components/expense/expense-list/expense-list.component';
 import {ExpenseItemComponent} from './components/expense/expense-list/expense-item/expense-item.component';
 import {AddExpenseItemComponent} from './components/expense/expense-list/add-expense-item/add-expense-item.component';
-import {PresetService} from './services/preset/preset.service';
 import {ModalWindowComponent} from './components/modal-window/modal-window.component';
 import {ExpenseModalWindowComponent} from './components/expense-modal-window/expense-modal-window.component';
 import {DialogModule} from '../dialog/dialog.module';
-import {AuthorizationModule} from '../authorization/authorization.module';
 import {AddExpenseModalWindowComponent} from './components/expense/modal-windows/add-expense-modal-window/add-expense-modal-window.component';
-import { CostListModalWindowComponent } from './components/expense/modal-windows/cost-list-modal-window/cost-list-modal-window.component';
+import {CostListModalWindowComponent} from './components/expense/modal-windows/cost-list-modal-window/cost-list-modal-window.component';
+import {SharedModule} from '../shared/shared.module';
+import {ReportTableComponent} from './components/report-table/report-table.component';
 
 
 @NgModule({
@@ -34,7 +34,7 @@ import { CostListModalWindowComponent } from './components/expense/modal-windows
     FormsModule,
     DialogModule,
     ReactiveFormsModule,
-    AuthorizationModule,
+    SharedModule
   ],
   declarations: [
     MainComponent,
@@ -56,10 +56,10 @@ import { CostListModalWindowComponent } from './components/expense/modal-windows
     ExpenseModalWindowComponent,
     AddExpenseModalWindowComponent,
     CostListModalWindowComponent,
+    ReportTableComponent,
   ],
   providers: [
     DateService,
-    PresetService,
   ],
   exports: [
     MainComponent,
