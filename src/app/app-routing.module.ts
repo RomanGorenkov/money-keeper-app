@@ -6,11 +6,11 @@ import {routing} from './global-constants/routing';
 const routes: Routes = [
   {
     path: routing.authorisation.root,
-    loadChildren: () => import('./authorization/authorization.module').then(m => m.AuthorizationModule)
+    loadChildren: () => import('./pages/authorization/authorization.module').then(m => m.AuthorizationModule)
   },
   {
     path: routing.main.root,
-    loadChildren: () => import('./main/main.module').then(m => m.MainModule)
+    loadChildren: () => import('./pages/main/main.module').then(m => m.MainModule)
   },
   {
     path: '**',
