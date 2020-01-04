@@ -10,6 +10,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthorizationJwtInterceptor } from './interceptors/authorization-jwt.Interceptor';
 import { AuthGuard } from './guards/main.guars';
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
+import { UserService } from './services/user/user.service';
+import { CostService } from './services/cost/cost.service';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
       useClass: AuthorizationJwtInterceptor,
       multi: true,
     },
+    CostService,
+    UserService,
     PresetService,
     AuthGuard,
     JwtHelperService,

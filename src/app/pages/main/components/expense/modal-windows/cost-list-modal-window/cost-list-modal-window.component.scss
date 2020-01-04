@@ -17,10 +17,11 @@
 
 .cost-list__main-info-container{
   display: flex;
+  justify-content: space-between;
 
   *{
     @include flex-center();
-    width: 50%;
+    width: auto;
     padding: 5px;
   }
 }

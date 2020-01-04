@@ -1,7 +1,7 @@
-<div class="date-switcher" *ngIf="showSwitcherFlag">
+<div class="date-switcher">
   <ul class="date-switcher__switcher-list">
     <li class="date-switcher__switcher"
-        *ngFor="let dateSwitcher of dateSwitchers"
+        *ngFor="let dateSwitcher of dateSwitchersConfig"
         [ngClass]="{
           'date-switcher__switcher__full-width': dateSwitcher.customComponent === 'userDate'
          }"

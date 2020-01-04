@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import { InsertionDirective } from '../directives/insertion.directive';
+import { DialogService } from '../services/dialog/dialog.service';
 
 @Component({
   selector: 'app-dialog',
@@ -21,6 +22,8 @@ export class DialogComponent implements AfterViewInit, OnDestroy {
   componentRef: ComponentRef<any>;
   childComponentType: Type<any>;
   onClose = new Subject<void>();
+  dialogOverlayColor = 'black';
+
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,

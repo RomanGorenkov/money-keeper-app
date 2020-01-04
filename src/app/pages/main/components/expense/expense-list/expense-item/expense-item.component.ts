@@ -5,7 +5,7 @@ import { DialogService } from '../../../../../dialog/services/dialog/dialog.serv
 import { AddExpenseModalWindowComponent } from '../../modal-windows/add-expense-modal-window/add-expense-modal-window.component';
 import { DateService } from '../../../../services/date/date.service';
 import { CostListModalWindowComponent } from '../../modal-windows/cost-list-modal-window/cost-list-modal-window.component';
-import { CostService } from '../../../../services/cost/cost.service';
+import { CostService } from '../../../../../../services/cost/cost.service';
 
 @Component({
   selector: 'app-expense-item',
@@ -36,13 +36,18 @@ export class ExpenseItemComponent {
 
   openModal() {
     if (this.dateService.currentElement.switcherName === 'today') {
-      this.dialog.open(AddExpenseModalWindowComponent, {data: {title: this.expenseItemConfig.title}});
+      this.dialog.open(AddExpenseModalWindowComponent, {
+        data: {
+          title: this.expenseItemConfig.title,
+          color: this.expenseItemConfig.color,
+        }
+      });
     } else {
       this.dialog.open(CostListModalWindowComponent, {data: {title: this.expenseItemConfig.title}});
     }
   }
 
   getCurrentUserCost() {
-    return this.costService.currentCostList.find(costItem => costItem._id === this.expenseItemConfig.title);
+    return this.costService.currentCostList.getValue().find(costItem => costItem._id === this.expenseItemConfig.title);
   }
 }

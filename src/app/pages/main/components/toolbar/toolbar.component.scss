@@ -22,21 +22,29 @@
   transition: all 0.4s ease 0s;
 }
 
+.toolbar__background{
+  width: 100%;
+  height: auto;
+  background-color: rgba(0, 0, 0, .1);
+}
+
 .toolbar__tools-container{
   position: absolute;
-  //min-width: 130px;
-  //max-width: 300px;
   top: 45px;
   left: 0;
-  display: flex;
-  flex-direction: column;
-  //width: 40%;
-  width: auto;
+  width: 100%;
   height: calc(100vh - 90px);
-  background-color: #1976D2;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   transition: left .5s;
   z-index: 2;
+}
+
+.toolbar__tools-wrapper{
+  width: fit-content;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #1976D2;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
 .tools-list__item{

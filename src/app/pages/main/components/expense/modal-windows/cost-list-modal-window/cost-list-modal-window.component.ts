@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {DialogConfig} from '../../../../../dialog/config/dialog-config';
-import {DialogService} from '../../../../../dialog/services/dialog/dialog.service';
-import {CostDto} from '../../../../interfaces/cost-dto.intarfece';
-import {CostService} from '../../../../services/cost/cost.service';
-import {DateService} from '../../../../services/date/date.service';
+import { Component, OnInit } from '@angular/core';
+import { DialogConfig } from '../../../../../dialog/config/dialog-config';
+import { DialogService } from '../../../../../dialog/services/dialog/dialog.service';
+import { CostDto } from '../../../../interfaces/cost-dto.intarfece';
+import { CostService } from '../../../../../../services/cost/cost.service';
+import { DateService } from '../../../../services/date/date.service';
+import { PresetService } from '../../../../../../services/preset/preset.service';
 
 @Component({
   selector: 'app-cost-list-modal-window',
@@ -12,7 +13,7 @@ import {DateService} from '../../../../services/date/date.service';
 })
 export class CostListModalWindowComponent implements OnInit {
   costList: CostDto[];
-  private title: string;
+  title: string;
   private startDate: number;
   private endDate: number;
 
@@ -21,6 +22,7 @@ export class CostListModalWindowComponent implements OnInit {
     private dialog: DialogService,
     private costService: CostService,
     private dateService: DateService,
+    private presetService: PresetService,
   ) {
     this.title = config.data.title;
     this.setDateLimit();
@@ -31,14 +33,7 @@ export class CostListModalWindowComponent implements OnInit {
   }
 
   getUserCategoryCostList() {
-    this.costService.getUserCategoryCostList(this.title, this.startDate, this.endDate).subscribe(
-      answer => {
-        this.costList = answer as CostDto[];
-      },
-      error => {
-        console.log(error);
-      }
-    );
+    this.costList = this.costService.getUserCategoryCostList(this.title, this.startDate, this.endDate);
   }
 
   setDateLimit() {

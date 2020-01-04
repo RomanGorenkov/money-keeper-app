@@ -5,9 +5,11 @@ import { FormInput } from '../../../../../authorization/interfaces/form-input.in
 import { FormControls } from '../../../../../authorization/interfaces/form-controls.interface';
 import { formConfigs } from '../../../../../authorization/constants/form-configs';
 import { DialogConfig } from '../../../../../dialog/config/dialog-config';
-import { CostService } from '../../../../services/cost/cost.service';
+import { CostService } from '../../../../../../services/cost/cost.service';
 import { CostDto } from '../../../../interfaces/cost-dto.intarfece';
 import { addExpenseInputs } from '../../../../constants/add-cost-form-config';
+import { UserCosts } from '../../../../../authorization/interfaces/user-costs.interface';
+import { timeIntervalConst } from '../../../../constants/time-interval-const';
 
 @Component({
   selector: 'app-add-expense-modal-window',
@@ -16,7 +18,6 @@ import { addExpenseInputs } from '../../../../constants/add-cost-form-config';
 })
 export class AddExpenseModalWindowComponent implements OnInit {
 
-  @Input() formTitle: string;
   inputs: FormInput[];
   addExpenseForm: FormGroup;
 
@@ -45,6 +46,8 @@ export class AddExpenseModalWindowComponent implements OnInit {
   }
 
   addCost() {
+    const currentStartDate = new Date(Date.now()).setHours(0, 0, 0, 0);
+    const currentEndDate = currentStartDate + timeIntervalConst.day;
     const newCost: CostDto = {
       costDate: Date.now(),
       costType: this.config.data.title,
@@ -53,6 +56,8 @@ export class AddExpenseModalWindowComponent implements OnInit {
     };
     this.costService.addCost(newCost).subscribe(
       answer => {
+        this.costService.setUserCostList(answer as UserCosts[]);
+        this.costService.setCurrentCostList(currentStartDate, currentEndDate);
         this.dialog.removeDialogComponentFromBody();
       },
       error => {

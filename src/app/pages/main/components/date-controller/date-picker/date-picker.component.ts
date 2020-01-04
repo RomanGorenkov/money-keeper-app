@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { DateService } from '../../../services/date/date.service';
 import { timeIntervalConst } from '../../../constants/time-interval-const';
 import { dateSwitcherConfig } from '../../../constants/date-switcher-config';
+import { DialogService } from '../../../../dialog/services/dialog/dialog.service';
+import { DateSwitcherComponent } from '../date-switcher/date-switcher.component';
+import { dialogOverlayColor } from '../../../../dialog/constants/dialog-overlay-colors';
 
 @Component({
   selector: 'app-date-picker',
@@ -14,25 +17,22 @@ export class DatePickerComponent implements OnInit {
 
   constructor(
     private dateService: DateService,
+    private dialogService: DialogService,
   ) {}
 
   ngOnInit() {
-    this.subscribeOnChangeSwitcherFlag();
+    this.dateService.changeCurrentDateElement(dateSwitcherConfig.timeInterval[1]);
+
   }
 
   openDateSwitcher() {
-    this.dateService.changeShowDateSwitcher();
+    this.dialogService.open(DateSwitcherComponent, {data: {dateSwitcherName: 'timeInterval'}}, dialogOverlayColor.clear);
   }
 
-  subscribeOnChangeSwitcherFlag() {
-    this.dateService.showDateSwitcherEvent.subscribe(
-      () => {
-      }
-    );
-  }
 
   changeDate(timeInterval: number, direction: number) {
     this.dateService.changeCurrentDateElement(dateSwitcherConfig.timeInterval[0]);
+    this.dateService.changeCurrentDateInterval(dateSwitcherConfig.timeInterval[0]);
     if (direction < 0) {
       this.dateService.changeCurrentDate(this.dateService.startDate - timeInterval, this.dateService.startDate);
     } else {

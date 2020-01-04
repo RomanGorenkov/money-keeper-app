@@ -7,7 +7,7 @@ import { routing } from '../../../../global-constants/routing';
 import { Router } from '@angular/router';
 import { LoginAnswer } from '../../interfaces/login-answer.interface';
 import { PresetService } from '../../../../services/preset/preset.service';
-import { CostService } from '../../../main/services/cost/cost.service';
+import { CostService } from '../../../../services/cost/cost.service';
 import { storageConstants } from '../../../../global-constants/storage-constants';
 import { environment } from '../../../../../environments/environment';
 import { apiUrls } from '../../../../global-constants/api-urls';
@@ -31,7 +31,6 @@ export class AuthenticationService {
       username: email,
       password,
     };
-    console.log(loginData);
     const config = {headers: new HttpHeaders().set('Content-Type', 'application/json')};
     return this.http.post<any>(`${environment.serverUrl}/${apiUrls.login}`, JSON.stringify(loginData), config);
   }
@@ -59,7 +58,6 @@ export class AuthenticationService {
     const formData: UserRegistrationData = registrationFormData.value;
     this.sendRegistrationData(formData).subscribe(
       answer => {
-        console.log(answer);
         this.router.navigate([routing.authorisation.login]);
       },
       error => {
@@ -71,6 +69,8 @@ export class AuthenticationService {
   private setLoginAnswerData(loginAnswer: LoginAnswer) {
     AuthenticationService.setAccessToken(loginAnswer.access_token);
     this.presetService.setUserPresets(loginAnswer.userPresets);
-    this.costService.setCurrentCostList(loginAnswer.userCosts);
+    this.costService.setUserCostList(loginAnswer.userCosts);
+    this.costService.setCurrentCostList();
+    this.costService.setCostColorList();
   }
 }

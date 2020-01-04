@@ -1,8 +1,10 @@
 <div class="report-graphs__chart">
-  <canvas baseChart
+  <canvas class="report-graphs__canvas" baseChart
           [data]="pieChartData"
           [labels]="pieChartLabels"
-          [chartType]="pieChartType">
+          [chartType]="pieChartType"
+          [colors]="pieChartColors"
+          [options]="pieChartOptions"
+  >
   </canvas>
 </div>
-

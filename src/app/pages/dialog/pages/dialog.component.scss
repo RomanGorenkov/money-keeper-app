@@ -8,9 +8,16 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.7);
   align-items: center;
   justify-content: center;
+}
+
+.black{
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.clear{
+  background: none;
 }
 
 .dialog {
@@ -18,7 +25,8 @@
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   background-color: white;
   color: black;
-  width: 250px;
+  min-width: 250px;
+  width: fit-content;
   height: auto;
   display: flex;
   flex-direction: column;

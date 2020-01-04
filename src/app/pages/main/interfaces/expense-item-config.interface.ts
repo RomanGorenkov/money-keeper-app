@@ -3,4 +3,5 @@ export interface ExpenseItemConfig {
   currency: string;
   expenseValue: number;
   iconSrc: string;
+  color: string;
 }

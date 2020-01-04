@@ -4,6 +4,7 @@ import { DialogComponent } from '../../pages/dialog.component';
 import { DialogConfig } from '../../config/dialog-config';
 import { DialogInjector } from '../../injectors/dialog-injector';
 import { Subscription } from 'rxjs';
+import { dialogOverlayColor } from '../../constants/dialog-overlay-colors';
 
 @Injectable({
   providedIn: DialogModule,
@@ -25,8 +26,6 @@ export class DialogService {
     map.set(DialogConfig, dialogConfig);
 
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(DialogComponent);
-    // const componentRef = componentFactory.create(this.injector);
-
     const componentRef = componentFactory.create(new DialogInjector(this.injector, map));
 
     this.appRef.attachView(componentRef.hostView);
@@ -43,11 +42,10 @@ export class DialogService {
     this.dialogComponentRef.destroy();
   }
 
-  open<C, D>(componentType: Type<C>, dialogConfig: DialogConfig<D>) {
+  open<C, D>(componentType: Type<C>, dialogConfig: DialogConfig<D>, overlayColor?: string) {
     this.appendDialogComponentToBody(dialogConfig);
-
     this.dialogComponentRef.instance.childComponentType = componentType;
-
+    this.setDialogOverlayColor(overlayColor);
   }
 
   onCloseDialogEventSubscribe(dialogComponentRef: ComponentRef<DialogComponent>) {
@@ -59,5 +57,9 @@ export class DialogService {
         console.log(error);
       }
     );
+  }
+
+  setDialogOverlayColor(overlayColor?: string) {
+    this.dialogComponentRef.instance.dialogOverlayColor = overlayColor ? overlayColor : dialogOverlayColor.black;
   }
 }

@@ -18,6 +18,10 @@ export class PresetService {
     this.setDefaultPresets();
   }
 
+  get currencySymbol() {
+    return this.currency.slice(-1);
+  }
+
 
   changeCurrency(currency: string) {
     this.http.post(`${environment.serverUrl}/${apiUrls.currency}`, JSON.stringify({currency: currency.slice(0, -2)})).subscribe(

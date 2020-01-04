@@ -23,7 +23,6 @@ import { SharedModule } from '../../shared/shared.module';
 import { ReportTableComponent } from './components/report-table/report-table.component';
 import { ReportGraphsComponent } from './components/report-graphs/report-graphs.component';
 import { ChartsModule } from 'ng2-charts';
-import { CostService } from './services/cost/cost.service';
 import { AddExpenseModalWindowComponent } from './components/expense/modal-windows/add-expense-modal-window/add-expense-modal-window.component';
 
 
@@ -59,7 +58,6 @@ import { AddExpenseModalWindowComponent } from './components/expense/modal-windo
   ],
   providers: [
     DateService,
-    CostService,
   ],
   exports: [
     MainComponent,
@@ -74,6 +72,7 @@ import { AddExpenseModalWindowComponent } from './components/expense/modal-windo
   entryComponents: [
     AddExpenseModalWindowComponent,
     CostListModalWindowComponent,
+    DateSwitcherComponent,
   ]
 })
 export class MainModule {

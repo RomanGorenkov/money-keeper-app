@@ -1,9 +1,11 @@
 @import "../../mixins/flex-center.mixin";
 
 .report-graphs__chart{
-  display: block;
+  position: relative;
+  box-sizing: border-box;
   height: 100%;
   min-width: 300px;
   max-width: 600px;
+  padding: 5px;
   margin: 0 auto;
 }
