@@ -4,6 +4,7 @@ import { DateSwitcherConfig } from '../../../interfaces/date-switcher-config.int
 import { dateSwitcherConfig } from '../../../constants/date-switcher-config';
 import { DialogConfig } from '../../../../dialog/config/dialog-config';
 import { DialogService } from '../../../../dialog/services/dialog/dialog.service';
+import { timeIntervalConst } from '../../../constants/time-interval-const';
 
 @Component({
   selector: 'app-date-switcher',
@@ -33,20 +34,17 @@ export class DateSwitcherComponent implements OnInit {
 
   createSwitcherList() {
     this.dateSwitchers = dateSwitcherConfig[this.config.data.dateSwitcherName];
-    console.log(this.dateSwitchers);
   }
 
   switchDate(dateSwitcher: DateSwitcherConfig) {
-    this.dateService.changeCurrentDateElement(dateSwitcher);
-    this.dateService.changeCurrentDate(dateSwitcher.startDate, dateSwitcher.endDate);
+    this.dateService.changeCurrentDateBySwitcher(dateSwitcher);
     this.dialog.removeDialogComponentFromBody();
   }
 
 
-  setCustomDate(event, config: DateSwitcherConfig) {
-    const startDate = Number(new Date(event.target.value));
-    this.dateService.changeCurrentDateElement(config);
-    this.dateService.changeCurrentDate(startDate, startDate + config.endDate);
+  setCustomDate(event) {
+    const startDate = Number(new Date(event.target.value).setHours(0, 0, 0, 0));
+    this.dateService.changeCurrentDateByCustomDate(startDate, startDate + timeIntervalConst.day);
     this.dialog.removeDialogComponentFromBody();
   }
 }

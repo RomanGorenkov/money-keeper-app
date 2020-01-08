@@ -46,18 +46,14 @@ export class AddExpenseModalWindowComponent implements OnInit {
   }
 
   addCost() {
-    const currentStartDate = new Date(Date.now()).setHours(0, 0, 0, 0);
-    const currentEndDate = currentStartDate + timeIntervalConst.day;
     const newCost: CostDto = {
       costDate: Date.now(),
       costType: this.config.data.title,
       costDescription: this.addExpenseForm.value.description,
-      costValue: this.addExpenseForm.value.expense,
+      costValue: parseInt(this.addExpenseForm.value.expense, 10)
     };
     this.costService.addCost(newCost).subscribe(
-      answer => {
-        this.costService.setUserCostList(answer as UserCosts[]);
-        this.costService.setCurrentCostList(currentStartDate, currentEndDate);
+      () => {
         this.dialog.removeDialogComponentFromBody();
       },
       error => {

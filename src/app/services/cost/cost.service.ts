@@ -8,11 +8,12 @@ import { timeIntervalConst } from '../../pages/main/constants/time-interval-cons
 import { expenseItems } from '../../pages/main/constants/expense-items-config';
 import { BehaviorSubject } from 'rxjs';
 import { CostCategoryColorList } from '../../pages/main/interfaces/cost-color-list.interface';
+import { storageConstants } from '../../global-constants/storage-constants';
+import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class CostService {
 
-  allCostList: UserCosts[] = [];
   currentCostColorList: CostCategoryColorList = {};
   currentCostList: BehaviorSubject<UserCosts[]> = new BehaviorSubject([]);
 
@@ -34,12 +35,20 @@ export class CostService {
   }
 
   get currentCostsColor() {
-    return  this.currentCostsName.map(costCategory => {
-      return this.currentCostColorList[costCategory];
+    const costColorListFromStorage = JSON.parse(localStorage.getItem(storageConstants.costColors));
+    return this.currentCostsName.map(costCategory => {
+      if (this.currentCostColorList[costCategory]) {
+        return this.currentCostColorList[costCategory];
+      } else {
+        return costColorListFromStorage[costCategory];
+      }
     });
-    // return this.currentCostList.getValue().map(cost => {
-    //   return cost._id;
-    // });
+  }
+
+  get totalCost() {
+    return this.currentCostsSum.reduce((totalSum, sum) => {
+      return totalSum += sum;
+    }, 0);
   }
 
   static sortCostListByDate(costList: CostDto[]) {
@@ -47,34 +56,56 @@ export class CostService {
   }
 
   addCost(costDto: CostDto) {
-    return this.http.post(`${environment.serverUrl}/${apiUrls.addCost}`, JSON.stringify(costDto));
+    return this.http.post(`${environment.serverUrl}/${apiUrls.addCost}`, JSON.stringify(costDto)).pipe(
+      tap(() => {
+        this.addCostInCurrentCostList(costDto);
+      })
+    );
   }
 
-  setCurrentCostList(
+  addCostInCurrentCostList(costDto: CostDto) {
+    const currentCostList = this.currentCostList.getValue().map(costCategory => {
+      console.log(costCategory);
+      if (costCategory._id === costDto.costType) {
+        costCategory.costList.push(costDto);
+        costCategory.costSum += costDto.costValue;
+      }
+      return costCategory;
+    });
+    this.currentCostList.next(currentCostList);
+  }
+
+  updateCurrentCostList(
     startDate: number = new Date(Date.now()).setHours(0, 0, 0, 0),
     endDate: number = new Date(Date.now()).setHours(0, 0, 0, 0) + timeIntervalConst.day) {
-    this.currentCostList.next(this.getCurrentAllUserCosts(startDate, endDate));
+    this.getCurrentAllUserCosts(startDate, endDate).subscribe(
+      costList => {
+        this.setUserCurrentCostList(costList as UserCosts[]);
+      }
+    );
   }
 
-  setUserCostList(costsList: UserCosts[]) {
-    this.allCostList = costsList;
+  setUserCurrentCostList(costsList: UserCosts[]) {
+    this.currentCostList.next(costsList);
   }
 
   setCostColorList() {
-    expenseItems.map( categoryConfig => {
+    expenseItems.map(categoryConfig => {
       this.currentCostColorList[categoryConfig.title] = categoryConfig.color;
     });
+    localStorage.setItem(storageConstants.costColors, JSON.stringify(this.currentCostColorList));
   }
 
   getCurrentAllUserCosts(startDate: number, endDate: number) {
-    const currentCostList: UserCosts[] = JSON.parse(JSON.stringify(this.allCostList));
-    currentCostList.map((costType) => {
-      costType.costList = this.filterCostListByDateInterval(costType.costList, startDate, endDate);
-      costType.costSum = costType.costList.reduce((costSum, cost) => {
-        return costSum + cost.costValue;
-      }, 0);
-    });
-    return currentCostList.filter(costList => costList.costSum !== 0);
+    return this.http.get(`${environment.serverUrl}/${apiUrls.getAllUserCosts}/${startDate}/${endDate}`);
+  }
+
+  setTodayAllUserCosts() {
+    this.http.get(`${environment.serverUrl}/${apiUrls.getAllUserCosts}`).subscribe(
+      costList => {
+        this.setUserCurrentCostList(costList as UserCosts[]);
+      }
+    );
   }
 
   getUserCategoryCostList(categoryName: string, startDate: number, endDate: number) {

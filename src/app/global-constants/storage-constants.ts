@@ -1,5 +1,8 @@
-import { StorageConstants } from '../interfaces/storage-constants.interface';
-
-export const storageConstants: StorageConstants = {
+export const storageConstants = {
   token: 'token',
+  costColors: 'costColors',
+  presets: {
+    currency: 'currency',
+    language: 'language',
+  },
 };

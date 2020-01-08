@@ -1,5 +1,6 @@
 <div class="toolbar">
   <button class="toolbar__menu-button" (click)="openToolbar()">☰</button>
+  <app-total-cost></app-total-cost>
     <div #toolsContainer class="toolbar__tools-container hidden" (click)="onOverlayClicked($event)">
       <div class="toolbar__tools-wrapper" (click)="onToolbarClicked($event)">
         <ul class="tools-list">

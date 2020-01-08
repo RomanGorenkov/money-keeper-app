@@ -24,6 +24,7 @@ import { ReportTableComponent } from './components/report-table/report-table.com
 import { ReportGraphsComponent } from './components/report-graphs/report-graphs.component';
 import { ChartsModule } from 'ng2-charts';
 import { AddExpenseModalWindowComponent } from './components/expense/modal-windows/add-expense-modal-window/add-expense-modal-window.component';
+import { TotalCostComponent } from './components/expense/total-cost/total-cost.component';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { AddExpenseModalWindowComponent } from './components/expense/modal-windo
     ReportTableComponent,
     ReportGraphsComponent,
     AddExpenseModalWindowComponent,
+    TotalCostComponent,
   ],
   providers: [
     DateService,

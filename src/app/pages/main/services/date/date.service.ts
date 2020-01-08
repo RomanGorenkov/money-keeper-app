@@ -8,8 +8,7 @@ import { dateSwitcherConfig } from '../../constants/date-switcher-config';
 @Injectable()
 export class DateService {
 
-  showDateSwitcher = true;
-  showDateSwitcherEvent = new EventEmitter<boolean>();
+
   currentElement: DateSwitcherConfig;
   currentDate: number;
 
@@ -47,10 +46,22 @@ export class DateService {
     return day + '/' + (monthIndex + 1 < 10 ? '0' + (monthIndex + 1) : monthIndex + 1) + '/' + year;
   }
 
+  changeCurrentDateByCustomDate(startDate: number, endDate: number) {
+    this.changeCurrentDateElement(dateSwitcherConfig.timeInterval[0]);
+    this.checkCurrentDateOnToday(startDate, endDate);
+  }
+
+  changeCurrentDateBySwitcher(dateSwitcher: DateSwitcherConfig) {
+    this.changeCurrentDateElement(dateSwitcher);
+    this.costService.updateCurrentCostList(this.startDate, this.endDate);
+  }
+
+
+
   changeCurrentDate(startDate: number, endDate: number) {
     this.currentElement.startDate = startDate;
     this.currentElement.endDate = endDate;
-    this.costService.setCurrentCostList(this.startDate, this.endDate);
+    this.costService.updateCurrentCostList(this.startDate, this.endDate);
   }
 
   changeCurrentDateElement(config: DateSwitcherConfig) {
@@ -58,7 +69,11 @@ export class DateService {
     this.currentElement = config;
   }
 
-  changeCurrentDateInterval(config: DateSwitcherConfig) {
-    this.currentElement.startDate = this.currentDate;
+  checkCurrentDateOnToday(startDate: number, endDate: number) {
+    if (startDate === dateSwitcherConfig.timeInterval[1].startDate ) {
+      this.changeCurrentDateBySwitcher(dateSwitcherConfig.timeInterval[1]);
+    } else {
+      this.changeCurrentDate(startDate, endDate);
+    }
   }
 }

@@ -57,7 +57,7 @@ export class AuthenticationService {
   registration(registrationFormData: FormGroup) {
     const formData: UserRegistrationData = registrationFormData.value;
     this.sendRegistrationData(formData).subscribe(
-      answer => {
+      () => {
         this.router.navigate([routing.authorisation.login]);
       },
       error => {
@@ -69,8 +69,7 @@ export class AuthenticationService {
   private setLoginAnswerData(loginAnswer: LoginAnswer) {
     AuthenticationService.setAccessToken(loginAnswer.access_token);
     this.presetService.setUserPresets(loginAnswer.userPresets);
-    this.costService.setUserCostList(loginAnswer.userCosts);
-    this.costService.setCurrentCostList();
+    this.costService.setUserCurrentCostList(loginAnswer.userCosts);
     this.costService.setCostColorList();
   }
 }

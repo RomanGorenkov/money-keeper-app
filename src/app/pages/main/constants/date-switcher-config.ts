@@ -1,7 +1,11 @@
-import {timeIntervalConst} from './time-interval-const';
-import {DateSwitcherConfig} from '../interfaces/date-switcher-config.interface';
+import { timeIntervalConst } from './time-interval-const';
+import { DateSwitcherConfig } from '../interfaces/date-switcher-config.interface';
 
-const currentDate = new Date().setHours(0, 0, 0, 0);
+const sundayIndex = 0;
+
+function getCurrentDate() {
+  return new Date().setHours(0, 0, 0, 0);
+}
 
 const timeInterval: DateSwitcherConfig[] = [
   {
@@ -16,48 +20,71 @@ const timeInterval: DateSwitcherConfig[] = [
   {
     switcherPlaceholder: 'Today',
     switcherName: 'today',
-    startDate: currentDate,
-    endDate: currentDate + timeIntervalConst.day,
+    get startDate() {
+      return getCurrentDate();
+    },
+    get endDate() {
+      return getCurrentDate() + timeIntervalConst.day;
+    },
     valueType: 'date'
   },
   {
     switcherPlaceholder: 'Yesterday',
     switcherName: 'yesterday',
-    startDate: currentDate - timeIntervalConst.day,
-    endDate: timeIntervalConst.day,
+    get startDate() {
+      return getCurrentDate() - timeIntervalConst.day;
+    },
+    get endDate() {
+      return getCurrentDate();
+    },
     valueType: 'date'
   },
   {
-    switcherPlaceholder: 'Last week',
-    switcherName: 'lastWeek',
-    startDate: currentDate - timeIntervalConst.week,
-    endDate: currentDate + timeIntervalConst.week,
+    switcherPlaceholder: 'Week',
+    switcherName: 'week',
+    get startDate() {
+      const currentDayIndex =  new Date(getCurrentDate()).getDay();
+      if (new Date(getCurrentDate()).getDay() === sundayIndex) {
+        return getCurrentDate() - timeIntervalConst.week;
+      } else {
+        return getCurrentDate() - currentDayIndex * timeIntervalConst.day;
+      }
+    },
+    endDate: getCurrentDate() + timeIntervalConst.day,
     valueType: 'string'
   },
   {
-    switcherPlaceholder: 'Last mouth',
-    switcherName: 'lastMouth',
-    // value: Date.now() - timeIntervalConst.month,
-    startDate: new Date(new Date(currentDate).setDate(0)).setDate(1),
-    endDate: currentDate + timeIntervalConst.month,
+    switcherPlaceholder: 'Mouth',
+    switcherName: 'mouth',
+    get startDate() {
+      return new Date(getCurrentDate()).setDate(1);
+    },
+    get endDate() {
+      return getCurrentDate() + timeIntervalConst.day;
+    },
     valueType: 'string'
   },
   {
-    switcherPlaceholder: 'Last year',
-    switcherName: 'lastYear',
-    startDate: new Date(currentDate).setFullYear(new Date().getFullYear() - 1),
-    endDate: currentDate + timeIntervalConst.year,
+    switcherPlaceholder: 'Year',
+    switcherName: 'year',
+    get startDate() {
+      return new Date(getCurrentDate()).setFullYear(new Date().getFullYear() - 1);
+    },
+    get endDate() {
+      return getCurrentDate() + timeIntervalConst.day;
+    },
     valueType: 'string'
   },
   {
     switcherPlaceholder: 'All time',
     switcherName: 'allTime',
     startDate: 0,
-    endDate: new Date().setHours(0, 0, 0, 0),
+    get endDate() {
+      return getCurrentDate() + timeIntervalConst.day;
+    },
     valueType: 'string'
   },
 ];
-
 
 
 export const dateSwitcherConfig = {

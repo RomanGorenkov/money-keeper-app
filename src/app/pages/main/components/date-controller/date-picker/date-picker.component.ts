@@ -18,7 +18,8 @@ export class DatePickerComponent implements OnInit {
   constructor(
     private dateService: DateService,
     private dialogService: DialogService,
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.dateService.changeCurrentDateElement(dateSwitcherConfig.timeInterval[1]);
@@ -31,12 +32,12 @@ export class DatePickerComponent implements OnInit {
 
 
   changeDate(timeInterval: number, direction: number) {
-    this.dateService.changeCurrentDateElement(dateSwitcherConfig.timeInterval[0]);
-    this.dateService.changeCurrentDateInterval(dateSwitcherConfig.timeInterval[0]);
     if (direction < 0) {
-      this.dateService.changeCurrentDate(this.dateService.startDate - timeInterval, this.dateService.startDate);
+      this.dateService.changeCurrentDateByCustomDate(this.dateService.startDate - timeInterval, this.dateService.startDate);
     } else {
-      this.dateService.changeCurrentDate(this.dateService.startDate + timeInterval, this.dateService.startDate + 2 * timeInterval);
+      this.dateService.changeCurrentDateByCustomDate(
+        this.dateService.startDate + timeInterval, this.dateService.startDate + 2 * timeInterval
+      );
     }
   }
 
