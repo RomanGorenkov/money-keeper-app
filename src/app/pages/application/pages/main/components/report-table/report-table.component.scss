@@ -1,0 +1,77 @@
+@import "../../mixins/button-font.mixin";
+@import "../../mixins/flex-center.mixin";
+@import "../../../../mixins/form-title.mixin";
+
+:host{
+  height: inherit;
+}
+
+.all-costs{
+  display: flex;
+  flex-direction: column;
+  font-family: sans-serif;
+}
+.report-table{
+  height: inherit;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+.cost-list__title{
+  @include button-font();
+  @include flex-center();
+  height: 30px;
+  background-color: #03A9F4;
+}
+
+.cost-list__list{
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+.cost-list__main-info-container{
+  display: flex;
+
+  *{
+    @include flex-center();
+    width: 50%;
+    padding: 10px;
+  }
+}
+
+.cost-list-description{
+  padding: 10px;
+  font-weight: normal;
+  border-bottom: 1px solid gray;
+}
+
+.cost__description{
+  padding: 10px;
+  font-weight: normal;
+  border-bottom: 1px solid #03A9F4;
+}
+
+.cost__category{
+  font-weight: bold;
+  color: #03A9F4;
+}
+
+.cost__main-info-container{
+  display: flex;
+}
+
+.cost__date, .cost__value, .cost__category{
+  @include flex-center();
+  width: 50%;
+  padding: 10px;
+}
+
+.cost__date{
+  font-weight: bold;
+  width: auto;
+}
+
+.cost__value{
+  width: 50%;
+  color: red;
+}

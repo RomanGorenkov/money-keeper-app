@@ -1,0 +1,42 @@
+<div class="settings-page">
+  <h2 class="settings-page__title">Settings</h2>
+  <img class="settings-page__user-avatar"  [src]=userService.userSettings.userAvatarUrl alt="User avatar">
+  <form
+    (ngSubmit)="submit($event)"
+    class="settings-page__form"
+    [formGroup]="settingForm"
+  >
+    <label class="settings-page__label">
+      User Name
+      <input
+        class="settings-page__input-text"
+        name="username"
+        formControlName="username"
+        [value]="userService.userSettings.username"
+      >
+    </label>
+    <input
+      formControlName="avatarFile"
+      name="avatarFile"
+      type="file"
+      id="file"
+      class="input-file"
+      (change)="changeAvatar($event)"
+    />
+    <label
+      class="input-file__label"
+      for="file"
+    >
+      Choose a file
+    </label>
+
+    <input
+      class="settings-page__submit-button"
+      type="submit"
+      value="Save"
+      [disabled]="settingForm.pristine"
+    />
+  </form>
+
+</div>
+

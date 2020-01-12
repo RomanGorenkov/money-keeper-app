@@ -1,0 +1,5 @@
+@import "../../pages/main/mixins/button-font.mixin";
+
+.total-cost{
+  @include button-font();
+}
