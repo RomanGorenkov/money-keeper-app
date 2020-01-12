@@ -1,0 +1,98 @@
+@import "../../../mixins/application-item.mixin";
+@import "../../../mixins/form-title.mixin";
+@import "../../main/mixins/flex-center.mixin";
+@import "../../../mixins/form-submit-input.mixin";
+
+
+.settings-page{
+  @include application-item();
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+
+  &__title{
+    @include form-title(1.2rem);
+  }
+
+  &__user-avatar{
+    display: block;
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    margin: 0 auto;
+    border-radius: 50%;
+    border: 3px solid #03A9F4;
+  }
+
+  &__form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+  }
+
+  &__label{
+    text-transform: uppercase;
+    color: black;
+    font: 95% Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+  }
+
+  &__input-text{
+    width: 250px;
+    transition: all 0.30s ease-in-out;
+    outline: none;
+    box-sizing: border-box;
+    background: #fff;
+    margin: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    color: #555;
+    font: 95% Arial, Helvetica, sans-serif;
+
+    &.ng-touched:not(.ng-valid){
+      box-shadow: 0 0 5px #f35542;
+      padding: 10px;
+      border: 1px solid #f35542;
+    }
+  }
+  &__submit-button{
+    @include form-submit-input();
+  }
+
+
+}
+
+.input-file{
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.input-file__label {
+  @include form-title($color: white);
+  width: 250px;
+  margin: 5px;
+  background-color: #2196F3;
+  cursor: pointer;
+}
+
+.input-file:focus + .input-file__label,
+.input-file + .input-file__label:hover {
+  background-color: #03A9F4;
+}
+
+.input-file:focus + .input-file__label{
+  outline: auto 10px -webkit-focus-ring-color
+  //outline: -webkit-focus-ring-color auto 5px;
+  //outline: 1px dotted #000;
+}
+

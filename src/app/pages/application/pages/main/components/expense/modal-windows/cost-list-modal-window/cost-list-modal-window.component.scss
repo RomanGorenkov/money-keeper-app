@@ -1,0 +1,33 @@
+@import "../../../../mixins/button-font.mixin";
+@import "../../../../mixins/flex-center.mixin";
+@import "../../../../../../mixins/form-title.mixin";
+
+
+.cost-list__title{
+  @include button-font();
+  @include flex-center();
+  height: 30px;
+  background-color: #03A9F4;
+}
+
+.cost-list__list{
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+.cost-list__main-info-container{
+  display: flex;
+  justify-content: space-between;
+
+  *{
+    @include flex-center();
+    width: auto;
+    padding: 5px;
+  }
+}
+
+.cost-list-description{
+  padding: 5px;
+  font-weight: normal;
+  border-bottom: 1px solid gray;
+}
