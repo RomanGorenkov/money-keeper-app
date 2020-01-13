@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { CostDto } from '../../pages/main/interfaces/cost-dto.intarfece';
+import { CostDto } from '../../pages/application/pages/main/interfaces/cost-dto.intarfece';
 import { UserCosts } from '../../pages/authorization/interfaces/user-costs.interface';
 import { apiUrls } from '../../global-constants/api-urls';
-import { timeIntervalConst } from '../../pages/main/constants/time-interval-const';
-import { expenseItems } from '../../pages/main/constants/expense-items-config';
+import { timeIntervalConst } from '../../pages/application/pages/main/constants/time-interval-const';
+import { expenseItems } from '../../pages/application/pages/main/constants/expense-items-config';
 import { BehaviorSubject } from 'rxjs';
-import { CostCategoryColorList } from '../../pages/main/interfaces/cost-color-list.interface';
+import { CostCategoryColorList } from '../../pages/application/pages/main/interfaces/cost-color-list.interface';
 import { storageConstants } from '../../global-constants/storage-constants';
 import { tap } from 'rxjs/operators';
 
@@ -64,8 +64,16 @@ export class CostService {
   }
 
   addCostInCurrentCostList(costDto: CostDto) {
+    if (this.checkCostCategoryInCurrentCostList(costDto.costType)) {
+     this.addNewCostInExistingCategory(costDto);
+    } else {
+      this.addNewCategoryInCurrentCostList(costDto);
+    }
+
+  }
+
+  addNewCostInExistingCategory(costDto: CostDto) {
     const currentCostList = this.currentCostList.getValue().map(costCategory => {
-      console.log(costCategory);
       if (costCategory._id === costDto.costType) {
         costCategory.costList.push(costDto);
         costCategory.costSum += costDto.costValue;
@@ -73,6 +81,23 @@ export class CostService {
       return costCategory;
     });
     this.currentCostList.next(currentCostList);
+  }
+
+  addNewCategoryInCurrentCostList(costDto: CostDto) {
+    this.currentCostList.getValue().push(
+      {
+        _id: costDto.costType,
+        costSum: costDto.costValue,
+        costList: [costDto]
+      }
+    );
+    this.currentCostList.next(this.currentCostList.getValue());
+  }
+
+  checkCostCategoryInCurrentCostList(categoryName: string) {
+    return this.currentCostList.getValue().some(costCategory => {
+      return costCategory._id === categoryName;
+    });
   }
 
   updateCurrentCostList(
@@ -91,7 +116,7 @@ export class CostService {
 
   setCostColorList() {
     expenseItems.map(categoryConfig => {
-      this.currentCostColorList[categoryConfig.title] = categoryConfig.color;
+      this.currentCostColorList[categoryConfig.name] = categoryConfig.color;
     });
     localStorage.setItem(storageConstants.costColors, JSON.stringify(this.currentCostColorList));
   }
