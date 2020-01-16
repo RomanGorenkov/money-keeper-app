@@ -3,20 +3,26 @@ import { CostService } from '../../../../../../services/cost/cost.service';
 import { Color } from 'ng2-charts';
 import { reportGraphConstant } from '../../constants/report-graph-constants';
 import { PresetService } from '../../../../../../services/preset/preset.service';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { makeFirstLetterCapital } from '../../../../../../helpers/string-helper';
+import { ChartType } from '../../constants/chart-type';
 
 @Component({
   selector: 'app-report-graphs',
   templateUrl: './report-graphs.component.html',
-  styleUrls: ['./report-graphs.component.scss']
+  styleUrls: ['./report-graphs.component.scss'],
+  providers: [
+    TranslatePipe,
+  ]
 })
 export class ReportGraphsComponent implements OnInit {
 
-  pieChartLabels = this.setExtendedChartLabelsData();
-  pieChartData = this.costService.currentCostsSum;
+  pieChartLabels = [];
+  pieChartData = [];
   pieChartColors: Color[] = [{
     backgroundColor: []
   }];
-  pieChartType = 'pie';
+  pieChartType = ChartType.Pie;
   pieChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
@@ -32,14 +38,17 @@ export class ReportGraphsComponent implements OnInit {
   constructor(
     private costService: CostService,
     private presetService: PresetService,
+    private translatePipe: TranslatePipe,
+    private translate: TranslateService,
   ) {
   }
 
   ngOnInit() {
-    this.chartUpdateSubscribe();
+    this.costUpdateSubscribe();
+    this.languageUpdateSubscribe();
   }
 
-  chartUpdateSubscribe() {
+  costUpdateSubscribe() {
     this.costService.currentCostList.subscribe(
       () => {
         this.updateChart();
@@ -51,16 +60,35 @@ export class ReportGraphsComponent implements OnInit {
     this.pieChartData = [];
     this.pieChartLabels = [];
     this.pieChartData.push(...this.costService.currentCostsSum);
-    this.pieChartLabels.push(...this.setExtendedChartLabelsData());
+    this.pieChartLabels.push(...this.getExtendedChartLabelsData());
     this.pieChartColors[reportGraphConstant.currentGraph].backgroundColor = this.costService.currentCostsColor;
   }
 
-  setExtendedChartLabelsData() {
-    let pieChartLabels = this.costService.currentCostsName;
-    pieChartLabels = pieChartLabels.map((label, index) => {
-      label += ` (${this.costService.currentCostsSum[index]}${this.presetService.currencySymbol})`;
-      return label;
-    });
+  getExtendedChartLabelsData() {
+    let pieChartLabels = this.costService.currentCostsNames;
+    pieChartLabels = pieChartLabels.map((label: string, index: number) => this.createLabel(label, index));
     return pieChartLabels;
+  }
+
+  translateLabel(label: string) {
+    const translateLabel = this.translatePipe.transform(`home.category.${label}`);
+    if (translateLabel === `home.category.${label}`) {
+      return makeFirstLetterCapital(label);
+    }
+    return translateLabel;
+  }
+
+  createLabel(label: string, index: number) {
+    label = this.translateLabel(label);
+    label += ` (${this.costService.currentCostsSum[index]}${this.presetService.currencySymbol})`;
+    return makeFirstLetterCapital(label);
+  }
+
+  languageUpdateSubscribe() {
+    this.translate.onLangChange.subscribe(
+      () => {
+        this.updateChart();
+      }
+    );
   }
 }

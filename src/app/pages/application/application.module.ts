@@ -8,15 +8,17 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { DropdownMenuComponent } from './components/toolbar/dropdown-menu/dropdown-menu.component';
 import { TotalCostComponent } from './components/total-cost/total-cost.component';
 import { CommonModule } from '@angular/common';
+import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
 
 
 @NgModule({
-  imports: [
-    ApplicationRoutingModule,
-    MainModule,
-    UserSettingsModule,
-    CommonModule,
-  ],
+    imports: [
+        ApplicationRoutingModule,
+        MainModule,
+        UserSettingsModule,
+        CommonModule,
+        TranslateModule,
+    ],
   declarations: [
     ApplicationComponent,
     ToolbarComponent,
@@ -25,6 +27,7 @@ import { CommonModule } from '@angular/common';
     TotalCostComponent,
   ],
   providers: [
+    TranslatePipe,
   ],
   exports: [
     ToolbarComponent,

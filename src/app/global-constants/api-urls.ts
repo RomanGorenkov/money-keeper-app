@@ -8,4 +8,6 @@ export const apiUrls: ApiUrls = {
   addCost: 'costs/add',
   getUserCategoryCostList: 'costs/category',
   getAllUserCosts: 'costs/all-categories',
+  addNewUserCostCategory: 'costs/add-category',
+  getCustomUserCategory: 'costs/get-custom-categories',
 };

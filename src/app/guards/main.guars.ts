@@ -30,7 +30,7 @@ export class AuthGuard implements CanActivate {
 
   checkCurrentCostList() {
     if (this.costService.currentCostList.getValue().length === 0) {
-     this.costService.setTodayAllUserCosts();
+      this.costService.setTodayAllUserCosts();
     }
   }
 }

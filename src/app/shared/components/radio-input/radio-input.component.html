@@ -1,0 +1,12 @@
+<label class="radio-input">
+  {{inputData.label | translate}}
+  <input
+    class="radio-input__input"
+    type="radio"
+    [value]="inputData.value"
+    [name]="inputData.name"
+    [formControl]="control"
+    (change)="selectValue(inputData.value)"
+  >
+  <span class="radio-input__mark {{inputData.colorName}}"></span>
+</label>

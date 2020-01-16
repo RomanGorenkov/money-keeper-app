@@ -5,4 +5,5 @@ export interface FormInput {
   name: string;
   placeholder: string;
   validators: ValidatorFn[];
+  defaultImageUrl?: string | ArrayBuffer;
 }

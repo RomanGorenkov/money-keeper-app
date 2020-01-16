@@ -1,4 +1,4 @@
-@mixin button($width){
+@mixin button($width) {
   height: 100%;
   width: $width;
   background-color: #03A9F4;
@@ -7,16 +7,16 @@
   font-size: 20px;
   border: none;
 
-  &:hover{
+  &:hover {
     background-color: #03b1ff;
   }
 }
 
-@mixin button-close($width){
+@mixin button-close($width) {
   @include button($width);
   background-color: #f33a30;
 
-  &:hover{
+  &:hover {
     background-color: #ff5747;
   }
 }

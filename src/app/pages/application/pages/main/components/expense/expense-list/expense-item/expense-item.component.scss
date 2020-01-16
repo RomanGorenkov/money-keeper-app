@@ -1,6 +1,6 @@
 @import "../../../../mixins/button-font.mixin";
 @import "../../../../mixins/expense-item-button.mixin";
-@import "../../../../../../mixins/form-title.mixin";
+@import "../../../../../../../../mixins/form-title.mixin";
 
 .expense-item{
   @include button-font();
@@ -9,6 +9,7 @@
   &__icon{
     width: 100px;
     height: 100px;
+    object-fit: cover;
     padding: 10px;
     color: #4a90ff;
     fill: #2196F3;

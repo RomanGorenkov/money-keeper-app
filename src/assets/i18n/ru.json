@@ -1,0 +1,74 @@
+{
+  "settings": {
+    "username": "Имя пользователя",
+    "title": "Настройки",
+    "selectFile": "Выберете файл",
+    "save": "Сохранить"
+  },
+  "navbar": {
+    "home": "Главная",
+    "table": "Таблица",
+    "graphs": "График"
+  },
+  "home": {
+    "dateController": {
+      "yourDate": "Своя дата",
+      "today": "Сегодня",
+      "yesterday": "Вчера",
+      "week": "Неделя",
+      "mouth": "Месяц",
+      "year": "Год",
+      "allTime": "Все время"
+    },
+    "category": {
+      "home": "Дом",
+      "car": "Машина",
+      "bus": "Автобус",
+      "phone": "Телефон",
+      "sport": "Спорт",
+      "gifts": "Подарки",
+      "pats": "Питомцы",
+      "health": "Здоровье",
+      "taxi": "Такси",
+      "food": "Еда"
+    }
+  },
+  "toolbar": {
+    "settings": "Настройки",
+    "currency": "Валюта",
+    "language": "Язык",
+    "total": "Итог"
+  },
+  "addCost": {
+    "expense": "Расход",
+    "description": "Описание",
+    "save": "Сохранить"
+  },
+  "addCostCategory": {
+    "title": "Новая категория",
+    "categoryName": "Имя категории",
+    "imageInput": "Выберите картинку",
+    "colorSwitcher": "Выберите цвет",
+    "colors": {
+      "red": "Красный",
+      "green": "Зеленый",
+      "blue": "Синий",
+      "black": "Черный",
+      "peach": "Персиковый"
+    },
+    "add": "Добавить"
+  },
+  "authorization": {
+    "login": "войти",
+    "registration": "регистрация",
+    "signUp": "начать",
+    "signIn": "войти",
+    "fields": {
+      "username": "Имя пользователя",
+      "email": "Адрес электронной почты",
+      "password": "Пароль",
+      "passwordConfirm": "Подтверждение пароля"
+    },
+    "send": "Отправить"
+  }
+}

@@ -1,0 +1,42 @@
+<div class="add-cost-category">
+  <h2 class="add-cost-category__title">{{'addCostCategory.title' | translate}}</h2>
+
+  <form
+    class="add-cost-category__form"
+    [formGroup]="addCostCategory"
+    (ngSubmit)="addNewCostCategory($event)"
+  >
+    <ng-container *ngFor="let input of inputs" [ngSwitch]=input.type>
+      <app-text-input
+        *ngSwitchCase="InputTypes.Text"
+        [inputData]="input"
+        [control]="getControl(input.name)"
+      ></app-text-input>
+
+      <app-image-input
+        *ngSwitchCase="InputTypes.File"
+        [inputData]="input"
+        [control]="getControl(input.name)"
+      ></app-image-input>
+    </ng-container>
+
+    <h3 class="add-cost-category__subtitle">{{'addCostCategory.colorSwitcher' | translate}}</h3>
+
+    <div class="add-cost-category__colors-wrapper">
+      <app-radio-input
+        *ngFor="let input of colors"
+        (valueSelected)="getSelectedColor($event)"
+        [control]="getControl(input.name)"
+        [inputData]="input"
+      >
+      </app-radio-input>
+    </div>
+
+    <input
+      class="add-cost-category__submit-button"
+      type="submit"
+      [attr.value]="'addCostCategory.add' | translate"
+      [disabled]="addCostCategory.invalid"
+    />
+  </form>
+</div>

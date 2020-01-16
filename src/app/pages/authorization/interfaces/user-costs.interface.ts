@@ -1,4 +1,4 @@
-import { CostDto } from '../../main/interfaces/cost-dto.intarfece';
+import { CostDto } from '../../application/pages/main/interfaces/cost-dto.intarfece';
 
 export interface UserCosts {
   _id: string;

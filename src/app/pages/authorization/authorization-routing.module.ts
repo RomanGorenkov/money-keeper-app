@@ -1,7 +1,7 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {AuthorizationPageComponent} from './pages/authorization-page/authorization-page.component';
-import {routing} from '../../global-constants/routing';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { AuthorizationPageComponent } from './pages/authorization-page/authorization-page.component';
+import { routing } from '../../global-constants/routing';
 
 const AuthorizationRouting: Routes = [
   {
@@ -16,7 +16,7 @@ const AuthorizationRouting: Routes = [
         path: ':type',
         component: AuthorizationPageComponent,
       }
-    ]
+    ],
   }
 ];
 

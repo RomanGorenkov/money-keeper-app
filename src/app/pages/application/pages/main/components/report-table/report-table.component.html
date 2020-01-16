@@ -1,14 +1,29 @@
 <div class="report-table">
+
+  <app-information-span
+    [inputData]=costList.length
+  ></app-information-span>
+
   <ul class="all-costs">
     <li class="cost" *ngFor="let cost of costList">
+
       <div class="cost__main-info-container">
-        <span class="cost__date">{{cost.costDate | date:'dd/MM/yy'}}</span>
-        <span class="cost__category">{{cost.costType}}</span>
-        <span class="cost__value">{{cost.costValue}}{{this.presetService.currencySymbol}}</span>
+        <span class="cost__date">
+          {{cost.costDate | date: DateFormat.UIS}}
+        </span>
+
+        <span class="cost__category">
+          {{!cost.costLocalizationKey ? makeFirstLetterCapital(cost.costType) : cost.costLocalizationKey | translate}}
+        </span>
+        <span class="cost__value">
+          {{cost.costValue}}{{this.presetService.currencySymbol}}
+        </span>
       </div>
+
       <p class="cost__description">
         {{cost.costDescription}}
       </p>
+
     </li>
   </ul>
 </div>

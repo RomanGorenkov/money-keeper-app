@@ -1,0 +1,10 @@
+@import "../../../../../../mixins/form-title.mixin";
+
+
+.information-span {
+  @include form-title();
+  height: auto;
+  text-align: center;
+  padding: 10px;
+  box-sizing: border-box;
+}

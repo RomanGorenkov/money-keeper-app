@@ -1,0 +1,83 @@
+@import "../../../mixins/form-title.mixin";
+
+.radio-input {
+  @include form-title(1rem);
+  display: flex;
+  justify-content: left;
+  height: 25px;
+  width: auto;
+  position: relative;
+  padding-left: 35px;
+  margin: 10px 10px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.radio-input .radio-input__input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.radio-input__mark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+.radio-input:hover .radio-input__input ~ .radio-input__mark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.radio-input .radio-input__input:checked ~ .radio-input__mark {
+  background-color: #2196F3;
+}
+
+.radio-input .radio-input__input:checked ~ .red {
+  background-color: rgba(255,0,0,0.9);
+}
+
+.radio-input .radio-input__input:checked ~ .green {
+  background-color: rgba(68,204,15,0.9);
+}
+
+.radio-input .radio-input__input:checked ~ .blue {
+  background-color: rgba(73,152,240,0.9);
+}
+
+.radio-input .radio-input__input:checked ~ .black {
+  background-color: rgba(50,50,50,0.9);
+}
+
+.radio-input .radio-input__input:checked ~ .peach {
+  background-color: rgba(245,170,142,0.9);
+}
+
+.radio-input__mark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.radio-input .radio-input__input:checked ~ .radio-input__mark:after {
+  display: block;
+}
+
+.radio-input .radio-input__mark:after {
+  top: 9px;
+  left: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+}

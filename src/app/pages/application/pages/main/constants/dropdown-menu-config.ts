@@ -1,15 +1,17 @@
-import {currencyList} from './currency-list';
-import {languageList} from './language-list';
-import {DropdownMenuConfig} from '../interfaces/dropdown-menu-config.interface';
+import { currencyList } from './currency-list';
+import { languageList } from './language-list';
+import { DropdownMenuConfig } from '../interfaces/dropdown-menu-config.interface';
 
 const currency: DropdownMenuConfig = {
-  menuTitle:  'Currency',
+  menuName: 'currency',
+  menuTitle: 'toolbar.currency',
   menuItems: currencyList,
   action: 'changeCurrency',
 };
 
 const language: DropdownMenuConfig = {
-  menuTitle:  'Language',
+  menuName: 'language',
+  menuTitle: 'toolbar.language',
   menuItems: languageList,
   action: 'changeLanguage',
 };

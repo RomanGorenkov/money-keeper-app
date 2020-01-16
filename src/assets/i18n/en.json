@@ -1,0 +1,74 @@
+{
+  "settings": {
+    "username": "User name",
+    "title": "Settings",
+    "selectFile": "Choose file",
+    "save": "Save"
+  },
+  "navbar": {
+    "home": "Home",
+    "table": "Table",
+    "graphs": "Graphs"
+  },
+  "home": {
+    "dateController": {
+      "yourDate": "Your date",
+      "today": "Today",
+      "yesterday": "Yesterday",
+      "week": "Week",
+      "mouth": "Mouth",
+      "year": "Year",
+      "allTime": "All time"
+    },
+    "category": {
+      "home": "Home",
+      "car": "Car",
+      "bus": "Bus",
+      "phone": "Phone",
+      "sport": "Sport",
+      "gifts": "Gifts",
+      "pats": "Pats",
+      "health": "Health",
+      "taxi": "Taxi",
+      "food": "Food"
+    }
+  },
+  "toolbar": {
+    "settings": "Settings",
+    "currency": "Currency",
+    "language": "Language",
+    "total": "Total"
+  },
+  "addCost": {
+    "expense": "Expense",
+    "description": "Description",
+    "save": "Save"
+  },
+  "addCostCategory": {
+    "title": "New cost category",
+    "categoryName": "Category name",
+    "imageInput": "Choose image",
+    "colorSwitcher": "Choose color",
+    "colors": {
+      "red": "Red",
+      "green": "Green",
+      "blue": "Blue",
+      "black": "Black",
+      "peach": "Peach"
+    },
+    "add": "add"
+  },
+  "authorization": {
+    "login": "login",
+    "registration": "registration",
+    "signUp": "sign up",
+    "signIn": "sign in",
+    "fields": {
+      "username": "Username",
+      "email": "Email Address",
+      "password": "Password",
+      "passwordConfirm": "Confirm Password"
+    },
+    "send": "Send"
+  }
+}

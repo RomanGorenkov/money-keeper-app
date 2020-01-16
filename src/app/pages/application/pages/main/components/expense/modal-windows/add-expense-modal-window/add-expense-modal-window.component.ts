@@ -1,15 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DialogService } from '../../../../../../../dialog/services/dialog/dialog.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { FormInput } from '../../../../../../../authorization/interfaces/form-input.interface';
 import { FormControls } from '../../../../../../../authorization/interfaces/form-controls.interface';
-import { formConfigs } from '../../../../../../../authorization/constants/form-configs';
 import { DialogConfig } from '../../../../../../../dialog/config/dialog-config';
 import { CostService } from '../../../../../../../../services/cost/cost.service';
 import { CostDto } from '../../../../interfaces/cost-dto.intarfece';
 import { addExpenseInputs } from '../../../../constants/add-cost-form-config';
-import { UserCosts } from '../../../../../../../authorization/interfaces/user-costs.interface';
-import { timeIntervalConst } from '../../../../constants/time-interval-const';
 
 @Component({
   selector: 'app-add-expense-modal-window',
@@ -25,7 +22,8 @@ export class AddExpenseModalWindowComponent implements OnInit {
     private dialog: DialogService,
     public config: DialogConfig<any>,
     private costService: CostService,
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.inputs = addExpenseInputs;
@@ -46,12 +44,7 @@ export class AddExpenseModalWindowComponent implements OnInit {
   }
 
   addCost() {
-    const newCost: CostDto = {
-      costDate: Date.now(),
-      costType: this.config.data.title,
-      costDescription: this.addExpenseForm.value.description,
-      costValue: parseInt(this.addExpenseForm.value.expense, 10)
-    };
+    const newCost = this.createNewCost();
     this.costService.addCost(newCost).subscribe(
       () => {
         this.dialog.removeDialogComponentFromBody();
@@ -60,6 +53,16 @@ export class AddExpenseModalWindowComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  createNewCost(): CostDto {
+    return {
+      costDate: Date.now(),
+      costType: this.config.data.name,
+      costDescription: this.addExpenseForm.value.description,
+      costValue: parseInt(this.addExpenseForm.value.expense, 10),
+      costLocalizationKey: this.config.data.title,
+    };
   }
 
 }

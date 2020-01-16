@@ -1,27 +1,38 @@
 <div class="toolbar">
-  <button class="toolbar__menu-button" (click)="openToolbar()">☰</button>
+
+  <button class="toolbar__menu-button" (click)="openToolbar()">
+    {{ButtonsSign.BurgerMenu}}
+  </button>
+
   <app-total-cost></app-total-cost>
-    <div #toolsContainer class="toolbar__tools-container hidden" (click)="onOverlayClicked($event)">
-      <div class="toolbar__tools-wrapper" (click)="onToolbarClicked($event)">
-        <ul class="tools-list">
-          <li class="tools-list__item">
-            <a [routerLink]="settingUrl" class="tools-list__link">Settings</a>
-          </li>
-          <li class="tools-list__item">
-            <app-dropdown-menu
-              menuName="currency"
-              [openedDropdown]="openedMenu"
-              (dropdownChange)="onChangeDropdown($event)"
-            ></app-dropdown-menu>
-          </li>
-          <li class="tools-list__item">
-            <app-dropdown-menu
-              menuName="language"
-              [openedDropdown]="openedMenu"
-              (dropdownChange)="onChangeDropdown($event)"
-            ></app-dropdown-menu>
-          </li>
-        </ul>
-      </div>
+
+  <div #toolsContainer class="toolbar__tools-container hidden" (click)="onOverlayClicked($event)">
+    <div class="toolbar__tools-wrapper" (click)="onToolbarClicked($event)">
+      <ul class="tools-list">
+
+        <li class="tools-list__item">
+          <a [routerLink]="settingUrl" class="tools-list__link">{{'toolbar.settings' | translate}}</a>
+        </li>
+
+        <li class="tools-list__item">
+          <app-dropdown-menu
+            menuName="currency"
+            getterName="getCurrency"
+            [openedDropdown]="openedMenu"
+            (dropdownChange)="onChangeDropdown($event)"
+          ></app-dropdown-menu>
+        </li>
+
+        <li class="tools-list__item">
+          <app-dropdown-menu
+            menuName="language"
+            getterName="getLanguage"
+            [openedDropdown]="openedMenu"
+            (dropdownChange)="onChangeDropdown($event)"
+          ></app-dropdown-menu>
+        </li>
+
+      </ul>
     </div>
+  </div>
 </div>

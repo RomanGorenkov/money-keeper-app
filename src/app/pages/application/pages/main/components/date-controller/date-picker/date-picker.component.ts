@@ -1,29 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { DateService } from '../../../services/date/date.service';
 import { timeIntervalConst } from '../../../constants/time-interval-const';
-import { dateSwitcherConfig } from '../../../constants/date-switcher-config';
 import { DialogService } from '../../../../../../dialog/services/dialog/dialog.service';
 import { DateSwitcherComponent } from '../date-switcher/date-switcher.component';
 import { dialogOverlayColor } from '../../../../../../dialog/constants/dialog-overlay-colors';
+import { ButtonsSign } from '../../../../../../../global-constants/buttonsSign';
 
 @Component({
   selector: 'app-date-picker',
   templateUrl: './date-picker.component.html',
   styleUrls: ['./date-picker.component.scss']
 })
-export class DatePickerComponent implements OnInit {
+
+
+export class DatePickerComponent {
 
   timeInterval = timeIntervalConst.day;
+  ButtonsSign = ButtonsSign;
 
   constructor(
     private dateService: DateService,
     private dialogService: DialogService,
   ) {
-  }
-
-  ngOnInit() {
-    this.dateService.changeCurrentDateElement(dateSwitcherConfig.timeInterval[1]);
-
   }
 
   openDateSwitcher() {

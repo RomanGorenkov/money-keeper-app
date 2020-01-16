@@ -21,17 +21,17 @@ const MainRouting: Routes = [
       {
         path: routing.app.main.home,
         component: HomeComponent,
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
       },
       {
         path: routing.app.main.reportTable,
         component: ReportTablePageComponent,
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
       },
       {
         path: routing.app.main.reportGraphs,
         component: ReportGraphsPageComponent,
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
       },
     ]
   }

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { CostService } from '../../../../../../services/cost/cost.service';
 import { PresetService } from '../../../../../../services/preset/preset.service';
 import { CostDto } from '../../interfaces/cost-dto.intarfece';
+import { makeFirstLetterCapital } from '../../../../../../helpers/string-helper';
+import { DateFormat } from '../../../../../../global-constants/date-format';
 
 @Component({
   selector: 'app-report-table',
@@ -10,13 +12,12 @@ import { CostDto } from '../../interfaces/cost-dto.intarfece';
 })
 export class ReportTableComponent {
 
-  // costList: CostDto[] = [];
+  DateFormat = DateFormat;
 
   constructor(
     public costService: CostService,
     private presetService: PresetService,
   ) {
-    console.log(this.costList);
   }
 
   get costList(): CostDto[] {
@@ -28,6 +29,10 @@ export class ReportTableComponent {
       });
     });
     return CostService.sortCostListByDate(costList);
+  }
+
+  makeFirstLetterCapital(word: string) {
+    return makeFirstLetterCapital(word);
   }
 
 }

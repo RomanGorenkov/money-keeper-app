@@ -1,6 +1,6 @@
 @import "../../../mixins/date-controller-button.mixin";
 
-.expense-list{
+.expense-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -11,14 +11,14 @@
   overflow-y: auto;
 }
 
-.modal-window__label{
+.modal-window__label {
   display: flex;
   flex-direction: column;
   padding: 10px;
 
 }
 
-.modal-window__input{
+.modal-window__input {
   font-size: 20px;
   padding: 5px;
 
@@ -29,7 +29,7 @@
   display: none;
 }
 
-.modal-window__button{
+.modal-window__button {
   @include button(100%);
 }
 

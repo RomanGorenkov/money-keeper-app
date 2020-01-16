@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {routing} from './global-constants/routing';
+import { AuthGuard } from './guards/main.guars';
 
 
 const routes: Routes = [
@@ -9,8 +10,9 @@ const routes: Routes = [
     loadChildren: () => import('./pages/authorization/authorization.module').then(m => m.AuthorizationModule)
   },
   {
-    path: routing.main.root,
-    loadChildren: () => import('./pages/main/main.module').then(m => m.MainModule)
+    path: routing.app.root,
+    loadChildren: () => import('./pages/application/application.module').then(m => m.ApplicationModule),
+    canActivate: [AuthGuard]
   },
   {
     path: '**',

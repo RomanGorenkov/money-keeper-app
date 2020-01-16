@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DateService } from '../../../services/date/date.service';
 import { DateSwitcherConfig } from '../../../interfaces/date-switcher-config.interface';
-import { dateSwitcherConfig } from '../../../constants/date-switcher-config';
+import { dateSwitcherConfig } from '../../../constants/date-switcher/date-switcher-config';
 import { DialogConfig } from '../../../../../../dialog/config/dialog-config';
 import { DialogService } from '../../../../../../dialog/services/dialog/dialog.service';
 import { timeIntervalConst } from '../../../constants/time-interval-const';
@@ -23,12 +23,15 @@ export class DateSwitcherComponent implements OnInit {
 
   }
 
+  get dateSwitchersConfigSwitcherNames() {
+    return dateSwitcherConfig.switcherNames;
+  }
+
   get dateSwitchersConfig() {
     return dateSwitcherConfig[this.config.data.dateSwitcherName];
   }
 
   ngOnInit() {
-    console.log('create');
     this.createSwitcherList();
   }
 

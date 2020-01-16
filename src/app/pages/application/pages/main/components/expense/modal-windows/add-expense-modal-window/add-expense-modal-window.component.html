@@ -1,4 +1,4 @@
-<h3 class="add-expense-form__title" >{{config.data.title}}</h3>
+<h3 class="add-expense-form__title">{{!config.data.title ? config.data.name : config.data.title | translate}}</h3>
 <form
   class="add-expense-form__form"
   [formGroup]="addExpenseForm"
@@ -14,7 +14,7 @@
   <input
     class="add-expense-form__button"
     type="submit"
-    value="Send"
+    [attr.value]="'addCost.save' | translate"
     [disabled]="addExpenseForm.invalid"
   />
 </form>

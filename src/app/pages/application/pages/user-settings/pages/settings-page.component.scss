@@ -1,7 +1,7 @@
 @import "../../../mixins/application-item.mixin";
-@import "../../../mixins/form-title.mixin";
+@import "../../../../../mixins/form-title.mixin";
 @import "../../main/mixins/flex-center.mixin";
-@import "../../../mixins/form-submit-input.mixin";
+@import "../../../../../mixins/form-submit-input.mixin";
 
 
 .settings-page{
@@ -44,16 +44,16 @@
   }
 
   &__input-text{
-    width: 250px;
-    transition: all 0.30s ease-in-out;
-    outline: none;
-    box-sizing: border-box;
-    background: #fff;
-    margin: 10px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    color: #555;
-    font: 95% Arial, Helvetica, sans-serif;
+    //width: 250px;
+    //transition: all 0.30s ease-in-out;
+    //outline: none;
+    //box-sizing: border-box;
+    //background: #fff;
+    //margin: 10px;
+    //border: 1px solid #ccc;
+    //padding: 10px;
+    //color: #555;
+    //font: 95% Arial, Helvetica, sans-serif;
 
     &.ng-touched:not(.ng-valid){
       box-shadow: 0 0 5px #f35542;
@@ -92,7 +92,5 @@
 
 .input-file:focus + .input-file__label{
   outline: auto 10px -webkit-focus-ring-color
-  //outline: -webkit-focus-ring-color auto 5px;
-  //outline: 1px dotted #000;
 }
 

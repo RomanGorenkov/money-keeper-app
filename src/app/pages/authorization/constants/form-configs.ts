@@ -6,7 +6,7 @@ const loginInputs: FormInput[] = [
   {
     type: 'email',
     name: 'email',
-    placeholder: 'Email Address',
+    placeholder: 'authorization.fields.email',
     validators: [
       Validators.required,
       Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$'),
@@ -15,7 +15,7 @@ const loginInputs: FormInput[] = [
   {
     type: 'password',
     name: 'password',
-    placeholder: 'Password',
+    placeholder: 'authorization.fields.password',
     validators: [
       Validators.required,
       Validators.minLength(6),
@@ -27,7 +27,7 @@ const registrationInputs = [
   {
     type: 'text',
     name: 'username',
-    placeholder: 'Username',
+    placeholder: 'authorization.fields.username',
     validators: [
       Validators.required,
     ]
@@ -36,7 +36,7 @@ const registrationInputs = [
   {
     type: 'password',
     name: 'passwordConfirm',
-    placeholder: 'Confirm Password',
+    placeholder: 'authorization.fields.passwordConfirm',
     validators: [
       Validators.required,
       Validators.minLength(6),

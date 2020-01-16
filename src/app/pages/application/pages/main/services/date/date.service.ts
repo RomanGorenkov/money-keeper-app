@@ -1,14 +1,14 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { DateSwitcherConfig } from '../../interfaces/date-switcher-config.interface';
-import { timeIntervalConst } from '../../constants/time-interval-const';
 import { CostService } from '../../../../../../services/cost/cost.service';
-import { timeInterval } from 'rxjs/operators';
-import { dateSwitcherConfig } from '../../constants/date-switcher-config';
+import { dateSwitcherConfig } from '../../constants/date-switcher/date-switcher-config';
+import { Direction } from './enums/date-direction';
 
 @Injectable()
 export class DateService {
 
 
+  Direction = Direction;
   currentElement: DateSwitcherConfig;
   currentDate: number;
 
@@ -57,7 +57,6 @@ export class DateService {
   }
 
 
-
   changeCurrentDate(startDate: number, endDate: number) {
     this.currentElement.startDate = startDate;
     this.currentElement.endDate = endDate;
@@ -70,7 +69,7 @@ export class DateService {
   }
 
   checkCurrentDateOnToday(startDate: number, endDate: number) {
-    if (startDate === dateSwitcherConfig.timeInterval[1].startDate ) {
+    if (startDate === dateSwitcherConfig.timeInterval[1].startDate) {
       this.changeCurrentDateBySwitcher(dateSwitcherConfig.timeInterval[1]);
     } else {
       this.changeCurrentDate(startDate, endDate);

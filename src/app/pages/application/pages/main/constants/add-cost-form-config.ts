@@ -5,7 +5,7 @@ export const addExpenseInputs: FormInput[] = [
   {
     type: 'number',
     name: 'expense',
-    placeholder: 'Expense',
+    placeholder: 'addCost.expense',
     validators: [
       Validators.required,
       Validators.pattern('^(?!(?:0|0\\.0|0\\.00)$)[+]?\\d+(\\.\\d|\\.\\d[0-9])?$'),
@@ -14,7 +14,7 @@ export const addExpenseInputs: FormInput[] = [
   {
     type: 'text',
     name: 'description',
-    placeholder: 'Description',
+    placeholder: 'addCost.description',
     validators: [
       Validators.required,
       Validators.minLength(6),

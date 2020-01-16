@@ -1,14 +1,25 @@
-import {HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import { HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { storageConstants } from '../global-constants/storage-constants';
+import { httpHeader } from '../global-constants/http-headers';
 
 export class AuthorizationJwtInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-
-    const newReq = req.clone({
+    let newReq = req.clone({
       headers: req.headers
-        .set('Authorization', `Bearer ${localStorage.getItem(storageConstants.token)}`)
-        .set('Content-Type', 'application/json'),
+        .set(
+          httpHeader.httpHeadersName.authorization,
+          `${httpHeader.httpHeadersValue.authorization}${localStorage.getItem(storageConstants.token)}`
+        )
     });
+
+    if (!req.headers.has(httpHeader.httpHeadersName.xImg)) {
+      newReq = newReq.clone({
+        headers: newReq.headers
+          .set(httpHeader.httpHeadersName.contentType, httpHeader.httpHeadersValue.json),
+      });
+      return next.handle(newReq);
+    }
+
     return next.handle(newReq);
   }
 }

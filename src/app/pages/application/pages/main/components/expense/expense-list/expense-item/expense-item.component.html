@@ -3,9 +3,21 @@
   (click)="openModal()"
 >
   <ng-container *ngIf="expenseItemConfig">
-    <span class="expense-item__title">{{expenseItemConfig.title}}</span>
-    <img class="expense-item__icon" [src]=expenseItemConfig.iconSrc alt="icon">
-    <span class="expense-item__expense">{{currentCostValue}} {{presetService.currencySymbol}}</span>
+    <span
+      class="expense-item__title"
+    >
+      {{!expenseItemConfig.title ? expenseItemConfig.name : expenseItemConfig.title | translate}}
+    </span>
+    <img
+      class="expense-item__icon"
+      [src]=expenseItemConfig.imageUrl
+      alt="icon"
+    >
+    <span
+      class="expense-item__expense"
+    >
+      {{currentCostValue}} {{presetService.currencySymbol}}
+    </span>
   </ng-container>
 </button>
 

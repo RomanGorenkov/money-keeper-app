@@ -1,7 +1,6 @@
 export interface ExpenseItemConfig {
-  title: string;
-  currency: string;
-  expenseValue: number;
-  iconSrc: string;
+  title?: string;
+  name: string;
+  imageUrl: string;
   color: string;
 }

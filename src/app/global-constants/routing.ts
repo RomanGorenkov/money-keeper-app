@@ -4,10 +4,14 @@ export const routing = {
     login: 'login',
     registration: 'registration'
   },
-  main: {
+
+  app: {
     root: 'main',
-    home: 'home',
-    reportTable: 'table',
-    reportGraphs: 'graphs',
+    main: {
+      home: 'home',
+      reportTable: 'table',
+      reportGraphs: 'graphs',
+    },
+    setting: 'setting',
   }
 };

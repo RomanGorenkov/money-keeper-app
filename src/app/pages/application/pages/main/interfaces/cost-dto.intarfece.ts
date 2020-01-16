@@ -3,5 +3,6 @@ export interface CostDto {
   costDescription: string;
   costValue: number;
   costDate: number;
+  costLocalizationKey?: string;
 }
 

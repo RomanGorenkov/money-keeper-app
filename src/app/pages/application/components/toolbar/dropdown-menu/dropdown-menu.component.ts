@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, AfterViewInit, ViewChild, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { dropDownMenuConfig } from '../../../pages/main/constants/dropdown-menu-config';
 import { DropdownMenuConfig } from '../../../pages/main/interfaces/dropdown-menu-config.interface';
 import { PresetService } from '../../../../../services/preset/preset.service';
@@ -11,6 +11,7 @@ import { DropdownMenuItem } from '../../../pages/main/interfaces/dropdown-menu-i
 })
 export class DropdownMenuComponent implements OnInit {
 
+  @Input() getterName: string;
   @Input() menuName: string;
   @Input() openedDropdown: string;
   @Output() dropdownChange: EventEmitter<string> = new EventEmitter();
@@ -22,7 +23,8 @@ export class DropdownMenuComponent implements OnInit {
 
   constructor(
     private presetService: PresetService,
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.createDropDownMenu();
@@ -38,7 +40,6 @@ export class DropdownMenuComponent implements OnInit {
 
   selectMenuItem(selectValue: string, symbol = '') {
     const sign = symbol ? ` ${symbol}` : '';
-    console.log(this.action);
     this.presetService[this.action](selectValue + sign);
     this.dropdownChange.emit();
   }
@@ -48,6 +49,5 @@ export class DropdownMenuComponent implements OnInit {
     this.menuTitle = config.menuTitle;
     this.menuItems = config.menuItems;
     this.action = config.action;
-    console.log(this.action);
   }
 }

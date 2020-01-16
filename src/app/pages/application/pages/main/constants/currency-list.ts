@@ -1,20 +1,21 @@
-import {DropdownMenuItem} from '../interfaces/dropdown-menu-item.interfase';
+import { DropdownMenuItem } from '../interfaces/dropdown-menu-item.interfase';
+import { currencies } from '../../../../../global-constants/currencies';
 
 export const currencyList: DropdownMenuItem[] = [
   {
-    name: 'RUB',
-    symbol: '₽'
+    name: currencies.rub.split(' ').shift(),
+    symbol: currencies.rub.slice(-1),
   },
   {
-    name: 'BYN',
-    symbol: 'Ў'
+    name: currencies.byn.split(' ').shift(),
+    symbol: currencies.byn.slice(-1),
   },
   {
-    name: 'USD',
-    symbol: '$'
+    name: currencies.usd.split(' ').shift(),
+    symbol: currencies.usd.slice(-1),
   },
   {
-    name: 'EUR',
-    symbol: '€'
+    name: currencies.eur.split(' ').shift(),
+    symbol: currencies.eur.slice(-1),
   },
 ];

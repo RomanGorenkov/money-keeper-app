@@ -14,12 +14,12 @@ const ApplicationRouting: Routes = [
       {
         path: '',
         loadChildren: () => import('./pages/main/main.module').then(m => m.MainModule),
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
       },
       {
         path: routing.app.setting,
         component: SettingsPageComponent,
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
       },
       {
         path: '**',

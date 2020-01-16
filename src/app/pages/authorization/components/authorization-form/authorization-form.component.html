@@ -1,5 +1,5 @@
 <div class="authorization-form__container">
-  <h2 class="authorization-form__title">{{formTitle}}</h2>
+  <h2 class="authorization-form__title">{{'authorization.' + formTitle | translate}}</h2>
   <form
     (ngSubmit)="submitHandler(this.authorizationForm)"
     class="authorization-form"
@@ -15,7 +15,7 @@
     <input
       class="authorization-form__submit"
       type="submit"
-      value="Send"
+      [attr.value]="'authorization.send' | translate"
       [disabled]="authorizationForm.invalid"
     />
   </form>

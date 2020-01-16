@@ -1,10 +1,24 @@
-<h3 class="cost-list__title">{{title}}</h3>
-<ul class="cost-list__list">
-  <li class="cost-list__list-item" *ngFor="let cost of costList">
-    <div class="cost-list__main-info-container">
-      <span class="cost-list__cost-date">{{cost.costDate | date:'dd/MM/yy'}}</span>
-      <span class="cost-list__cost-value">{{cost.costValue}}{{this.presetService.currencySymbol}}</span>
-    </div>
-    <p class="cost-list-description">{{cost.costDescription}}</p>
-  </li>
-</ul>
+<div class="cost-list">
+
+  <h3 class="cost-list__title">
+    {{!config.data.title ? makeFirstLetterCapital(config.data.name) : config.data.title | translate }}
+  </h3>
+
+  <app-information-span
+    [inputData]="costList"
+  >
+  </app-information-span>
+
+  <ul class="cost-list__list">
+    <li class="cost-list__list-item" *ngFor="let cost of costList">
+      <div class="cost-list__main-info-container">
+        <span class="cost-list__cost-date">{{cost.costDate | date: DateFormat.UIS}}</span>
+        <span class="cost-list__cost-value">{{cost.costValue}}{{this.presetService.currencySymbol}}</span>
+      </div>
+      <p class="cost-list-description">{{cost.costDescription}}</p>
+    </li>
+  </ul>
+
+</div>
+
+

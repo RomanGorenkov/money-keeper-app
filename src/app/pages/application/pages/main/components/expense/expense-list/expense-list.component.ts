@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
-import {ExpenseItemConfig} from '../../../interfaces/expense-item-config.interface';
-import {expenseItems} from '../../../constants/expense-items-config';
+import { Component } from '@angular/core';
+import { ExpenseItemConfig } from '../../../interfaces/expense-item-config.interface';
+import { CostService } from '../../../../../../../services/cost/cost.service';
 
 @Component({
   selector: 'app-expense-list',
@@ -9,5 +9,22 @@ import {expenseItems} from '../../../constants/expense-items-config';
 })
 export class ExpenseListComponent {
 
-  expenseListItems: ExpenseItemConfig[] = expenseItems;
+  categoryList: ExpenseItemConfig[] = [];
+
+  constructor(
+    public costService: CostService,
+  ) {
+    this.subscribeOnCategoryListChange();
+  }
+
+  subscribeOnCategoryListChange() {
+    this.costService.setCostCategoryListByNameList(this.costService.getAllCostsNames());
+    this.costService.costCategoryList.subscribe(
+      categoryList => {
+        this.categoryList = categoryList;
+      }
+    );
+  }
+
+
 }

@@ -3,21 +3,27 @@
     <li class="date-switcher__switcher"
         *ngFor="let dateSwitcher of dateSwitchersConfig"
         [ngClass]="{
-          'date-switcher__switcher__full-width': dateSwitcher.customComponent === 'userDate'
+          'date-switcher__switcher__full-width': dateSwitcher.customComponent === dateSwitchersConfigSwitcherNames.UserDate
          }"
     >
-      <div *ngIf="dateSwitcher.customComponent === 'userDate'">
-        <label  class="date-switcher__label">
-          Your date
+      <div *ngIf="dateSwitcher.customComponent === dateSwitchersConfigSwitcherNames.UserDate">
+        <label
+          class="date-switcher__label"
+        >
+          {{'home.dateController.yourDate' | translate}}
         </label>
-        <input class="date-switcher__date-input" type="date" (change)="setCustomDate($event, dateSwitcher)">
+        <input
+          class="date-switcher__date-input"
+          type="date"
+          (change)="setCustomDate($event)"
+        >
       </div>
       <button
         *ngIf="!dateSwitcher.customComponent"
         class="date-switcher__button"
         (click)="switchDate(dateSwitcher)"
       >
-        {{dateSwitcher.switcherPlaceholder}}
+        {{dateSwitcher.switcherPlaceholder | translate}}
       </button>
     </li>
   </ul>

@@ -7,6 +7,8 @@ import { environment } from '../../../environments/environment';
 import { apiUrls } from '../../global-constants/api-urls';
 import { storageConstants } from '../../global-constants/storage-constants';
 import { TranslateService } from '@ngx-translate/core';
+import { languages } from '../../global-constants/languages';
+import { currencies } from '../../global-constants/currencies';
 
 @Injectable()
 export class PresetService {
@@ -38,7 +40,7 @@ export class PresetService {
   changeCurrency(currency: string) {
     this.http.post(`${environment.serverUrl}/${apiUrls.currency}`, JSON.stringify({currency: currency.slice(0, -2)})).subscribe(
       () => {
-        this.currency = currency;
+        this.setCurrency(currency);
       },
       error => {
         console.log(error);
@@ -58,33 +60,70 @@ export class PresetService {
   }
 
   setUserPresets(userPresets: UserPresets) {
-    this.language = userPresets.language;
-    this.translate.use(this.language);
-    const currency = currencyList.find(currencyConfig => currencyConfig.name === userPresets.currencyName);
-    this.currency = `${currency.name} ${currency.symbol}`;
-    localStorage.setItem(storageConstants.presets.language, this.language);
-    localStorage.setItem(storageConstants.presets.currency, this.currency);
+    console.log(userPresets);
+    if (JSON.stringify(userPresets) === '{}') {
+      return;
+    } else {
+      this.setLanguage(userPresets.language);
+      this.setCurrencyByName(userPresets.currencyName);
+    }
+  }
+
+
+  setUserPresetsFromStorage(userPresets: UserPresets) {
+    this.setLanguage(userPresets.language);
+    this.setCurrency(userPresets.currency);
   }
 
   setLanguage(language: string) {
+    if (!language) {
+      return;
+    }
     this.language = language;
     this.translate.use(language);
-    localStorage.setItem(storageConstants.presets.language, this.language);
+    this.updateLocalPresets('language', language);
+  }
+
+  setCurrency(currency: string) {
+    if (!currency) {
+      return;
+    }
+    this.currency = currency;
+    this.updateLocalPresets('currency', currency);
+  }
+
+  setCurrencyByName(currencyName: string) {
+    if (!currencyName) {
+      return;
+    }
+    const presets: UserPresets = JSON.parse(localStorage.getItem(storageConstants.presets));
+    const currency = currencyList.find(currencyConfig => currencyConfig.name === currencyName);
+    this.currency = `${currency.name} ${currency.symbol}`;
+    presets.currency = this.currency;
+    localStorage.setItem(storageConstants.presets, JSON.stringify(presets));
   }
 
   setDefaultPresets() {
-    this.currency = dropDownMenuConfig.currency.menuItems[0].name + ' ' + dropDownMenuConfig.currency.menuItems[0].symbol;
-    this.language = dropDownMenuConfig.language.menuItems[0].name;
+    this.currency = currencies.rub;
+    this.language = languages.english;
     this.translate.use(this.language);
   }
 
   checkLocalPresets() {
-    if (localStorage.getItem(storageConstants.presets.language) && localStorage.getItem(storageConstants.presets.currency)) {
-      this.currency = localStorage.getItem(storageConstants.presets.currency);
-      this.language = localStorage.getItem(storageConstants.presets.language);
-      this.translate.use(this.language);
-    } else {
-      this.setDefaultPresets();
+    this.setDefaultPresets();
+    if (localStorage.getItem(storageConstants.presets)) {
+      this.setUserPresetsFromStorage(JSON.parse(localStorage.getItem(storageConstants.presets)));
     }
+  }
+
+  updateLocalPresets(presetName: string, presetValue: string) {
+    let presets: UserPresets;
+    if (localStorage.getItem(storageConstants.presets)) {
+      presets = JSON.parse(localStorage.getItem(storageConstants.presets));
+    } else {
+      presets = {};
+    }
+    presets[presetName] = presetValue;
+    localStorage.setItem(storageConstants.presets, JSON.stringify(presets));
   }
 }

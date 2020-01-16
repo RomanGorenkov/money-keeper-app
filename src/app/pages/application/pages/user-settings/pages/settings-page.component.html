@@ -1,39 +1,35 @@
 <div class="settings-page">
-  <h2 class="settings-page__title">Settings</h2>
-  <img class="settings-page__user-avatar"  [src]=userService.userSettings.userAvatarUrl alt="User avatar">
+  <h2 class="settings-page__title">
+    {{'settings.title' | translate}}
+  </h2>
   <form
     (ngSubmit)="submit($event)"
     class="settings-page__form"
     [formGroup]="settingForm"
   >
-    <label class="settings-page__label">
-      User Name
-      <input
-        class="settings-page__input-text"
-        name="username"
-        formControlName="username"
+
+    <ng-container *ngFor="let input of inputs" [ngSwitch]=input.type>
+      <app-text-input
+        *ngSwitchCase="'text'"
+        [inputData]="input"
+        [control]="getControl(input.name)"
         [value]="userService.userSettings.username"
-      >
-    </label>
-    <input
-      formControlName="avatarFile"
-      name="avatarFile"
-      type="file"
-      id="file"
-      class="input-file"
-      (change)="changeAvatar($event)"
-    />
-    <label
-      class="input-file__label"
-      for="file"
-    >
-      Choose a file
-    </label>
+      ></app-text-input>
+
+      <app-image-input
+        [previewImage]="userService.userSettings.userAvatarUrl"
+        (imageSelected)="getNewUserAvatar($event)"
+        *ngSwitchCase="'file'"
+        [inputData]="input"
+        [control]="getControl(input.name)"
+      ></app-image-input>
+    </ng-container>
 
     <input
       class="settings-page__submit-button"
       type="submit"
       value="Save"
+      [attr.value]="'settings.save' | translate"
       [disabled]="settingForm.pristine"
     />
   </form>

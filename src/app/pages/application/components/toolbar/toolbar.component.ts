@@ -1,5 +1,7 @@
-import { Component, ElementRef, EventEmitter, ViewChild } from '@angular/core';
-import {routing} from '../../../../global-constants/routing';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { routing } from '../../../../global-constants/routing';
+import { ButtonsSign } from '../../../../global-constants/buttonsSign';
+import { TagNames } from '../../../../global-constants/tag-names';
 
 @Component({
   selector: 'app-toolbar',
@@ -10,6 +12,7 @@ export class ToolbarComponent {
 
   @ViewChild('toolsContainer', {static: false})
   private toolsContainer: ElementRef;
+  ButtonsSign = ButtonsSign;
   openedMenu: string = null;
   settingUrl = routing.app.setting;
 
@@ -27,13 +30,13 @@ export class ToolbarComponent {
   }
 
   onOverlayClicked(event: MouseEvent) {
-    if (event.target ===  this.toolsContainer.nativeElement) {
+    if (event.target === this.toolsContainer.nativeElement) {
       this.openToolbar();
     }
   }
 
   onToolbarClicked(event: MouseEvent) {
-    if ((event.target as HTMLElement).tagName !== 'BUTTON') {
+    if ((event.target as HTMLElement).tagName !== TagNames.Button) {
       this.openedMenu = null;
     }
   }

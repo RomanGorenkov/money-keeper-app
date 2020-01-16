@@ -1,8 +1,8 @@
 @import "../../../../mixins/date-controller-button.mixin";
-@import "../../../../../../mixins/form-title.mixin";
-@import "../../../../../../mixins/form-submit-input.mixin";
+@import "../../../../../../../../mixins/form-title.mixin";
+@import "../../../../../../../../mixins/form-submit-input.mixin";
 
-@mixin element-margin($margin){
+@mixin element-margin($margin) {
   margin: $margin;
 }
 
@@ -16,7 +16,7 @@
   @include form-title();
 }
 
-.add-expense-form__input{
+.add-expense-form__input {
   @include element-margin(5px);
   font-size: 20px;
   padding: 5px;
@@ -29,6 +29,6 @@
   width: 100%;
 }
 
-.add-expense-form__button{
+.add-expense-form__button {
   @include form-submit-input();
 }

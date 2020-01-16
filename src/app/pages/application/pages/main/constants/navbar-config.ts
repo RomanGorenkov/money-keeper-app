@@ -1,16 +1,15 @@
-
 const mainPages = [
   {
     pageUrl: 'home',
-    pageName: 'Home'
+    pageName: 'navbar.home'
   },
   {
     pageUrl: 'table',
-    pageName: 'Table'
+    pageName: 'navbar.table'
   },
   {
     pageUrl: 'graphs',
-    pageName: 'Graphs'
+    pageName: 'navbar.graphs'
   },
 ];
 

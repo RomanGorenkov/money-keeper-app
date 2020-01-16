@@ -1,6 +1,7 @@
 <input
   [formControl]="control"
   class="text-input"
-  type={{inputData.type}}
-  name={{inputData.name}}
-  placeholder={{inputData.placeholder}} />
+  [type]="inputData.type"
+  [name]="inputData.name"
+  [value]="value ? value : ''"
+  [placeholder]="inputData.placeholder | translate" />

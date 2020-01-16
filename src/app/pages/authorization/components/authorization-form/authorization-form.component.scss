@@ -1,5 +1,5 @@
-@import "../../../main/mixins/form-title.mixin";
-@import "../../../main/mixins/form-submit-input.mixin";
+@import "../../../../mixins/form-title.mixin";
+@import "../../../../mixins/form-submit-input.mixin";
 
 .authorization-form__container{
   display: flex;
@@ -21,12 +21,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  min-width: 300px;
+  max-width: 500px;
   height: auto;
-}
-
-.authorization-form__input{
-  width: 80%;
 }
 
 .authorization-form__submit:hover{

@@ -1,7 +1,7 @@
 <div class="expense-list">
   <app-expense-item
     [expenseItemConfig]="expenseListItemConfig"
-    *ngFor="let expenseListItemConfig of expenseListItems"
+    *ngFor="let expenseListItemConfig of categoryList"
   >
   </app-expense-item>
   <app-add-expense-item></app-add-expense-item>

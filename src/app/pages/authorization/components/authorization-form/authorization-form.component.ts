@@ -50,7 +50,6 @@ export class AuthorizationFormComponent implements OnInit {
   }
 
   submitHandler(FormData: FormGroup) {
-    console.log(this.formTitle);
     this.authenticationService[this.formTitle](FormData);
   }
 }

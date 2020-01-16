@@ -46,7 +46,7 @@ export class AuthenticationService {
     this.sendLoginData(formData.email, formData.password).subscribe(
       loginAnswer => {
         this.setLoginAnswerData(loginAnswer as LoginAnswer);
-        this.router.navigate([routing.main.root]);
+        this.router.navigate([routing.app.root]);
       },
       error => {
         console.log(error);
@@ -67,8 +67,10 @@ export class AuthenticationService {
   }
 
   private setLoginAnswerData(loginAnswer: LoginAnswer) {
+    console.log(loginAnswer);
     AuthenticationService.setAccessToken(loginAnswer.access_token);
     this.presetService.setUserPresets(loginAnswer.userPresets);
+    this.costService.setCostCategoryList(loginAnswer.customCategoryList);
     this.costService.setUserCurrentCostList(loginAnswer.userCosts);
     this.costService.setCostColorList();
   }

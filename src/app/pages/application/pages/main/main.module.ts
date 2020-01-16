@@ -19,7 +19,14 @@ import { SharedModule } from '../../../../shared/shared.module';
 import { ReportTableComponent } from './components/report-table/report-table.component';
 import { ReportGraphsComponent } from './components/report-graphs/report-graphs.component';
 import { ChartsModule } from 'ng2-charts';
-import { AddExpenseModalWindowComponent } from './components/expense/modal-windows/add-expense-modal-window/add-expense-modal-window.component';
+import {
+  AddExpenseModalWindowComponent
+} from './components/expense/modal-windows/add-expense-modal-window/add-expense-modal-window.component';
+import { TranslateModule } from '@ngx-translate/core';
+import {
+  AddCostCategoryModalWindowComponent
+} from './components/expense/modal-windows/add-cost-category-modal-window/add-cost-category-modal-window.component';
+import { InformationSpanComponent } from './components/information-span/information-span.component';
 
 
 @NgModule({
@@ -31,6 +38,7 @@ import { AddExpenseModalWindowComponent } from './components/expense/modal-windo
     ReactiveFormsModule,
     SharedModule,
     ChartsModule,
+    TranslateModule,
   ],
   declarations: [
     MainComponent,
@@ -47,6 +55,8 @@ import { AddExpenseModalWindowComponent } from './components/expense/modal-windo
     ReportTableComponent,
     ReportGraphsComponent,
     AddExpenseModalWindowComponent,
+    AddCostCategoryModalWindowComponent,
+    InformationSpanComponent,
   ],
   providers: [
     DateService,
@@ -58,6 +68,7 @@ import { AddExpenseModalWindowComponent } from './components/expense/modal-windo
     ReportGraphsPageComponent,
   ],
   entryComponents: [
+    AddCostCategoryModalWindowComponent,
     AddExpenseModalWindowComponent,
     CostListModalWindowComponent,
     DateSwitcherComponent,
