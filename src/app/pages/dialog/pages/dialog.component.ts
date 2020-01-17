@@ -10,7 +10,6 @@ import {
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import { InsertionDirective } from '../directives/insertion.directive';
-import { DialogService } from '../services/dialog/dialog.service';
 
 @Component({
   selector: 'app-dialog',

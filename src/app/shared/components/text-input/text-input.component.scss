@@ -1,3 +1,5 @@
+@import "../../../styles/base/colors";
+
 .text-input {
   width: 250px;
   transition: all 0.30s ease-in-out;
@@ -10,17 +12,15 @@
   color: #555;
   font: 95% Arial, Helvetica, sans-serif;
 
-  &.ng-touched:not(.ng-valid){
+  &.ng-touched:not(.ng-valid) {
     box-shadow: 0 0 5px #f35542;
     padding: 10px;
     border: 1px solid #f35542;
   }
 }
 
-
-
 .text-input:focus {
-  box-shadow: 0 0 5px #2196F3;
+  box-shadow: 0 0 5px $bar-color;
   padding: 10px;
-  border: 1px solid #2196F3;
+  border: 1px solid $bar-color;
 }

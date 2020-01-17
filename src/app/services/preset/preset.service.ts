@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { dropDownMenuConfig } from '../../pages/application/pages/main/constants/dropdown-menu-config';
 import { UserPresets } from '../../pages/authorization/interfaces/user-presets.interface';
 import { currencyList } from '../../pages/application/pages/main/constants/currency-list';
 import { HttpClient } from '@angular/common/http';
@@ -23,6 +22,10 @@ export class PresetService {
     this.checkLocalPresets();
   }
 
+  get currencySymbol() {
+    return this.currency.slice(-1);
+  }
+
   get getLanguage() {
     return this.language;
   }
@@ -30,12 +33,6 @@ export class PresetService {
   get getCurrency() {
     return this.currency;
   }
-
-
-  get currencySymbol() {
-    return this.currency.slice(-1);
-  }
-
 
   changeCurrency(currency: string) {
     this.http.post(`${environment.serverUrl}/${apiUrls.currency}`, JSON.stringify({currency: currency.slice(0, -2)})).subscribe(
@@ -50,7 +47,7 @@ export class PresetService {
 
   changeLanguage(language: string) {
     this.http.post(`${environment.serverUrl}/${apiUrls.language}`, JSON.stringify({language})).subscribe(
-      answer => {
+      () => {
         this.setLanguage(language);
       },
       error => {
@@ -60,7 +57,6 @@ export class PresetService {
   }
 
   setUserPresets(userPresets: UserPresets) {
-    console.log(userPresets);
     if (JSON.stringify(userPresets) === '{}') {
       return;
     } else {

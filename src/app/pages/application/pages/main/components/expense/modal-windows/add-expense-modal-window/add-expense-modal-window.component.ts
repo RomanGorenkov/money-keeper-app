@@ -7,6 +7,7 @@ import { DialogConfig } from '../../../../../../../dialog/config/dialog-config';
 import { CostService } from '../../../../../../../../services/cost/cost.service';
 import { CostDto } from '../../../../interfaces/cost-dto.intarfece';
 import { addExpenseInputs } from '../../../../constants/add-cost-form-config';
+import { AddCostModalConfig } from '../../../../interfaces/add-cost-modal-config.interface';
 
 @Component({
   selector: 'app-add-expense-modal-window',
@@ -20,7 +21,7 @@ export class AddExpenseModalWindowComponent implements OnInit {
 
   constructor(
     private dialog: DialogService,
-    public config: DialogConfig<any>,
+    public config: DialogConfig<AddCostModalConfig>,
     private costService: CostService,
   ) {
   }

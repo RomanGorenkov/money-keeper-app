@@ -1,22 +1,22 @@
 @import "../../../../mixins/form-title.mixin";
 @import "../../../../mixins/form-submit-input.mixin";
+@import "../../../../styles/layout/flex-column-center-middle.mixin";
+@import "../../../../styles/base/colors";
 
-.authorization-form__container{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+
+.authorization-form__container {
+  @include flex-column-center-middle();
   width: 100vw;
   height: calc(100vh - 60px);
-  background-color: #fcfcfc;
+  background-color: $main-background-color;
 }
 
-.authorization-form__title{
+.authorization-form__title {
   @include form-title();
 
 }
 
-.authorization-form{
+.authorization-form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,11 +26,11 @@
   height: auto;
 }
 
-.authorization-form__submit:hover{
+.authorization-form__submit:hover {
   background: #1976D2;
 }
 
-.authorization-form__submit{
+.authorization-form__submit {
   @include form-submit-input()
 }
 

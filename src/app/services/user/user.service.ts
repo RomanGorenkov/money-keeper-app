@@ -7,13 +7,13 @@ import { tap } from 'rxjs/operators';
 @Injectable()
 export class UserService {
 
+  private username: string;
+  private userAvatarUrl = '../../../assets/img/Paul-18-512.png';
+
   constructor(
     private http: HttpClient,
   ) {
   }
-
-  private username: string;
-  private userAvatarUrl = '../../../assets/img/Paul-18-512.png';
 
   get userSettings() {
     const settings: UserSettings = {
@@ -21,10 +21,6 @@ export class UserService {
       userAvatarUrl: this.userAvatarUrl,
     };
     return settings;
-  }
-
-  get getUserAvatarUrl() {
-    return this.userAvatarUrl;
   }
 
   setUserAvatarUrl(url: any) {

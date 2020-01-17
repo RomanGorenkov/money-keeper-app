@@ -14,7 +14,7 @@
     </app-text-input>
     <input
       class="authorization-form__submit"
-      type="submit"
+      [type]="InputTypes.Submit"
       [attr.value]="'authorization.send' | translate"
       [disabled]="authorizationForm.invalid"
     />

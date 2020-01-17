@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { RadioInput } from '../../interfaces/radio-input.interface';
 
@@ -7,17 +7,11 @@ import { RadioInput } from '../../interfaces/radio-input.interface';
   templateUrl: './radio-input.component.html',
   styleUrls: ['./radio-input.component.scss']
 })
-export class RadioInputComponent implements OnInit {
+export class RadioInputComponent {
 
   @Input() control: FormControl;
   @Input() inputData: RadioInput;
   @Output() valueSelected: EventEmitter<string> = new EventEmitter<string>();
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
 
   selectValue(value: string) {
     this.valueSelected.emit(value);

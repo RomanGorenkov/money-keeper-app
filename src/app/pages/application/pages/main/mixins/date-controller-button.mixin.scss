@@ -1,8 +1,11 @@
+@import "../../../../../styles/base/colors";
+
+
 @mixin button($width) {
   height: 100%;
   width: $width;
-  background-color: #03A9F4;
-  color: white;
+  background-color: $main-color;
+  color: $light-text-color;
   font-weight: bold;
   font-size: 20px;
   border: none;

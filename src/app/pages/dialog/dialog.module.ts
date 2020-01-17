@@ -19,4 +19,5 @@ import { DialogConfig } from './config/dialog-config';
     DialogComponent,
   ],
 })
-export class DialogModule { }
+export class DialogModule {
+}

@@ -85,6 +85,5 @@ export class SettingsPageComponent implements OnInit {
 
   getNewUserAvatar(avatar: string | ArrayBuffer) {
     this.newUserAvatar = avatar;
-    console.log(avatar);
   }
 }

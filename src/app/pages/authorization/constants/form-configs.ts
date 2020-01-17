@@ -1,19 +1,21 @@
-import {FormGroup, Validators} from '@angular/forms';
-import {FormInput} from '../interfaces/form-input.interface';
-import {FormConfigs} from '../interfaces/form-configs.interface';
+import { FormGroup, Validators } from '@angular/forms';
+import { FormInput } from '../interfaces/form-input.interface';
+import { FormConfigs } from '../interfaces/form-configs.interface';
+import { InputTypes } from '../../../global-constants/input-types';
+import { ValidationPattern } from '../../../global-constants/validation-pattern';
 
 const loginInputs: FormInput[] = [
   {
-    type: 'email',
+    type: InputTypes.Email,
     name: 'email',
     placeholder: 'authorization.fields.email',
     validators: [
       Validators.required,
-      Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$'),
+      Validators.pattern(ValidationPattern.Email),
     ]
   },
   {
-    type: 'password',
+    type: InputTypes.Password,
     name: 'password',
     placeholder: 'authorization.fields.password',
     validators: [
@@ -25,7 +27,7 @@ const loginInputs: FormInput[] = [
 
 const registrationInputs = [
   {
-    type: 'text',
+    type: InputTypes.Text,
     name: 'username',
     placeholder: 'authorization.fields.username',
     validators: [
@@ -34,7 +36,7 @@ const registrationInputs = [
   },
   ...loginInputs,
   {
-    type: 'password',
+    type: InputTypes.Password,
     name: 'passwordConfirm',
     placeholder: 'authorization.fields.passwordConfirm',
     validators: [

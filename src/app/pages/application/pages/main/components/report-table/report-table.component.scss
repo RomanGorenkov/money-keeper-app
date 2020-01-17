@@ -1,6 +1,7 @@
 @import "../../mixins/button-font.mixin";
 @import "../../mixins/flex-center.mixin";
 @import "../../../../../../mixins/form-title.mixin";
+@import "../../../../../../styles/base/colors";
 
 :host {
   height: inherit;
@@ -22,7 +23,7 @@
   @include button-font();
   @include flex-center();
   height: 30px;
-  background-color: #03A9F4;
+  background-color: $main-color;
 }
 
 .cost-list__list {
@@ -49,12 +50,12 @@
 .cost__description {
   padding: 10px;
   font-weight: normal;
-  border-bottom: 1px solid #03A9F4;
+  border-bottom: 1px solid $main-color;
 }
 
 .cost__category {
   font-weight: bold;
-  color: #03A9F4;
+  color: $main-color;
 }
 
 .cost__main-info-container {

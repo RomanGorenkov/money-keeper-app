@@ -5,4 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: './svg-sprites.component.html',
   styleUrls: ['./svg-sprites.component.scss']
 })
-export class SvgSpritesComponent {}
+export class SvgSpritesComponent {
+}

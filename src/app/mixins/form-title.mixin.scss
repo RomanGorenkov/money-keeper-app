@@ -1,9 +1,9 @@
+@import "../styles/layout/flex.mixin";
+
 @mixin form-title($font-size: 95%, $color: black){
-  display: flex;
+  @include flex($align-items: center, $justify-content: center);
   width: 100%;
   height: 40px;
-  justify-content: center;
-  align-items: center;
   text-transform: uppercase;
   color: $color;
   font: $font-size Arial, Helvetica, sans-serif;

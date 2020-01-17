@@ -3,7 +3,7 @@
 
 .add-expense-item {
   @include expense-item-button();
-  color: #2196F3;
+  color: $bar-color;
   font-size: 40px;
 }
 

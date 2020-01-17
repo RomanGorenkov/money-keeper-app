@@ -12,13 +12,13 @@ import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
 
 
 @NgModule({
-    imports: [
-        ApplicationRoutingModule,
-        MainModule,
-        UserSettingsModule,
-        CommonModule,
-        TranslateModule,
-    ],
+  imports: [
+    ApplicationRoutingModule,
+    MainModule,
+    UserSettingsModule,
+    CommonModule,
+    TranslateModule,
+  ],
   declarations: [
     ApplicationComponent,
     ToolbarComponent,
@@ -34,9 +34,7 @@ import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
     NavbarComponent,
     DropdownMenuComponent,
   ],
-  entryComponents: [
-
-  ]
+  entryComponents: []
 })
 export class ApplicationModule {
 }

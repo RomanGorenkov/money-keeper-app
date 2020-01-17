@@ -1,10 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {FormControl, FormGroup} from '@angular/forms';
-import {formConfigs} from '../../constants/form-configs';
-import {FormInput} from '../../interfaces/form-input.interface';
-import {FormControls} from '../../interfaces/form-controls.interface';
-import {AuthenticationService} from '../../services/authentication/authentication.service';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { FormControl, FormGroup } from '@angular/forms';
+import { formConfigs } from '../../constants/form-configs';
+import { FormInput } from '../../interfaces/form-input.interface';
+import { FormControls } from '../../interfaces/form-controls.interface';
+import { AuthenticationService } from '../../services/authentication/authentication.service';
+import { InputTypes } from '../../../../global-constants/input-types';
 
 @Component({
   selector: 'app-authorization-form',
@@ -12,6 +13,7 @@ import {AuthenticationService} from '../../services/authentication/authenticatio
   styleUrls: ['./authorization-form.component.scss']
 })
 export class AuthorizationFormComponent implements OnInit {
+  InputTypes = InputTypes;
   formTitle: string;
   inputs: FormInput[];
   authorizationForm: FormGroup;

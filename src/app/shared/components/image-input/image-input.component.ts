@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FormInput } from '../../../pages/authorization/interfaces/form-input.interface';
 
@@ -15,8 +15,6 @@ export class ImageInputComponent {
   @Output() imageSelected: EventEmitter<string | ArrayBuffer> = new EventEmitter<string | ArrayBuffer>();
 
   fileData: File = null;
-  constructor() {
-  }
 
   changePreviewImage(fileInput: any) {
     if (fileInput.target.files.length === 0) {

@@ -1,10 +1,12 @@
-.toolbar{
+@import "../../../../styles/base/colors";
+
+.toolbar {
   display: flex;
   justify-content: space-around;
   align-items: center;
   width: 100vw;
   height: 60px;
-  background-color: #2196F3;
-  color: white;
+  background-color: $bar-color;
+  color: $light-text-color;
   font-weight: 600;
 }

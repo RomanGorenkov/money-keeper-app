@@ -1,5 +1,7 @@
+@import "../../../../../styles/base/colors";
+
 @mixin button-font() {
-  color: white;
+  color: $light-text-color;
   font-weight: bold;
   font-size: 20px;
 }

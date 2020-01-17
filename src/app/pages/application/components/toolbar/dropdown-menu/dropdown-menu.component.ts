@@ -39,6 +39,7 @@ export class DropdownMenuComponent implements OnInit {
   }
 
   selectMenuItem(selectValue: string, symbol = '') {
+    console.log(selectValue, symbol);
     const sign = symbol ? ` ${symbol}` : '';
     this.presetService[this.action](selectValue + sign);
     this.dropdownChange.emit();

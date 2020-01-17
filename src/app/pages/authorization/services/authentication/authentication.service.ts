@@ -11,6 +11,7 @@ import { CostService } from '../../../../services/cost/cost.service';
 import { storageConstants } from '../../../../global-constants/storage-constants';
 import { environment } from '../../../../../environments/environment';
 import { apiUrls } from '../../../../global-constants/api-urls';
+import { httpHeader } from '../../../../global-constants/http-headers';
 
 @Injectable()
 export class AuthenticationService {
@@ -31,13 +32,11 @@ export class AuthenticationService {
       username: email,
       password,
     };
-    const config = {headers: new HttpHeaders().set('Content-Type', 'application/json')};
-    return this.http.post<any>(`${environment.serverUrl}/${apiUrls.login}`, JSON.stringify(loginData), config);
+    return this.http.post<any>(`${environment.serverUrl}/${apiUrls.login}`, JSON.stringify(loginData));
   }
 
   sendRegistrationData(userData: UserRegistrationData) {
-    const config = {headers: new HttpHeaders().set('Content-Type', 'application/json')};
-    return this.http.post<any>(`${environment.serverUrl}/${apiUrls.registration}`, JSON.stringify(userData), config);
+    return this.http.post<any>(`${environment.serverUrl}/${apiUrls.registration}`, JSON.stringify(userData));
   }
 
 
@@ -67,11 +66,15 @@ export class AuthenticationService {
   }
 
   private setLoginAnswerData(loginAnswer: LoginAnswer) {
-    console.log(loginAnswer);
     AuthenticationService.setAccessToken(loginAnswer.access_token);
     this.presetService.setUserPresets(loginAnswer.userPresets);
     this.costService.setCostCategoryList(loginAnswer.customCategoryList);
     this.costService.setUserCurrentCostList(loginAnswer.userCosts);
     this.costService.setCostColorList();
+  }
+
+  logout() {
+    localStorage.clear();
+    this.router.navigate([routing.authorisation.login]);
   }
 }

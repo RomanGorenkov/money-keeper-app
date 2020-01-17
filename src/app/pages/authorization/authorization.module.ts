@@ -8,7 +8,6 @@ import { AuthorizationRoutingModule } from './authorization-routing.module';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthenticationService } from './services/authentication/authentication.service';
-import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../../shared/shared.module';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -18,7 +17,6 @@ import { TranslateModule } from '@ngx-translate/core';
     AuthorizationRoutingModule,
     CommonModule,
     ReactiveFormsModule,
-    HttpClientModule,
     SharedModule,
     TranslateModule
   ],

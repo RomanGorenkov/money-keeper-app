@@ -1,15 +1,17 @@
 @import "../../../../mixins/button-font.mixin";
 @import "../../../../mixins/flex-center.mixin";
 @import "../../../../../../../../mixins/form-title.mixin";
+@import "../../../../../../../../styles/base/colors";
+@import "../../../../../../../../styles/layout/flex.mixin";
 
 .cost-list{
   max-width: 300px;
 }
 .cost-list__title{
   @include button-font();
-  @include flex-center();
+  @include flex($align-items: center, $justify-content: center);
   height: 30px;
-  background-color: #03A9F4;
+  background-color: $main-color;
 }
 
 .cost-list__list{
@@ -18,11 +20,9 @@
 }
 
 .cost-list__main-info-container{
-  display: flex;
-  justify-content: space-between;
-
+  @include flex($justify-content: space-between);
   *{
-    @include flex-center();
+    @include flex($align-items: center, $justify-content: center);
     width: auto;
     padding: 5px;
   }

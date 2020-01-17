@@ -11,9 +11,9 @@ import { AuthGuard } from './guards/main.guars';
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 import { UserService } from './services/user/user.service';
 import { CostService } from './services/cost/cost.service';
-import { MissingTranslationHandler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { MissingTranslationService } from './services/missing-translation/missing-translation.service';
+import { ErrorInterceptor } from './interceptors/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -29,12 +29,8 @@ import { MissingTranslationService } from './services/missing-translation/missin
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
-      }})
-    //   missingTranslationHandler: {
-    //     provide: MissingTranslationHandler,
-    //     useClass: MissingTranslationService },
-    // }
-
+      }
+    })
   ],
   providers: [
     {
@@ -42,6 +38,11 @@ import { MissingTranslationService } from './services/missing-translation/missin
       useClass: AuthorizationJwtInterceptor,
       multi: true,
     },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: ErrorInterceptor,
+    //   multi: true,
+    // },
     CostService,
     UserService,
     PresetService,

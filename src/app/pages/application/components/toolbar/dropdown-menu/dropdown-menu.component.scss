@@ -1,3 +1,6 @@
+@import "../../../../../styles/base/colors";
+
+
 $component: '.app-test-button';
 
 $color-primary: #4a90ff;
@@ -7,7 +10,7 @@ $color-shadow: rgba(255, 255, 255, 0.1);
 .dropdown__open-button {
   width: 100px;
   background-color: $color-primary;
-  color: white;
+  color: $light-text-color;
   padding: 16px;
   font-size: 16px;
   border: none;
@@ -21,8 +24,8 @@ $color-shadow: rgba(255, 255, 255, 0.1);
     height: 5px;
     margin: 0 5px 2px;
     transform: rotate(45deg);
-    border-bottom: 2px solid white;
-    border-right: 2px solid white;
+    border-bottom: 2px solid $light-text-color;
+    border-right: 2px solid $light-text-color;
   }
 
   &:hover, &:focus {
@@ -33,7 +36,7 @@ $color-shadow: rgba(255, 255, 255, 0.1);
 .dropdown__name {
   display: inline-block;
   width: 120px;
-  color: #f2f2f2;
+  color: $light-text-color;
   text-align: center;
   padding: 14px 16px;
   font-size: 17px;
@@ -59,7 +62,7 @@ $color-shadow: rgba(255, 255, 255, 0.1);
 
 .dropdown__item {
   width: 100px;
-  color: white;
+  color: $light-text-color;
   padding: 12px 16px;
   text-decoration: none;
   display: block;

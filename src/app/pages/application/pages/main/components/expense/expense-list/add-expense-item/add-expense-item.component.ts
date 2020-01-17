@@ -19,9 +19,7 @@ export class AddExpenseItemComponent {
   }
 
   openModal() {
-    this.dialog.open(AddCostCategoryModalWindowComponent, {
-      data: {}
-    });
+    this.dialog.open(AddCostCategoryModalWindowComponent, {});
   }
 
 }

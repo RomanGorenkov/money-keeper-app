@@ -2,6 +2,7 @@
 @import "../../../../../mixins/form-title.mixin";
 @import "../../main/mixins/flex-center.mixin";
 @import "../../../../../mixins/form-submit-input.mixin";
+@import "../../../../../styles/base/colors";
 
 
 .settings-page{
@@ -23,7 +24,7 @@
     object-fit: cover;
     margin: 0 auto;
     border-radius: 50%;
-    border: 3px solid #03A9F4;
+    border: 3px solid $main-color;
   }
 
   &__form{
@@ -81,13 +82,13 @@
   @include form-title($color: white);
   width: 250px;
   margin: 5px;
-  background-color: #2196F3;
+  background-color: $bar-color;
   cursor: pointer;
 }
 
 .input-file:focus + .input-file__label,
 .input-file + .input-file__label:hover {
-  background-color: #03A9F4;
+  background-color: $main-color;
 }
 
 .input-file:focus + .input-file__label{

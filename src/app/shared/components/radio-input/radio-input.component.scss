@@ -1,4 +1,5 @@
 @import "../../../mixins/form-title.mixin";
+@import "../../../styles/base/colors";
 
 .radio-input {
   @include form-title(1rem);
@@ -38,29 +39,28 @@
   background-color: #ccc;
 }
 
-/* When the radio button is checked, add a blue background */
 .radio-input .radio-input__input:checked ~ .radio-input__mark {
   background-color: #2196F3;
 }
 
 .radio-input .radio-input__input:checked ~ .red {
-  background-color: rgba(255,0,0,0.9);
+  background-color: rgba(255, 0, 0, 0.9);
 }
 
 .radio-input .radio-input__input:checked ~ .green {
-  background-color: rgba(68,204,15,0.9);
+  background-color: rgba(68, 204, 15, 0.9);
 }
 
 .radio-input .radio-input__input:checked ~ .blue {
-  background-color: rgba(73,152,240,0.9);
+  background-color: rgba(73, 152, 240, 0.9);
 }
 
 .radio-input .radio-input__input:checked ~ .black {
-  background-color: rgba(50,50,50,0.9);
+  background-color: rgba(50, 50, 50, 0.9);
 }
 
 .radio-input .radio-input__input:checked ~ .peach {
-  background-color: rgba(245,170,142,0.9);
+  background-color: rgba(245, 170, 142, 0.9);
 }
 
 .radio-input__mark:after {
@@ -79,5 +79,5 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: white;
+  background: $main-background-color;
 }

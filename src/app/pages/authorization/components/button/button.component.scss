@@ -1,10 +1,12 @@
-.button{
+@import "../../../../styles/base/colors";
+
+.button {
   display: flex;
   align-items: center;
-  color: #ffffff;
+  color: $light-text-color;
   text-transform: uppercase;
   text-decoration: none;
-  background: #2196F3;
+  background: $bar-color;
   padding: 5px;
   margin: 0 10px;
   border: 2px solid #ffffff;
@@ -16,7 +18,7 @@
   transition: all 0.4s ease 0s;
 }
 
-.icon-size{
+.icon-size {
   height: 12px;
   width: 12px;
   margin: 0 5px;

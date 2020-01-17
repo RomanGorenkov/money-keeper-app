@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { CostService } from '../../../services/cost/cost.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-application',
@@ -7,8 +6,4 @@ import { CostService } from '../../../services/cost/cost.service';
   styleUrls: ['./application.component.scss']
 })
 export class ApplicationComponent {
-
-  constructor(
-  ) { }
-
 }

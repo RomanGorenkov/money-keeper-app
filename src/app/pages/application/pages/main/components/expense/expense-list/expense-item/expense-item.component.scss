@@ -1,6 +1,8 @@
 @import "../../../../mixins/button-font.mixin";
 @import "../../../../mixins/expense-item-button.mixin";
 @import "../../../../../../../../mixins/form-title.mixin";
+@import "../../../../../../../../styles/base/colors";
+@import "../../../../../../../../styles/layout/flex.mixin";
 
 .expense-item{
   @include button-font();
@@ -12,8 +14,8 @@
     object-fit: cover;
     padding: 10px;
     color: #4a90ff;
-    fill: #2196F3;
-    background-color: white;
+    fill: $bar-color;
+    background-color: $main-background-color;
     border-radius: 25%;
   }
 
@@ -22,13 +24,11 @@
   }
 
   &__expense{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex($align-items: center, $justify-content: center);
     box-sizing: border-box;
     width: calc(140px - 4px);
     height: 50px;
-    background-color: #03A9F4;
+    background-color: $main-color;
   }
 
   &__expense, &__title{

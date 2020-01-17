@@ -6,6 +6,7 @@ import { DateService } from '../../../../services/date/date.service';
 import { PresetService } from '../../../../../../../../services/preset/preset.service';
 import { makeFirstLetterCapital } from '../../../../../../../../helpers/string-helper';
 import { DateFormat } from '../../../../../../../../global-constants/date-format';
+import { CostListModalConfig } from '../../../../interfaces/cost-list-modal-config.interface';
 
 
 @Component({
@@ -21,7 +22,7 @@ export class CostListModalWindowComponent implements OnInit {
   private endDate: number;
 
   constructor(
-    public config: DialogConfig<any>,
+    public config: DialogConfig<CostListModalConfig>,
     private costService: CostService,
     private dateService: DateService,
     private presetService: PresetService,

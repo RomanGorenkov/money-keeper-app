@@ -24,10 +24,6 @@ export class CostService {
   ) {
   }
 
-  get getCostCategoryList() {
-    return this.currentCostList.getValue();
-  }
-
   get currentCostsNames() {
     return this.currentCostList.getValue().map(cost => {
       return cost._id;
@@ -108,7 +104,6 @@ export class CostService {
   }
 
   addNewUserCostCategoryInCurrentCategoryList(userCostCategory: ExpenseItemConfig) {
-    console.log(userCostCategory);
     this.setCostCategoryList([userCostCategory]);
     this.setCostColorList();
   }
@@ -124,7 +119,6 @@ export class CostService {
     endDate: number = new Date(Date.now()).setHours(0, 0, 0, 0) + timeIntervalConst.day) {
     this.getCurrentAllUserCosts(startDate, endDate).subscribe(
       costList => {
-        console.log(costList);
         this.setUserCurrentCostList(costList as UserCosts[]);
       }
     );

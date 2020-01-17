@@ -1,12 +1,12 @@
+@import "../../../../../styles/layout/flex-column-center-middle.mixin";
+@import "../../../../../styles/base/colors";
+
 @mixin expense-item-button {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  @include flex-column-center-middle();
   width: 140px;
   height: 220px;
-  color: white;
-  background-color: #fff;
+  color: $light-text-color;
+  background-color: $main-background-color;
   border-radius: 1px;
   margin: 10px 5px;
   padding: 0;
