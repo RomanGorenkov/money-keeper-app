@@ -13,11 +13,13 @@
         [control]="getControl(input.name)"
       ></app-text-input>
 
-      <app-image-input
+      <app-image-input-with-mask
         *ngSwitchCase="InputTypes.File"
+        [maskColor]="this.selectedColor"
+        [fileExpansion]="FileExpansions.PNG"
         [inputData]="input"
         [control]="getControl(input.name)"
-      ></app-image-input>
+      ></app-image-input-with-mask>
     </ng-container>
 
     <h3 class="add-cost-category__subtitle">{{'addCostCategory.colorSwitcher' | translate}}</h3>
@@ -26,6 +28,7 @@
       <app-radio-input
         *ngFor="let input of colors"
         (valueSelected)="getSelectedColor($event)"
+        [isSelected]="selectedColor === input.value"
         [control]="getControl(input.name)"
         [inputData]="input"
       >

@@ -1,3 +1,3 @@
 export enum TagNames {
-  Button = 'BUTTON'
+  Button = 'BUTTON',
 }

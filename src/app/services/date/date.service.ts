@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { DateSwitcherConfig } from '../../interfaces/date-switcher-config.interface';
-import { CostService } from '../../../../../../services/cost/cost.service';
-import { dateSwitcherConfig } from '../../constants/date-switcher/date-switcher-config';
+import { DateSwitcherConfig } from '../../pages/application/pages/main/interfaces/date-switcher-config.interface';
+import { CostService } from '../cost/cost.service';
+import { dateSwitcherConfig } from '../../pages/application/pages/main/constants/date-switcher/date-switcher-config';
 import { Direction } from './enums/date-direction';
 
 @Injectable()

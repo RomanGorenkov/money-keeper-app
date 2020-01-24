@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { DialogComponent } from './pages/dialog.component';
 import { InsertionDirective } from './directives/insertion.directive';
 import { DialogConfig } from './config/dialog-config';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
   ],
   providers: [
     DialogConfig,
@@ -19,5 +20,6 @@ import { DialogConfig } from './config/dialog-config';
     DialogComponent,
   ],
 })
+
 export class DialogModule {
 }

@@ -1,4 +1,5 @@
 import { ApplicationRef, ComponentFactoryResolver, ComponentRef, EmbeddedViewRef, Injectable, Injector, Type } from '@angular/core';
+
 import { DialogModule } from '../../dialog.module';
 import { DialogComponent } from '../../pages/dialog.component';
 import { DialogConfig } from '../../config/dialog-config';
@@ -10,8 +11,8 @@ import { dialogOverlayColor } from '../../constants/dialog-overlay-colors';
   providedIn: DialogModule,
 })
 export class DialogService {
-  dialogComponentRef: ComponentRef<DialogComponent>;
 
+  dialogComponentRef: ComponentRef<DialogComponent>;
   private closeSubscription: Subscription;
 
   constructor(
@@ -49,17 +50,16 @@ export class DialogService {
   }
 
   onCloseDialogEventSubscribe(dialogComponentRef: ComponentRef<DialogComponent>) {
-    this.closeSubscription = dialogComponentRef.instance.onClose.subscribe(
-      () => {
-        this.removeDialogComponentFromBody();
-      },
-      error => {
-        console.log(error);
-      }
-    );
+    this.closeSubscription = dialogComponentRef.instance.onClose
+      .subscribe(
+        () => {
+          this.removeDialogComponentFromBody();
+        },
+      );
   }
 
   setDialogOverlayColor(overlayColor?: string) {
     this.dialogComponentRef.instance.dialogOverlayColor = overlayColor ? overlayColor : dialogOverlayColor.black;
   }
+
 }

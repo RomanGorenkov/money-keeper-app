@@ -1,7 +1,7 @@
+@import "../../../../styles/layout/flex.mixin";
+
 .authorization-page__container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include flex($flex-direction: column, $align-items: center);
   height: 100vh;
   width: 100vw;
 }

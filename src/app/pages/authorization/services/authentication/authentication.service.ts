@@ -1,25 +1,30 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { UserLoginData } from '../../interfaces/user-login-data.interface';
+import { HttpClient } from '@angular/common/http';
 import { FormGroup } from '@angular/forms';
-import { UserRegistrationData } from '../../interfaces/user-registration-data.interface';
-import { routing } from '../../../../global-constants/routing';
 import { Router } from '@angular/router';
+
+import { UserLoginData } from '../../interfaces/user-login-data.interface';
+import { UserRegistrationData } from '../../interfaces/user-registration-data.interface';
 import { LoginAnswer } from '../../interfaces/login-answer.interface';
-import { PresetService } from '../../../../services/preset/preset.service';
-import { CostService } from '../../../../services/cost/cost.service';
+import { routing } from '../../../../global-constants/routing';
 import { storageConstants } from '../../../../global-constants/storage-constants';
 import { environment } from '../../../../../environments/environment';
 import { apiUrls } from '../../../../global-constants/api-urls';
-import { httpHeader } from '../../../../global-constants/http-headers';
+import { CostService } from '../../../../services/cost/cost.service';
+import { PresetService } from '../../../../services/preset/preset.service';
+import { CostCategoryService } from '../../../../services/cost-category/cost-category.service';
+import { UserService } from '../../../../services/user/user.service';
 
 @Injectable()
 export class AuthenticationService {
+
   constructor(
     private http: HttpClient,
     private router: Router,
     private presetService: PresetService,
     private costService: CostService,
+    private userService: UserService,
+    private costCategoryService: CostCategoryService,
   ) {
   }
 
@@ -32,49 +37,44 @@ export class AuthenticationService {
       username: email,
       password,
     };
-    return this.http.post<any>(`${environment.serverUrl}/${apiUrls.login}`, JSON.stringify(loginData));
+    return this.http.post<LoginAnswer>(`${environment.serverUrl}/${apiUrls.login}`, JSON.stringify(loginData));
   }
 
   sendRegistrationData(userData: UserRegistrationData) {
-    return this.http.post<any>(`${environment.serverUrl}/${apiUrls.registration}`, JSON.stringify(userData));
+    return this.http.post(`${environment.serverUrl}/${apiUrls.registration}`, JSON.stringify(userData));
   }
-
 
   login(loginFormData: FormGroup) {
     const formData: UserLoginData = loginFormData.value;
-    this.sendLoginData(formData.email, formData.password).subscribe(
-      loginAnswer => {
-        this.setLoginAnswerData(loginAnswer as LoginAnswer);
-        this.router.navigate([routing.app.root]);
-      },
-      error => {
-        console.log(error);
-      },
-    );
+    this.sendLoginData(formData.email, formData.password)
+      .subscribe(
+        loginAnswer => {
+          this.setLoginAnswerData(loginAnswer);
+          this.router.navigate([routing.app.root]);
+        },
+      );
   }
 
   registration(registrationFormData: FormGroup) {
     const formData: UserRegistrationData = registrationFormData.value;
-    this.sendRegistrationData(formData).subscribe(
-      () => {
-        this.router.navigate([routing.authorisation.login]);
-      },
-      error => {
-        console.log(error);
-      },
-    );
+    this.sendRegistrationData(formData)
+      .subscribe(
+        () => this.router.navigate([routing.authorisation.login])
+      );
   }
 
   private setLoginAnswerData(loginAnswer: LoginAnswer) {
     AuthenticationService.setAccessToken(loginAnswer.access_token);
     this.presetService.setUserPresets(loginAnswer.userPresets);
-    this.costService.setCostCategoryList(loginAnswer.customCategoryList);
+    this.costCategoryService.setCostCategoryList(loginAnswer.customCategoryList);
     this.costService.setUserCurrentCostList(loginAnswer.userCosts);
-    this.costService.setCostColorList();
+    this.userService.setUserSettings(loginAnswer.userSettings);
+    this.costCategoryService.setCostColorList();
   }
 
   logout() {
     localStorage.clear();
     this.router.navigate([routing.authorisation.login]);
   }
+
 }

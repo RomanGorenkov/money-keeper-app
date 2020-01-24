@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+
 import { NavbarConfig } from '../../pages/main/interfaces/navbar-config.interface';
 import { navbarConfigs } from '../../pages/main/constants/navbar-config';
 

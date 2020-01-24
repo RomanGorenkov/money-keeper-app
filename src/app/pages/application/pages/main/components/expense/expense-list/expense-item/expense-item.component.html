@@ -8,15 +8,15 @@
     >
       {{!expenseItemConfig.title ? expenseItemConfig.name : expenseItemConfig.title | translate}}
     </span>
-    <img
+    <app-image-with-mask
       class="expense-item__icon"
-      [src]=expenseItemConfig.imageUrl
-      alt="icon"
-    >
+      [imageForMask]="expenseItemConfig.imageUrl"
+      [maskColor]="expenseItemConfig.color"
+    ></app-image-with-mask>
     <span
       class="expense-item__expense"
     >
-      {{currentCostValue}} {{presetService.currencySymbol}}
+      {{currentCostValue| currency:' '}} {{presetService.currencySymbol}}
     </span>
   </ng-container>
 </button>

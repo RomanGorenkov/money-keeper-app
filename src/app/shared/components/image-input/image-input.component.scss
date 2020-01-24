@@ -1,19 +1,23 @@
 @import "../../../mixins/form-title.mixin";
 @import "../../../styles/base/colors";
+@import "../../../styles/base/colors";
 
 
 .image-input {
+  @include flex($flex-direction: column, $align-items: center);
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 
   &__preview {
+    @include flex($flex-direction: column, $align-items: center, $justify-content: center);
     width: 130px;
     height: 130px;
     object-fit: cover;
     border: 5px solid $bar-color;
     border-radius: 25%;
+  }
+
+  &__error-span {
+    @include form-title($color: red);
   }
 
   &__input {

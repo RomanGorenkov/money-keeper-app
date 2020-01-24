@@ -1,50 +1,56 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
+
 import { UserSettings } from '../../interfaces/user-settings.interface';
-import { tap } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
+import { httpHeader } from '../../global-constants/http-headers';
+import { apiUrls } from '../../global-constants/api-urls';
+import { storageConstants } from '../../global-constants/storage-constants';
+import { StorageService } from '../storage/storage.service';
 
 @Injectable()
 export class UserService {
 
   private username: string;
-  private userAvatarUrl = '../../../assets/img/Paul-18-512.png';
+  private userAvatarUrl = '../../../assets/img/userAvatar.png';
 
   constructor(
     private http: HttpClient,
+    private storageService: StorageService,
   ) {
   }
 
-  get userSettings() {
-    const settings: UserSettings = {
+  get userSettings(): UserSettings {
+    return {
       username: this.username,
       userAvatarUrl: this.userAvatarUrl,
     };
-    return settings;
   }
 
-  setUserAvatarUrl(url: any) {
-    this.userAvatarUrl = url;
+  uploadLocalUserSettings() {
+    const userSettings: UserSettings = this.storageService.getLocalStorageElement(storageConstants.userSettings);
+    this.updateUserSettings(userSettings);
   }
 
-  updateUserName() {
-    return this.http.get(`${environment.serverUrl}/users/settings`).pipe(
-      tap(userSettings => {
-        const settings = userSettings as UserSettings;
-        for (const settingsKey in settings) {
-          if (settings[settingsKey]) {
-            this[settingsKey] = settings[settingsKey];
-          }
-        }
-      })
-    );
+  updateUserSettings(userSettings: UserSettings) {
+    if (userSettings) {
+      Object.entries(userSettings).forEach(([key, value]) => this[key] = value);
+    }
   }
 
   saveUserSettings(userSettings) {
-    const headers = new HttpHeaders({
-      'x-img': 'userAvatar'
-    });
-    return this.http.post(`${environment.serverUrl}/users/settings`, userSettings, {headers}).subscribe();
+    const headers = new HttpHeaders().append(httpHeader.httpHeadersName.xImg, httpHeader.httpHeadersValue.userAvatar);
+    return this.http.post<UserSettings>(`${environment.serverUrl}/${apiUrls.userSettings}`, userSettings, {headers})
+      .subscribe(
+        (settings) => {
+          this.setUserSettings(settings);
+        },
+      );
+  }
+
+  setUserSettings(userSettings: UserSettings) {
+    this.updateUserSettings(userSettings);
+    this.storageService.saveUserSettingInLocalStorage(this.userSettings);
   }
 
 }

@@ -1,5 +1,18 @@
 <div class="image-input">
-  <img class="image-input__preview" [src]="previewImage? previewImage : inputData.defaultImageUrl" alt="Image preview">
+
+  <img
+    class="image-input__preview"
+    [src]="previewImage? previewImage : inputData.defaultImageUrl | safe"
+    alt="Image preview"
+  >
+
+  <span
+    class="image-input__error-span"
+    *ngIf="!validFileFormat"
+  >
+    Invalid image format
+  </span>
+
   <input
     class="image-input__input"
     [formControl]="control"
@@ -8,11 +21,13 @@
     [id]="inputData.name"
     (change)="changePreviewImage($event)"
   />
+
   <label
     class="image-input__input-label"
     [for]="inputData.name"
   >
     {{inputData.placeholder | translate}}
   </label>
+
 </div>
 

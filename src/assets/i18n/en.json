@@ -70,5 +70,14 @@
       "passwordConfirm": "Confirm Password"
     },
     "send": "Send"
+  },
+  "errors": {
+    "username": "User name must not be empty",
+    "pattern": "Incorrect value",
+    "required": "Expected value",
+    "length": "Expected string greater length"
+  },
+  "costList": {
+    "empty": "there are no expenses for this period"
   }
 }

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+
 import { dropDownMenuConfig } from '../../../pages/main/constants/dropdown-menu-config';
 import { DropdownMenuConfig } from '../../../pages/main/interfaces/dropdown-menu-config.interface';
 import { PresetService } from '../../../../../services/preset/preset.service';
@@ -17,7 +18,6 @@ export class DropdownMenuComponent implements OnInit {
   @Output() dropdownChange: EventEmitter<string> = new EventEmitter();
 
   private action: string;
-
   menuTitle: string;
   menuItems: DropdownMenuItem[] = [];
 
@@ -51,4 +51,5 @@ export class DropdownMenuComponent implements OnInit {
     this.menuItems = config.menuItems;
     this.action = config.action;
   }
+
 }

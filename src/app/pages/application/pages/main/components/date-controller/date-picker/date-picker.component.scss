@@ -1,10 +1,11 @@
 @import "../../../mixins/date-controller-button.mixin";
 @import "../../../../../../../styles/base/colors";
+@import "../../../../../../../styles/base/sizes";
+@import "../../../../../../../styles/layout/flex.mixin";
 
 .date-picker {
-  display: flex;
-  justify-content: space-between;
-  width: 260px;
+  @include flex($justify-content: space-between);
+  width: $date-modal-width;
   height: 40px;
   border-radius: .125rem;
   background-color: $main-color;

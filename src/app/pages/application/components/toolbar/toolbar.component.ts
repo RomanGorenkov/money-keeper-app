@@ -1,4 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+
 import { routing } from '../../../../global-constants/routing';
 import { ButtonsSign } from '../../../../global-constants/buttonsSign';
 import { TagNames } from '../../../../global-constants/tag-names';
@@ -10,8 +11,8 @@ import { TagNames } from '../../../../global-constants/tag-names';
 })
 export class ToolbarComponent {
 
-  @ViewChild('toolsContainer', {static: false})
-  private toolsContainer: ElementRef;
+  @ViewChild('toolsContainer', {static: false}) private toolsContainer: ElementRef;
+
   ButtonsSign = ButtonsSign;
   openedMenu: string = null;
   settingUrl = routing.app.setting;
@@ -40,4 +41,5 @@ export class ToolbarComponent {
       this.openedMenu = null;
     }
   }
+
 }

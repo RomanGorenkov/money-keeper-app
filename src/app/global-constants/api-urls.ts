@@ -6,6 +6,7 @@ export const apiUrls: ApiUrls = {
   currency: 'users/currency',
   language: 'users/language',
   addCost: 'costs/add',
+  userSettings: 'users/settings',
   getUserCategoryCostList: 'costs/category',
   getAllUserCosts: 'costs/all-categories',
   addNewUserCostCategory: 'costs/add-category',

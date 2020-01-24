@@ -7,7 +7,7 @@ const addCostCategoryInputs: FormInput[] = [
     type: 'file',
     name: 'categoryImage',
     placeholder: 'addCostCategory.imageInput',
-    defaultImageUrl: '../../../../../assets/img/plus.svg',
+    defaultImageUrl: '../../../../../assets/img/plus.png',
     validators: [
       Validators.required,
     ]
@@ -55,8 +55,24 @@ const costCategoryColorsRadioInputs: RadioInput[] = [
   },
 ];
 
+enum ColorsRadioInput {
+  RED,
+  GREEN,
+  BLUE,
+  BLACK,
+  PEACH,
+}
+
+enum FormControlsName {
+  IMAGE = 'categoryImage',
+  NAME = 'name',
+  COLOR = 'color',
+}
+
 export const addCostCategoryFormConfig = {
   addCostCategoryInputs,
-  costCategoryColorsRadioInputs
+  costCategoryColorsRadioInputs,
+  ColorsRadioInput,
+  FormControlsName,
 };
 

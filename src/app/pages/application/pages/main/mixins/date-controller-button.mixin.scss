@@ -15,12 +15,3 @@
   }
 }
 
-@mixin button-close($width) {
-  @include button($width);
-  background-color: #f33a30;
-
-  &:hover {
-    background-color: #ff5747;
-  }
-}
-

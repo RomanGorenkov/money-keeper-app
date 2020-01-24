@@ -1,27 +1,26 @@
 @import "../../mixins/button-font.mixin";
-@import "../../mixins/flex-center.mixin";
 @import "../../../../../../mixins/form-title.mixin";
 @import "../../../../../../styles/base/colors";
+@import "../../../../../../styles/layout/flex.mixin";
 
 :host {
   height: inherit;
 }
 
 .all-costs {
-  display: flex;
-  flex-direction: column;
+  @include flex($flex-direction: column);
   font-family: sans-serif;
 }
 
 .report-table {
   height: inherit;
   width: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .cost-list__title {
   @include button-font();
-  @include flex-center();
+  @include flex($flex-direction: column, $align-items: center, $justify-content: center);
   height: 30px;
   background-color: $main-color;
 }
@@ -35,7 +34,7 @@
   display: flex;
 
   * {
-    @include flex-center();
+    @include flex($justify-content: center, $align-items: center);
     width: 50%;
     padding: 10px;
   }
@@ -63,7 +62,7 @@
 }
 
 .cost__date, .cost__value, .cost__category {
-  @include flex-center();
+  @include flex($justify-content: center, $align-items: center);
   width: 50%;
   padding: 10px;
 }

@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+
 import { DialogService } from '../../../../../../../dialog/services/dialog/dialog.service';
+import { ButtonsSign } from '../../../../../../../../global-constants/buttonsSign';
 import {
   AddCostCategoryModalWindowComponent
 } from '../../modal-windows/add-cost-category-modal-window/add-cost-category-modal-window.component';
-import { ButtonsSign } from '../../../../../../../../global-constants/buttonsSign';
 
 @Component({
   selector: 'app-add-expense-item',
@@ -11,6 +12,7 @@ import { ButtonsSign } from '../../../../../../../../global-constants/buttonsSig
   styleUrls: ['./add-expense-item.component.scss']
 })
 export class AddExpenseItemComponent {
+
   ButtonsSign = ButtonsSign;
 
   constructor(

@@ -6,8 +6,9 @@ import {
   ComponentRef,
   OnDestroy,
   Type,
-  ViewChild
+  ViewChild,
 } from '@angular/core';
+
 import { Subject } from 'rxjs';
 import { InsertionDirective } from '../directives/insertion.directive';
 
@@ -17,12 +18,13 @@ import { InsertionDirective } from '../directives/insertion.directive';
   styleUrls: ['./dialog.component.scss']
 })
 export class DialogComponent implements AfterViewInit, OnDestroy {
+
   @ViewChild(InsertionDirective, {static: true}) insertionPoint: InsertionDirective;
+
   componentRef: ComponentRef<any>;
   childComponentType: Type<any>;
   onClose = new Subject<void>();
   dialogOverlayColor = 'black';
-
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
@@ -55,4 +57,5 @@ export class DialogComponent implements AfterViewInit, OnDestroy {
     viewContainerRef.clear();
     this.componentRef = viewContainerRef.createComponent(componentFactory);
   }
+
 }

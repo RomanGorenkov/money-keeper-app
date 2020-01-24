@@ -3,5 +3,5 @@ const makeFirstLetterCapital = (word: string) => {
 };
 
 export {
-  makeFirstLetterCapital
+  makeFirstLetterCapital,
 };

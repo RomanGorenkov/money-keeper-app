@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FormInput } from '../../../../../../../authorization/interfaces/form-input.interface';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+
+import { FormInput } from '../../../../../../../authorization/interfaces/form-input.interface';
 import { FormControls } from '../../../../../../../authorization/interfaces/form-controls.interface';
-import { addCostCategoryFormConfig } from '../../../../constants/add-cost-category-form-config';
 import { RadioInput } from '../../../../../../../../shared/interfaces/radio-input.interface';
-import { CostService } from '../../../../../../../../services/cost/cost.service';
+import { addCostCategoryFormConfig } from '../../../../constants/add-cost-category-form-config';
+import { FileExpansions } from '../../../../../../../../global-constants/file-expansions';
 import { DialogService } from '../../../../../../../dialog/services/dialog/dialog.service';
-import { ExpenseItemConfig } from '../../../../interfaces/expense-item-config.interface';
 import { InputTypes } from '../../../../../../../../global-constants/input-types';
+import { CostCategoryService } from '../../../../../../../../services/cost-category/cost-category.service';
 
 @Component({
   selector: 'app-add-cost-category-modal-window',
@@ -21,9 +22,10 @@ export class AddCostCategoryModalWindowComponent implements OnInit {
   colors: RadioInput[];
   addCostCategory: FormGroup;
   selectedColor: string;
+  FileExpansions = FileExpansions;
 
   constructor(
-    private costService: CostService,
+    private costCategoryService: CostCategoryService,
     private dialog: DialogService,
   ) {
   }
@@ -31,6 +33,7 @@ export class AddCostCategoryModalWindowComponent implements OnInit {
   ngOnInit() {
     this.inputs = addCostCategoryFormConfig.addCostCategoryInputs;
     this.colors = addCostCategoryFormConfig.costCategoryColorsRadioInputs;
+    this.selectedColor = this.colors[addCostCategoryFormConfig.ColorsRadioInput.BLUE].value;
     this.createForm();
   }
 
@@ -39,7 +42,7 @@ export class AddCostCategoryModalWindowComponent implements OnInit {
       config[controlConfig.name] = new FormControl('', controlConfig.validators);
       return config;
     }, {});
-    controls[this.colors[0].name] = new FormControl('', Validators.required);
+    controls[addCostCategoryFormConfig.FormControlsName.COLOR] = new FormControl(this.selectedColor, Validators.required);
     this.addCostCategory = new FormGroup(controls);
   }
 
@@ -53,20 +56,14 @@ export class AddCostCategoryModalWindowComponent implements OnInit {
 
   addNewCostCategory(event) {
     const data = new FormData(event.target);
-    data.append('color', this.selectedColor);
-    this.costService.addNewUserCostCategory(data).subscribe(
-      (imageUrl) => {
-        this.addNewCostCategoryInCurrentCategoryList(imageUrl as string);
-      }
-    );
-  }
-
-  addNewCostCategoryInCurrentCategoryList(categoryImageUrl: string) {
-    const newCategory = this.addCostCategory.value as ExpenseItemConfig;
-    newCategory.imageUrl = categoryImageUrl;
-    newCategory.name = newCategory.name.toLowerCase();
-    this.costService.addNewUserCostCategoryInCurrentCategoryList(newCategory);
-    this.dialog.removeDialogComponentFromBody();
+    data.append(addCostCategoryFormConfig.FormControlsName.COLOR, this.selectedColor);
+    this.costCategoryService.addNewUserCostCategory(data)
+      .subscribe(
+        (imageUrl) => {
+          this.costCategoryService.addNewCostCategoryInCurrentCategoryList(imageUrl, this.addCostCategory.value);
+          this.dialog.removeDialogComponentFromBody();
+        }
+      );
   }
 
 }

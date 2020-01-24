@@ -1,9 +1,10 @@
 <div class="toolbar" role="banner">
   <app-button
-    [placeholder]="button.placeholder"
-    [iconId]="button.iconId"
-    [routerUrl]="button.routerUrl"
     *ngFor="let button of buttons"
+    [placeholder]="button.placeholder"
+    [iconColor]="button.iconColor"
+    [iconUrl]="button.iconUrl"
+    [routerUrl]="button.routerUrl"
   >
   </app-button>
 </div>

@@ -1,8 +1,8 @@
-@import "../../../../../styles/layout/flex-column-center-middle.mixin";
 @import "../../../../../styles/base/colors";
+@import "../../../../../styles/layout/flex.mixin";
 
 @mixin expense-item-button {
-  @include flex-column-center-middle();
+  @include flex($flex-direction: column, $justify-content: center, $align-items: center);
   width: 140px;
   height: 220px;
   color: $light-text-color;

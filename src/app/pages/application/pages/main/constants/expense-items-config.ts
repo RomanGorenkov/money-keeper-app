@@ -59,6 +59,6 @@ export const expenseItems: ExpenseItemConfig[] = [
     title: 'home.category.food',
     name: 'food',
     imageUrl: '../../../../../assets/icons/restaurant.svg',
-    color: 'rgba(255, 255, 255, .9)',
+    color: 'rgba(217,217,217,0.9)',
   },
 ];

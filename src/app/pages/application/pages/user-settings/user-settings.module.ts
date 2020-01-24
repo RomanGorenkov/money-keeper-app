@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
-import { SettingsPageComponent } from './pages/settings-page.component';
+import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+
+import { SettingsPageComponent } from './pages/settings-page.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '../../../../shared/shared.module';
-import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -11,17 +12,12 @@ import { CommonModule } from '@angular/common';
     ReactiveFormsModule,
     TranslateModule,
     SharedModule,
-    CommonModule
+    CommonModule,
   ],
   declarations: [
-    SettingsPageComponent
+    SettingsPageComponent,
   ],
-  providers: [
-  ],
-  exports: [
-  ],
-  entryComponents: [
-  ]
 })
+
 export class UserSettingsModule {
 }

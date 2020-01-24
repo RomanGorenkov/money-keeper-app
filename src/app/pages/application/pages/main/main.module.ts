@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { MainComponent } from './Pages/main.component';
 import { HomeComponent } from './Pages/home/home.component';
 import { MainRoutingModule } from './main-routing.module';
@@ -8,8 +10,7 @@ import { ReportGraphsPageComponent } from './Pages/report-graphs-page/report-gra
 import { DatePickerComponent } from './components/date-controller/date-picker/date-picker.component';
 import { DateSwitcherComponent } from './components/date-controller/date-switcher/date-switcher.component';
 import { DateControllerComponent } from './components/date-controller/date-controller.component';
-import { DateService } from './services/date/date.service';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DateService } from '../../../../services/date/date.service';
 import { ExpenseListComponent } from './components/expense/expense-list/expense-list.component';
 import { ExpenseItemComponent } from './components/expense/expense-list/expense-item/expense-item.component';
 import { AddExpenseItemComponent } from './components/expense/expense-list/add-expense-item/add-expense-item.component';
@@ -59,7 +60,6 @@ import { InformationSpanComponent } from './components/information-span/informat
     InformationSpanComponent,
   ],
   providers: [
-    DateService,
   ],
   exports: [
     MainComponent,
@@ -74,5 +74,6 @@ import { InformationSpanComponent } from './components/information-span/informat
     DateSwitcherComponent,
   ]
 })
+
 export class MainModule {
 }

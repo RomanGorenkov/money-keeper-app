@@ -1,10 +1,8 @@
 @import "../../../mixins/date-controller-button.mixin";
+@import "../../../../../../../styles/layout/flex.mixin";
 
 .expense-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
+  @include flex($flex-wrap: wrap, $justify-content: space-around, $align-items: center);
   height: auto;
   max-height: 100%;
   width: 100%;
@@ -12,8 +10,7 @@
 }
 
 .modal-window__label {
-  display: flex;
-  flex-direction: column;
+  @include flex($flex-direction: column);
   padding: 10px;
 
 }

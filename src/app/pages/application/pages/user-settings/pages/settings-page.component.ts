@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { UserService } from '../../../../../services/user/user.service';
+
 import { FormInput } from '../../../../authorization/interfaces/form-input.interface';
-import { settingInputs } from '../constants/setting-form-config';
 import { FormControls } from '../../../../authorization/interfaces/form-controls.interface';
+import { settingInputs } from '../constants/setting-form-config';
+import { UserService } from '../../../../../services/user/user.service';
+import { InputTypes } from '../../../../../global-constants/input-types';
 
 @Component({
   selector: 'app-settings-page',
@@ -12,22 +14,21 @@ import { FormControls } from '../../../../authorization/interfaces/form-controls
 })
 export class SettingsPageComponent implements OnInit {
 
-  fileData: File = null;
-  inputs: FormInput[];
+  inputs: FormInput[] = [];
   settingForm: FormGroup;
   newUserAvatar: string | ArrayBuffer;
+  InputTypes = InputTypes;
 
 
   constructor(
     public userService: UserService,
   ) {
-    // this.createSettingForm();
   }
 
   ngOnInit() {
     this.inputs = settingInputs;
-    this.createForm();
     this.updateUserSetting();
+    this.createForm();
   }
 
   private createForm() {
@@ -45,45 +46,16 @@ export class SettingsPageComponent implements OnInit {
 
   submit(event) {
     const data = new FormData(event.target);
-
-    // data.append()
     this.userService.saveUserSettings(data);
     this.settingForm.markAsPristine();
   }
 
-  changeAvatar(fileInput: any) {
-    if (fileInput.target.files.length === 0) {
-      this.settingForm.markAsPristine();
-      return;
-    }
-    this.fileData = fileInput.target.files[0];
-    this.preview();
-  }
-
-  preview() {
-    const mimeType = this.fileData.type;
-    if (mimeType.match(/image\/*/) == null) {
-      return;
-    }
-    const reader = new FileReader();
-    reader.readAsDataURL(this.fileData);
-    reader.onload = () => {
-      this.userService.setUserAvatarUrl(reader.result);
-    };
-  }
-
-  createSettingForm() {
-    this.settingForm = new FormGroup({
-      username: new FormControl(''),
-      avatarFile: new FormControl('')
-    });
-  }
-
   updateUserSetting() {
-    this.userService.updateUserName().subscribe();
+    this.userService.uploadLocalUserSettings();
   }
 
   getNewUserAvatar(avatar: string | ArrayBuffer) {
     this.newUserAvatar = avatar;
   }
+
 }

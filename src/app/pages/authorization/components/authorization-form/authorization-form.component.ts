@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
-import { formConfigs } from '../../constants/form-configs';
+
 import { FormInput } from '../../interfaces/form-input.interface';
 import { FormControls } from '../../interfaces/form-controls.interface';
+import { formConfigs } from '../../constants/form-configs';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 import { InputTypes } from '../../../../global-constants/input-types';
 
@@ -13,6 +14,7 @@ import { InputTypes } from '../../../../global-constants/input-types';
   styleUrls: ['./authorization-form.component.scss']
 })
 export class AuthorizationFormComponent implements OnInit {
+
   InputTypes = InputTypes;
   formTitle: string;
   inputs: FormInput[];
@@ -33,11 +35,14 @@ export class AuthorizationFormComponent implements OnInit {
   }
 
   private initRouterSubscription() {
-    this.activateRoute.params.subscribe(({type}) => {
-      this.formTitle = type;
-      this.inputs = formConfigs[type].formInputs;
-      this.createForm(type);
-    });
+    this.activateRoute.params
+      .subscribe(
+        ({type}) => {
+          this.formTitle = type;
+          this.inputs = formConfigs[type].formInputs;
+          this.createForm(type);
+        },
+      );
   }
 
   private createForm(type: string) {
@@ -47,11 +52,12 @@ export class AuthorizationFormComponent implements OnInit {
     }, {});
 
     this.authorizationForm = new FormGroup(controls, {
-      validators: formConfigs[type].externalValidators
+      validators: formConfigs[type].externalValidators,
     });
   }
 
   submitHandler(FormData: FormGroup) {
     this.authenticationService[this.formTitle](FormData);
   }
+
 }

@@ -1,17 +1,13 @@
 @import "../../../mixins/application-item.mixin";
 @import "../../../../../mixins/form-title.mixin";
-@import "../../main/mixins/flex-center.mixin";
 @import "../../../../../mixins/form-submit-input.mixin";
 @import "../../../../../styles/base/colors";
+@import "../../../../../styles/layout/flex.mixin";
 
 
 .settings-page{
   @include application-item();
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
+  @include flex($flex-direction: column, $align-items: center, $justify-content: center);
 
   &__title{
     @include form-title(1.2rem);
@@ -28,19 +24,15 @@
   }
 
   &__form{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    @include flex($flex-direction: column, $align-items: center);
     width: auto;
   }
 
   &__label{
+    @include flex($flex-direction: column, $align-items: center);
     text-transform: uppercase;
     color: black;
     font: 95% Arial, Helvetica, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     margin-top: 10px;
   }
 

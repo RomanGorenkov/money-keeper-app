@@ -1,4 +1,5 @@
 import { FormGroup, Validators } from '@angular/forms';
+
 import { FormInput } from '../interfaces/form-input.interface';
 import { FormConfigs } from '../interfaces/form-configs.interface';
 import { InputTypes } from '../../../global-constants/input-types';
@@ -50,7 +51,6 @@ const registrationInputs = [
 function repeatPasswordValidator(group: FormGroup): { passwordsNotEqual: boolean } {
   const password = group.controls.password.value;
   const passwordConfirmation = group.controls.passwordConfirm.value;
-
   return password === passwordConfirmation ? null : {passwordsNotEqual: true};
 }
 

@@ -1,6 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
+
 import { FormInput } from '../../../pages/authorization/interfaces/form-input.interface';
+import { SafeResourceUrl } from '@angular/platform-browser';
+import { FileExpansions } from '../../../global-constants/file-expansions';
+
+type Preview = string | ArrayBuffer | SafeResourceUrl;
 
 @Component({
   selector: 'app-image-input',
@@ -9,19 +14,22 @@ import { FormInput } from '../../../pages/authorization/interfaces/form-input.in
 })
 export class ImageInputComponent {
 
-  @Input() previewImage: string | ArrayBuffer;
+  @Input() fileExpansion: string;
+  @Input() previewImage: Preview;
   @Input() inputData: FormInput;
   @Input() control: FormControl;
-  @Output() imageSelected: EventEmitter<string | ArrayBuffer> = new EventEmitter<string | ArrayBuffer>();
+  @Output() imageSelected = new EventEmitter<Preview>();
 
   fileData: File = null;
+  validFileFormat = true;
 
-  changePreviewImage(fileInput: any) {
-    if (fileInput.target.files.length === 0) {
-      return;
+  changePreviewImage(fileInput: Event) {
+    const files = (fileInput.target as HTMLInputElement).files;
+    this.validateFile(files[0].name, this.fileExpansion);
+    if (this.validFileFormat && files.length) {
+      this.fileData = files[0];
+      this.preview();
     }
-    this.fileData = fileInput.target.files[0];
-    this.preview();
   }
 
   preview() {
@@ -32,8 +40,22 @@ export class ImageInputComponent {
     const reader = new FileReader();
     reader.readAsDataURL(this.fileData);
     reader.onload = () => {
-      this.previewImage = reader.result;
+      if (typeof reader.result === 'string') {
+        this.previewImage = reader.result;
+      }
       this.imageSelected.emit(reader.result);
     };
   }
+
+  validateFile(name: string, expansion: string = '') {
+    const fileExpansion = name.substring(name.lastIndexOf('.') + 1).toLowerCase() as FileExpansions;
+    const bannedExtensions = [FileExpansions.SVG];
+    this.validFileFormat = expansion ? fileExpansion === expansion : !bannedExtensions.includes(fileExpansion);
+    if (this.validFileFormat) {
+      this.control.setErrors(null);
+    } else {
+      this.control.setErrors({incorrect: false});
+    }
+  }
+
 }

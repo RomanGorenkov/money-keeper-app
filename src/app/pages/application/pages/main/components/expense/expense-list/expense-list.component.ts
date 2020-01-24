@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+
 import { ExpenseItemConfig } from '../../../interfaces/expense-item-config.interface';
 import { CostService } from '../../../../../../../services/cost/cost.service';
+import { CostCategoryService } from '../../../../../../../services/cost-category/cost-category.service';
 
 @Component({
   selector: 'app-expense-list',
@@ -12,19 +14,18 @@ export class ExpenseListComponent {
   categoryList: ExpenseItemConfig[] = [];
 
   constructor(
-    public costService: CostService,
+    private costCategoryService: CostCategoryService,
+    private costService: CostService
   ) {
     this.subscribeOnCategoryListChange();
   }
 
   subscribeOnCategoryListChange() {
-    this.costService.setCostCategoryListByNameList(this.costService.getAllCostsNames());
-    this.costService.costCategoryList.subscribe(
-      categoryList => {
-        this.categoryList = categoryList;
-      }
-    );
+    this.costCategoryService.setCostCategoryListByNameList(this.costService.getAllCostsNames());
+    this.costCategoryService.costCategoryList
+      .subscribe(
+        categoryList => this.categoryList = categoryList,
+      );
   }
-
 
 }

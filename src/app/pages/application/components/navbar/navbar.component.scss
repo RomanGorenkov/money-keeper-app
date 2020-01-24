@@ -32,12 +32,12 @@
 
 /* Change the color of links on hover */
 .link-list__item:hover {
-  background-color: #BBDEFB;
+  background-color: $link-item-hover-color;
   color: $dark-text-color;
 }
 
 /* Add an active class to highlight the current page */
 .active {
-  background-color: #1976D2;
+  background-color: $menu-color;
   color: $light-text-color;
 }

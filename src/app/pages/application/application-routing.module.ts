@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { routing } from '../../global-constants/routing';
 import { SettingsPageComponent } from './pages/user-settings/pages/settings-page.component';
 import { ApplicationComponent } from './pages/application.component';
@@ -30,11 +31,12 @@ const ApplicationRouting: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forChild(ApplicationRouting)
+    RouterModule.forChild(ApplicationRouting),
   ],
   exports: [
-    RouterModule
+    RouterModule,
   ]
 })
+
 export class ApplicationRoutingModule {
 }

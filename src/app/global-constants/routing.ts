@@ -2,7 +2,7 @@ export const routing = {
   authorisation: {
     root: 'authorization',
     login: 'login',
-    registration: 'registration'
+    registration: 'registration',
   },
 
   app: {

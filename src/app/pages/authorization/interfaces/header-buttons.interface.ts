@@ -1,5 +1,6 @@
 interface HeaderButtons {
   placeholder: string;
-  iconId: string;
+  iconColor: string;
+  iconUrl: string;
   routerUrl: string;
 }

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { DateService } from '../../../services/date/date.service';
+
 import { DateSwitcherConfig } from '../../../interfaces/date-switcher-config.interface';
+import { timeIntervalConst } from '../../../constants/time-interval-const';
 import { dateSwitcherConfig } from '../../../constants/date-switcher/date-switcher-config';
 import { DialogConfig } from '../../../../../../dialog/config/dialog-config';
 import { DialogService } from '../../../../../../dialog/services/dialog/dialog.service';
-import { timeIntervalConst } from '../../../constants/time-interval-const';
+import { DateService } from '../../../../../../../services/date/date.service';
 
 @Component({
   selector: 'app-date-switcher',
@@ -12,15 +13,14 @@ import { timeIntervalConst } from '../../../constants/time-interval-const';
   styleUrls: ['./date-switcher.component.scss']
 })
 export class DateSwitcherComponent implements OnInit {
-  dateSwitchers: DateSwitcherConfig[];
 
+  dateSwitchers: DateSwitcherConfig[];
 
   constructor(
     private dateService: DateService,
     private dialog: DialogService,
     private config: DialogConfig<any>,
   ) {
-
   }
 
   get dateSwitchersConfigSwitcherNames() {
@@ -44,10 +44,10 @@ export class DateSwitcherComponent implements OnInit {
     this.dialog.removeDialogComponentFromBody();
   }
 
-
   setCustomDate(event) {
     const startDate = Number(new Date(event.target.value).setHours(0, 0, 0, 0));
     this.dateService.changeCurrentDateByCustomDate(startDate, startDate + timeIntervalConst.day);
     this.dialog.removeDialogComponentFromBody();
   }
+
 }

@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { DialogService } from '../../../../../../../dialog/services/dialog/dialog.service';
 import { FormControl, FormGroup } from '@angular/forms';
+
+import { CostDto } from '../../../../interfaces/cost-dto.intarfece';
 import { FormInput } from '../../../../../../../authorization/interfaces/form-input.interface';
+import { AddCostModalConfig } from '../../../../interfaces/add-cost-modal-config.interface';
 import { FormControls } from '../../../../../../../authorization/interfaces/form-controls.interface';
+import { addExpenseInputs } from '../../../../constants/add-cost-form-config';
+import { DialogService } from '../../../../../../../dialog/services/dialog/dialog.service';
 import { DialogConfig } from '../../../../../../../dialog/config/dialog-config';
 import { CostService } from '../../../../../../../../services/cost/cost.service';
-import { CostDto } from '../../../../interfaces/cost-dto.intarfece';
-import { addExpenseInputs } from '../../../../constants/add-cost-form-config';
-import { AddCostModalConfig } from '../../../../interfaces/add-cost-modal-config.interface';
 
 @Component({
   selector: 'app-add-expense-modal-window',
@@ -46,14 +47,10 @@ export class AddExpenseModalWindowComponent implements OnInit {
 
   addCost() {
     const newCost = this.createNewCost();
-    this.costService.addCost(newCost).subscribe(
-      () => {
-        this.dialog.removeDialogComponentFromBody();
-      },
-      error => {
-        console.log(error);
-      }
-    );
+    this.costService.addCost(newCost)
+      .subscribe(
+        () => this.dialog.removeDialogComponentFromBody(),
+      );
   }
 
   createNewCost(): CostDto {
@@ -61,7 +58,7 @@ export class AddExpenseModalWindowComponent implements OnInit {
       costDate: Date.now(),
       costType: this.config.data.name,
       costDescription: this.addExpenseForm.value.description,
-      costValue: parseInt(this.addExpenseForm.value.expense, 10),
+      costValue: parseFloat(this.addExpenseForm.value.expense),
       costLocalizationKey: this.config.data.title,
     };
   }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { routing } from './global-constants/routing';
 import { AuthGuard } from './guards/main.guars';
 
@@ -29,5 +30,6 @@ const routes: Routes = [
     RouterModule
   ]
 })
+
 export class AppRoutingModule {
 }

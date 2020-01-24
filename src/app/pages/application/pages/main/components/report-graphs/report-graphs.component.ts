@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { CostService } from '../../../../../../services/cost/cost.service';
 import { Color } from 'ng2-charts';
+import { Component, OnInit } from '@angular/core';
+import { CurrencyPipe } from '@angular/common';
+
 import { reportGraphConstant } from '../../constants/report-graph-constants';
+import { CostService } from '../../../../../../services/cost/cost.service';
 import { PresetService } from '../../../../../../services/preset/preset.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { makeFirstLetterCapital } from '../../../../../../helpers/string-helper';
@@ -13,7 +15,8 @@ import { ChartType } from '../../constants/chart-type';
   styleUrls: ['./report-graphs.component.scss'],
   providers: [
     TranslatePipe,
-  ]
+    CurrencyPipe,
+  ],
 })
 export class ReportGraphsComponent implements OnInit {
 
@@ -40,6 +43,7 @@ export class ReportGraphsComponent implements OnInit {
     private presetService: PresetService,
     private translatePipe: TranslatePipe,
     private translate: TranslateService,
+    private currencyPipe: CurrencyPipe,
   ) {
   }
 
@@ -49,11 +53,10 @@ export class ReportGraphsComponent implements OnInit {
   }
 
   costUpdateSubscribe() {
-    this.costService.currentCostList.subscribe(
-      () => {
-        this.updateChart();
-      }
-    );
+    this.costService.currentCostList
+      .subscribe(
+        () => this.updateChart(),
+      );
   }
 
   updateChart() {
@@ -80,15 +83,15 @@ export class ReportGraphsComponent implements OnInit {
 
   createLabel(label: string, index: number) {
     label = this.translateLabel(label);
-    label += ` (${this.costService.currentCostsSum[index]}${this.presetService.currencySymbol})`;
+    label += ` (${this.currencyPipe.transform(this.costService.currentCostsSum[index], ' ')}${this.presetService.currencySymbol})`;
     return makeFirstLetterCapital(label);
   }
 
   languageUpdateSubscribe() {
-    this.translate.onLangChange.subscribe(
-      () => {
-        this.updateChart();
-      }
-    );
+    this.translate.onLangChange
+      .subscribe(
+        () => this.updateChart(),
+      );
   }
+
 }

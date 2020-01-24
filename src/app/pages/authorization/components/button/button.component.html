@@ -1,6 +1,8 @@
 <button routerLink="/authorization/{{routerUrl}}" class="button">
   {{placeholder | translate}}
-  <svg class="icon-size">
-    <use [attr.href]="'#' + iconId" xmlns:xlink="http://www.w3.org/2000/svg"></use>
-  </svg>
+  <app-image-with-mask
+    class="icon-size"
+    [imageForMask]="iconUrl"
+    [maskColor]="iconColor"
+  ></app-image-with-mask>
 </button>

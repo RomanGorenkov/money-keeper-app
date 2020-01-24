@@ -1,12 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
+
 import { ExpenseItemConfig } from '../../../../interfaces/expense-item-config.interface';
+import { UserCosts } from '../../../../../../../authorization/interfaces/user-costs.interface';
 import { PresetService } from '../../../../../../../../services/preset/preset.service';
 import { DialogService } from '../../../../../../../dialog/services/dialog/dialog.service';
 import { AddExpenseModalWindowComponent } from '../../modal-windows/add-expense-modal-window/add-expense-modal-window.component';
-import { DateService } from '../../../../services/date/date.service';
+import { DateService } from '../../../../../../../../services/date/date.service';
 import { CostListModalWindowComponent } from '../../modal-windows/cost-list-modal-window/cost-list-modal-window.component';
 import { CostService } from '../../../../../../../../services/cost/cost.service';
-import { UserCosts } from '../../../../../../../authorization/interfaces/user-costs.interface';
 
 @Component({
   selector: 'app-expense-item',
@@ -14,6 +15,7 @@ import { UserCosts } from '../../../../../../../authorization/interfaces/user-co
   styleUrls: ['./expense-item.component.scss']
 })
 export class ExpenseItemComponent implements OnInit {
+
   @Input() expenseItemConfig: ExpenseItemConfig;
   @Input() iconId: string;
 
@@ -25,7 +27,6 @@ export class ExpenseItemComponent implements OnInit {
     private dialog: DialogService,
     private dateService: DateService,
   ) {
-
   }
 
   ngOnInit() {
@@ -52,11 +53,10 @@ export class ExpenseItemComponent implements OnInit {
   }
 
   subscribeOnChangeCurrentCostList() {
-    this.costService.currentCostList.subscribe(
-      currentCostList => {
-        this.setCurrentUserCost(currentCostList);
-      }
-    );
+    this.costService.currentCostList
+      .subscribe(
+        currentCostList => this.setCurrentUserCost(currentCostList),
+      );
   }
 
   setCurrentUserCost(currentCostList: UserCosts[]) {
@@ -67,4 +67,5 @@ export class ExpenseItemComponent implements OnInit {
       this.currentCostValue = 0;
     }
   }
+
 }

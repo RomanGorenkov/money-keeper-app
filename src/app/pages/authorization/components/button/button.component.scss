@@ -1,8 +1,8 @@
 @import "../../../../styles/base/colors";
+@import "../../../../styles/layout/flex.mixin";
 
 .button {
-  display: flex;
-  align-items: center;
+  @include flex($align-items: center);
   color: $light-text-color;
   text-transform: uppercase;
   text-decoration: none;

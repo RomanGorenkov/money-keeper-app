@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+import { routing } from '../../../../global-constants/routing';
 import { HomeComponent } from './Pages/home/home.component';
 import { MainComponent } from './Pages/main.component';
-import { routing } from '../../../../global-constants/routing';
 import { ReportTablePageComponent } from './Pages/report-table-page/report-table-page.component';
 import { ReportGraphsPageComponent } from './Pages/report-graphs-page/report-graphs-page.component';
-import { AuthGuard } from '../../../../guards/main.guars';
 
 
 const MainRouting: Routes = [
@@ -21,17 +21,14 @@ const MainRouting: Routes = [
       {
         path: routing.app.main.home,
         component: HomeComponent,
-        // canActivate: [AuthGuard],
       },
       {
         path: routing.app.main.reportTable,
         component: ReportTablePageComponent,
-        // canActivate: [AuthGuard],
       },
       {
         path: routing.app.main.reportGraphs,
         component: ReportGraphsPageComponent,
-        // canActivate: [AuthGuard],
       },
     ]
   }
@@ -40,11 +37,12 @@ const MainRouting: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forChild(MainRouting)
+    RouterModule.forChild(MainRouting),
   ],
   exports: [
-    RouterModule
+    RouterModule,
   ]
 })
+
 export class MainRoutingModule {
 }

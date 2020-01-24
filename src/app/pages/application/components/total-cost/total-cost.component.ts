@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 import { CostService } from '../../../../services/cost/cost.service';
 import { PresetService } from '../../../../services/preset/preset.service';
 
@@ -14,4 +15,5 @@ export class TotalCostComponent {
     public presetService: PresetService,
   ) {
   }
+
 }

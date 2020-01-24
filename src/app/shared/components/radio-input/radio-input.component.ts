@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
+
 import { RadioInput } from '../../interfaces/radio-input.interface';
 
 @Component({
@@ -9,9 +10,14 @@ import { RadioInput } from '../../interfaces/radio-input.interface';
 })
 export class RadioInputComponent {
 
+  @Input() isSelected: boolean;
   @Input() control: FormControl;
   @Input() inputData: RadioInput;
-  @Output() valueSelected: EventEmitter<string> = new EventEmitter<string>();
+  @Output() valueSelected = new EventEmitter<string>();
+
+  get hoverColorClass() {
+    return `${this.inputData.colorName}`;
+  }
 
   selectValue(value: string) {
     this.valueSelected.emit(value);
