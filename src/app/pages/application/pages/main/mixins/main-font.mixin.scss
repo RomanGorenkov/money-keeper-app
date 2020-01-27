@@ -1,0 +1,7 @@
+@import "../../../../../styles/base/colors";
+
+@mixin main-font($color: $light-text-color, $size: 20px) {
+  color: $color;
+  font-weight: bold;
+  font-size: $size;
+}

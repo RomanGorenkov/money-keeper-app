@@ -1,21 +1,12 @@
-import { FormControl, Validators } from '@angular/forms';
+import { Validators } from '@angular/forms';
 
 import { FormInput } from '../../../../authorization/interfaces/form-input.interface';
 import { InputTypes } from '../../../../../global-constants/input-types';
 
-function validateUsername(control: FormControl) {
-
-  return control.value !== '' ? null : {
-    username: {
-      valid: false
-    }
-  };
-}
-
 export const settingInputs: FormInput[] = [
   {
     type: InputTypes.File,
-    name: 'avatarFile',
+    name: 'userAvatarUrl',
     placeholder: 'settings.selectFile',
     defaultImageUrl: '../../../../../../assets/img/plus.svg',
     validators: [],
@@ -26,8 +17,6 @@ export const settingInputs: FormInput[] = [
     placeholder: 'settings.username',
     validators: [
       Validators.required,
-      // validateUsername,
-      // Validators.pattern('/.*\\S.*/'),
     ],
   },
 ];

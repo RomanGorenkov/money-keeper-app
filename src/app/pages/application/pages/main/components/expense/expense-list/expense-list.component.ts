@@ -15,7 +15,7 @@ export class ExpenseListComponent {
 
   constructor(
     private costCategoryService: CostCategoryService,
-    private costService: CostService
+    private costService: CostService,
   ) {
     this.subscribeOnCategoryListChange();
   }

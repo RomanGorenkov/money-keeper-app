@@ -1,13 +1,14 @@
-@import "../../../mixins/date-controller-button.mixin";
+@import "../../../mixins/button.mixin";
 @import "../../../../../../../styles/base/colors";
 @import "../../../../../../../styles/base/sizes";
 @import "../../../../../../../styles/layout/flex.mixin";
 
+$font-size: 20px;
 
 .date-switcher {
   position: absolute;
   top: 120px;
-  left: calc(50% - 130px);
+  left: calc(50% - #{$date-modal-width / 2});
   height: auto;
   width: $date-modal-width;
   background-color: $main-color;
@@ -26,12 +27,11 @@
     width: 50%;
     height: 30px;
     color: $light-text-color;
-    font-size: 20px;
+    font-size: $font-size;
   }
 
   &__switcher__full-width {
     width: 100%;
-
   }
 
   &__button {
@@ -42,7 +42,7 @@
   &__label {
     display: block;
     font-weight: bold;
-    font-size: 20px;
+    font-size: $font-size;
     font-family: Arial, sans-serif;
   }
 
@@ -56,17 +56,15 @@
   }
 
   &__container__full-width {
-    width: 260px !important;
+    width: $date-modal-width !important;
   }
 
-  ::-webkit-datetime-edit, ::-webkit-clear-button, ::-webkit-inner-spin-button{
+  ::-webkit-datetime-edit, ::-webkit-clear-button, ::-webkit-inner-spin-button {
     display: none;
   }
 
-  ::-webkit-calendar-picker-indicator{
+  ::-webkit-calendar-picker-indicator {
     width: 100%;
   }
-
-
 
 }

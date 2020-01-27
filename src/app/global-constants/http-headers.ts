@@ -1,4 +1,4 @@
-  const httpHeadersName = {
+const httpHeadersName = {
   authorization: 'Authorization',
   contentType: 'Content-Type',
   xImg: 'x-img',
@@ -6,7 +6,7 @@
 
 const httpHeadersValue = {
   json: 'application/json',
-  authorization : 'Bearer ',
+  authorization: 'Bearer ',
   categoryImage: 'categoryImage',
   userAvatar: 'userAvatar',
 };

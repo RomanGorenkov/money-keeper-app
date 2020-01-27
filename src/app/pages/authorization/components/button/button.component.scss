@@ -1,15 +1,16 @@
 @import "../../../../styles/base/colors";
 @import "../../../../styles/layout/flex.mixin";
+@import "../../../../styles/components/solid-border.mixin";
 
 .button {
   @include flex($align-items: center);
+  @include solid-border($size: 2px, $color: $white);
   color: $light-text-color;
   text-transform: uppercase;
   text-decoration: none;
   background: $bar-color;
   padding: 5px;
   margin: 0 10px;
-  border: 2px solid #ffffff;
   transition: all 0.4s ease 0s;
 }
 
@@ -19,7 +20,8 @@
 }
 
 .icon-size {
-  height: 12px;
-  width: 12px;
+  $icon-size: 12px;
+  height: $icon-size;
+  width: $icon-size;
   margin: 0 5px;
 }

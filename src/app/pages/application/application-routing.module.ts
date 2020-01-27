@@ -5,7 +5,6 @@ import { routing } from '../../global-constants/routing';
 import { SettingsPageComponent } from './pages/user-settings/pages/settings-page.component';
 import { ApplicationComponent } from './pages/application.component';
 
-
 const ApplicationRouting: Routes = [
   {
     path: '',
@@ -22,12 +21,11 @@ const ApplicationRouting: Routes = [
       {
         path: '**',
         pathMatch: 'full',
-        redirectTo: ''
+        redirectTo: '',
       },
-    ]
-  }
+    ],
+  },
 ];
-
 
 @NgModule({
   imports: [
@@ -35,7 +33,7 @@ const ApplicationRouting: Routes = [
   ],
   exports: [
     RouterModule,
-  ]
+  ],
 })
 
 export class ApplicationRoutingModule {

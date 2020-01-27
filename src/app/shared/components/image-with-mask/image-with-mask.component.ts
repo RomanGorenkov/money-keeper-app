@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { SafeResourceUrl } from '@angular/platform-browser';
 
-type Preview = string | ArrayBuffer | SafeResourceUrl;
+import { Preview } from '../../../types/preview.type';
 
 @Component({
   selector: 'app-image-with-mask',

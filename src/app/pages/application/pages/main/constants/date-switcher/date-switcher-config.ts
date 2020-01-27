@@ -1,11 +1,9 @@
-import { timeIntervalConst } from '../time-interval-const';
 import { DateSwitcherConfig } from '../../interfaces/date-switcher-config.interface';
+import { timeIntervalConst } from '../time-interval-const';
 import { switcherNames } from './switcher-name';
 import { SwitcherValueType } from './switcher-value-type';
 
 const sundayIndex = 0;
-
-
 
 function getCurrentDate() {
   return new Date().setHours(0, 0, 0, 0);
@@ -17,7 +15,7 @@ const timeInterval: DateSwitcherConfig[] = [
     switcherName: switcherNames.UserDate,
     startDate: 0,
     endDate: timeIntervalConst.day,
-    valueType: SwitcherValueType.Date,
+    valueType: SwitcherValueType.DATE,
     customComponent: switcherNames.UserDate
   },
   {
@@ -29,7 +27,7 @@ const timeInterval: DateSwitcherConfig[] = [
     get endDate() {
       return getCurrentDate() + timeIntervalConst.day;
     },
-    valueType: SwitcherValueType.Date
+    valueType: SwitcherValueType.DATE
   },
   {
     switcherPlaceholder: 'home.dateController.yesterday',
@@ -40,13 +38,14 @@ const timeInterval: DateSwitcherConfig[] = [
     get endDate() {
       return getCurrentDate();
     },
-    valueType: SwitcherValueType.Date
+    valueType: SwitcherValueType.DATE
   },
   {
     switcherPlaceholder: 'home.dateController.week',
     switcherName: switcherNames.Week,
     get startDate() {
       const currentDayIndex = new Date(getCurrentDate()).getDay();
+
       if (new Date(getCurrentDate()).getDay() === sundayIndex) {
         return getCurrentDate() - timeIntervalConst.week;
       } else {
@@ -54,7 +53,7 @@ const timeInterval: DateSwitcherConfig[] = [
       }
     },
     endDate: getCurrentDate() + timeIntervalConst.day,
-    valueType: SwitcherValueType.String
+    valueType: SwitcherValueType.STRING
   },
   {
     switcherPlaceholder: 'home.dateController.mouth',
@@ -65,7 +64,7 @@ const timeInterval: DateSwitcherConfig[] = [
     get endDate() {
       return getCurrentDate() + timeIntervalConst.day;
     },
-    valueType: SwitcherValueType.String
+    valueType: SwitcherValueType.STRING
   },
   {
     switcherPlaceholder: 'home.dateController.year',
@@ -76,7 +75,7 @@ const timeInterval: DateSwitcherConfig[] = [
     get endDate() {
       return getCurrentDate() + timeIntervalConst.day;
     },
-    valueType: SwitcherValueType.String
+    valueType: SwitcherValueType.STRING
   },
   {
     switcherPlaceholder: 'home.dateController.allTime',
@@ -85,7 +84,7 @@ const timeInterval: DateSwitcherConfig[] = [
     get endDate() {
       return getCurrentDate() + timeIntervalConst.day;
     },
-    valueType: SwitcherValueType.String
+    valueType: SwitcherValueType.STRING
   },
 ];
 
@@ -93,4 +92,6 @@ const timeInterval: DateSwitcherConfig[] = [
 export const dateSwitcherConfig = {
   timeInterval,
   switcherNames,
+  indexOfTodaySwitcher: 1,
+  indexOfCustomSwitcher: 0,
 };

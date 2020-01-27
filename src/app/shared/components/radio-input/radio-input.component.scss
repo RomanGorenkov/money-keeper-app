@@ -14,72 +14,53 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-}
 
-.radio-input .radio-input__input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-}
+  &__input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
 
-.radio-input__mark {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 25px;
-  width: 25px;
-  background-color: #eee;
-  border-radius: 50%;
-  box-sizing: border-box;
+
+  &__input:checked ~ .radio-input__mark {
+    background-color: $bar-color;
+  }
+
+  &__input:checked ~ .radio-input__mark:after {
+    display: block;
+  }
+
+  &__mark {
+    $size: 25px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: $size;
+    width: $size;
+    background-color: #eee;
+    border-radius: 50%;
+    box-sizing: border-box;
+
+    &:after {
+      $position: 9px;
+      $size: 8px;
+      content: "";
+      position: absolute;
+      display: none;
+      top: $position;
+      left: $position;
+      width: $size;
+      height: $size;
+      border-radius: 50%;
+      background: $main-background-color;
+    }
+  }
 }
 
 .radio-input:hover .radio-input__input ~ .radio-input__mark:not(.selected-input__mark) {
   border: 2px solid $bar-color;
-}
-
-.radio-input .radio-input__input:checked ~ .radio-input__mark {
-  background-color: $bar-color;
-}
-//
-//.radio-input .radio-input__input:checked ~ .red {
-//  background-color: rgba(255, 0, 0, 0.9);
-//}
-//
-//.radio-input .radio-input__input:checked ~ .green {
-//  background-color: rgba(68, 204, 15, 0.9);
-//}
-//
-//.radio-input .radio-input__input:checked ~ .blue {
-//  background-color: rgba(73, 152, 240, 0.9);
-//}
-//
-//.radio-input .radio-input__input:checked ~ .black {
-//  background-color: rgba(50, 50, 50, 0.9);
-//}
-//
-//.radio-input .radio-input__input:checked ~ .peach {
-//  background-color: rgba(245, 170, 142, 0.9);
-//}
-
-.radio-input .radio-input__input:checked ~ .radio-input__mark:after {
-  display: block;
-}
-
-.radio-input .radio-input__mark:after {
-  top: 9px;
-  left: 9px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: $main-background-color;
-}
-
-.radio-input__mark:after {
-  content: "";
-  position: absolute;
-  display: none;
 }
 
 .selected-input__mark:after {

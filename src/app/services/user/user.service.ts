@@ -29,6 +29,7 @@ export class UserService {
 
   uploadLocalUserSettings() {
     const userSettings: UserSettings = this.storageService.getLocalStorageElement(storageConstants.userSettings);
+
     this.updateUserSettings(userSettings);
   }
 
@@ -40,6 +41,7 @@ export class UserService {
 
   saveUserSettings(userSettings) {
     const headers = new HttpHeaders().append(httpHeader.httpHeadersName.xImg, httpHeader.httpHeadersValue.userAvatar);
+
     return this.http.post<UserSettings>(`${environment.serverUrl}/${apiUrls.userSettings}`, userSettings, {headers})
       .subscribe(
         (settings) => {

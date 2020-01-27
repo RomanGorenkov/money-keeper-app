@@ -1,6 +1,7 @@
 @import "../../../../styles/base/colors";
 @import "../../../../styles/base/sizes";
 @import "../../../../styles/layout/flex.mixin";
+@import "../../../../styles/components/solid-border.mixin";
 
 .toolbar {
   @include flex($align-items: center);
@@ -8,38 +9,38 @@
   height: $toolbar-height;
   background-color: $bar-color;
   font-family: sans-serif;
-}
 
-.toolbar__menu-button {
-  @include flex($align-items: center, $justify-content: center);
-  height: 100%;
-  width: 45px;
-  color: $light-text-color;
-  background: $bar-color;
-  border: none;
-  font-size: 1.5rem;
-  padding: 5px;
-  margin: 0 10px;
-  transition: all 0.4s ease 0s;
-}
+  &__menu-button {
+    @include flex($align-items: center, $justify-content: center);
+    height: 100%;
+    width: 45px;
+    color: $light-text-color;
+    background: $bar-color;
+    border: none;
+    font-size: 1.5rem;
+    padding: 5px;
+    margin: 0 10px;
+    transition: all 0.4s ease 0s;
+  }
 
-.toolbar__tools-container {
-  position: absolute;
-  top: 45px;
-  left: 0;
-  width: 100%;
-  height: $tools-container-height;
-  transition: left .5s;
-  z-index: 2;
-}
+  &__tools-container {
+    position: absolute;
+    top: 45px;
+    left: 0;
+    width: 100%;
+    height: $tools-container-height;
+    transition: left .5s;
+    z-index: 2;
+  }
 
-.toolbar__tools-wrapper {
-  @include flex($flex-direction: column);
-  width: fit-content;
-  height: 100%;
-  flex-direction: column;
-  background-color: $menu-color;
-  box-shadow: $box-shadow
+  &__tools-wrapper {
+    @include flex($flex-direction: column);
+    width: fit-content;
+    height: 100%;
+    flex-direction: column;
+    background-color: $menu-color;
+    box-shadow: $box-shadow
+  }
 }
 
 .tools-list__item {

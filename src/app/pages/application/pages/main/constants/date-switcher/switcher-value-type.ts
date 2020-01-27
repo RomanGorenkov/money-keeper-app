@@ -1,4 +1,4 @@
 export enum SwitcherValueType {
-  Date = 'date',
-  String = 'string'
+  DATE = 'date',
+  STRING = 'string'
 }

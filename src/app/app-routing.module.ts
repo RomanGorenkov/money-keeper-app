@@ -4,22 +4,23 @@ import { RouterModule, Routes } from '@angular/router';
 import { routing } from './global-constants/routing';
 import { AuthGuard } from './guards/main.guars';
 
-
 const routes: Routes = [
   {
     path: routing.authorisation.root,
-    loadChildren: () => import('./pages/authorization/authorization.module').then(m => m.AuthorizationModule)
+    loadChildren: () => import('./pages/authorization/authorization.module').then(m => m.AuthorizationModule),
   },
   {
     path: routing.app.root,
     loadChildren: () => import('./pages/application/application.module').then(m => m.ApplicationModule),
-    canActivate: [AuthGuard]
+    canActivate: [
+      AuthGuard,
+    ],
   },
   {
     path: '**',
     redirectTo: routing.authorisation.root,
-    pathMatch: 'full'
-  }
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({
@@ -27,8 +28,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
   ],
   exports: [
-    RouterModule
-  ]
+    RouterModule,
+  ],
 })
 
 export class AppRoutingModule {

@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
+import { DatePipe } from '@angular/common';
+
 import { DateSwitcherConfig } from '../../pages/application/pages/main/interfaces/date-switcher-config.interface';
-import { CostService } from '../cost/cost.service';
 import { dateSwitcherConfig } from '../../pages/application/pages/main/constants/date-switcher/date-switcher-config';
+import { CostService } from '../cost/cost.service';
 import { Direction } from './enums/date-direction';
+import { SwitcherValueType } from '../../pages/application/pages/main/constants/date-switcher/switcher-value-type';
+import { DateFormat } from '../../global-constants/date-format';
 
 @Injectable()
 export class DateService {
-
 
   Direction = Direction;
   currentElement: DateSwitcherConfig;
@@ -14,53 +17,46 @@ export class DateService {
 
   constructor(
     private costService: CostService,
+    private datePipe: DatePipe,
   ) {
-    this.currentElement = dateSwitcherConfig.timeInterval[1];
+    this.currentElement = dateSwitcherConfig.timeInterval[dateSwitcherConfig.indexOfTodaySwitcher];
   }
 
   get valueToDisplay() {
     if (!this.currentElement) {
       return '';
     } else {
-      if (this.currentElement.valueType === 'date') {
-        return this.parseNumberDate(this.currentElement.startDate);
+      if (this.currentElement.valueType === SwitcherValueType.DATE) {
+        return this.datePipe.transform(this.currentElement.startDate, DateFormat.UIS);
       } else {
         return this.currentElement.switcherPlaceholder;
       }
     }
   }
 
-  get startDate() {
+  getStartDate() {
     return this.currentElement.startDate;
   }
 
-  get endDate() {
+  getEndDate() {
     return this.currentElement.endDate;
   }
 
-  parseNumberDate(numberDate: number) {
-    const date = new Date(numberDate);
-    const day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
-    const monthIndex = date.getMonth();
-    const year = date.getFullYear();
-    return day + '/' + (monthIndex + 1 < 10 ? '0' + (monthIndex + 1) : monthIndex + 1) + '/' + year;
-  }
-
   changeCurrentDateByCustomDate(startDate: number, endDate: number) {
-    this.changeCurrentDateElement(dateSwitcherConfig.timeInterval[0]);
+    this.changeCurrentDateElement(dateSwitcherConfig.timeInterval[dateSwitcherConfig.indexOfCustomSwitcher]);
     this.checkCurrentDateOnToday(startDate, endDate);
   }
 
   changeCurrentDateBySwitcher(dateSwitcher: DateSwitcherConfig) {
     this.changeCurrentDateElement(dateSwitcher);
-    this.costService.updateCurrentCostList(this.startDate, this.endDate);
+    this.costService.updateCurrentCostList(this.getStartDate(), this.getEndDate());
   }
 
 
   changeCurrentDate(startDate: number, endDate: number) {
     this.currentElement.startDate = startDate;
     this.currentElement.endDate = endDate;
-    this.costService.updateCurrentCostList(this.startDate, this.endDate);
+    this.costService.updateCurrentCostList(this.getStartDate(), this.getEndDate());
   }
 
   changeCurrentDateElement(config: DateSwitcherConfig) {
@@ -69,10 +65,11 @@ export class DateService {
   }
 
   checkCurrentDateOnToday(startDate: number, endDate: number) {
-    if (startDate === dateSwitcherConfig.timeInterval[1].startDate) {
-      this.changeCurrentDateBySwitcher(dateSwitcherConfig.timeInterval[1]);
+    if (startDate === dateSwitcherConfig.timeInterval[dateSwitcherConfig.indexOfTodaySwitcher].startDate) {
+      this.changeCurrentDateBySwitcher(dateSwitcherConfig.timeInterval[dateSwitcherConfig.indexOfTodaySwitcher]);
     } else {
       this.changeCurrentDate(startDate, endDate);
     }
   }
+
 }

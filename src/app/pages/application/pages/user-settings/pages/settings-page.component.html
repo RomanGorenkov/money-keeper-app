@@ -2,18 +2,17 @@
   <h2 class="settings-page__title">
     {{'settings.title' | translate}}
   </h2>
+
   <form
     (ngSubmit)="submit($event)"
     class="settings-page__form"
     [formGroup]="settingForm"
   >
-
     <ng-container *ngFor="let input of inputs" [ngSwitch]=input.type>
       <app-text-input
         *ngSwitchCase="InputTypes.Text"
         [inputData]="input"
         [control]="getControl(input.name)"
-        [value]="userService.userSettings.username"
       ></app-text-input>
 
       <app-image-input
@@ -32,6 +31,5 @@
       [disabled]="settingForm.pristine || settingForm.invalid"
     />
   </form>
-
 </div>
 

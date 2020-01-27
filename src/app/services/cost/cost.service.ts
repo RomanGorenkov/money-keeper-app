@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 import { CostDto } from '../../pages/application/pages/main/interfaces/cost-dto.intarfece';
 import { UserCosts } from '../../pages/authorization/interfaces/user-costs.interface';
@@ -7,8 +9,6 @@ import { CostCategoryColorList } from '../../pages/application/pages/main/interf
 import { timeIntervalConst } from '../../pages/application/pages/main/constants/time-interval-const';
 import { expenseItems } from '../../pages/application/pages/main/constants/expense-items-config';
 import { storageConstants } from '../../global-constants/storage-constants';
-import { BehaviorSubject } from 'rxjs';
-import { tap } from 'rxjs/operators';
 import { CostApiService } from '../cost-api/cost-api.service';
 import { StorageService } from '../storage/storage.service';
 
@@ -23,37 +23,6 @@ export class CostService {
     private costApiService: CostApiService,
     private storageService: StorageService,
   ) {
-  }
-
-  get currentCostsNames() {
-    return this.currentCostList.getValue().map(cost => cost._id);
-  }
-
-  get currentCostsSum() {
-    return this.currentCostList.getValue().map(cost => cost.costSum);
-  }
-
-  get currentCostsColor() {
-    const costColorListFromStorage = JSON.parse(localStorage.getItem(storageConstants.costColors));
-    return this.currentCostsNames.map(costCategory => {
-      if (this.currentCostColorList[costCategory]) {
-        return this.currentCostColorList[costCategory];
-      } else {
-        return costColorListFromStorage[costCategory];
-      }
-    });
-  }
-
-  get totalCost() {
-    return this.currentCostsSum.reduce((totalSum, sum) => totalSum + sum, 0);
-  }
-
-  get startDate() {
-    return new Date(Date.now()).setHours(0, 0, 0, 0);
-  }
-
-  get endDate() {
-    return new Date(Date.now()).setHours(0, 0, 0, 0) + timeIntervalConst.day;
   }
 
   static sortCostListByDate(costList: CostDto[]) {
@@ -102,7 +71,7 @@ export class CostService {
     return this.currentCostList.getValue().some(costCategory => costCategory._id === categoryName);
   }
 
-  updateCurrentCostList(startDate: number = this.startDate, endDate: number = this.endDate) {
+  updateCurrentCostList(startDate = this.getStartDate(), endDate = this.getEndDate()) {
     this.costApiService.getCurrentAllUserCosts(startDate, endDate)
       .subscribe(
         costList => this.setUserCurrentCostList(costList),
@@ -111,6 +80,37 @@ export class CostService {
 
   filterCostListByDateInterval(costList: CostDto[], startDate: number, endDate: number) {
     return costList.filter(cost => cost.costDate > startDate && cost.costDate < endDate);
+  }
+
+  getTotalCost() {
+    return this.getCurrentCostsSum().reduce((totalSum, sum) => totalSum + sum, 0);
+  }
+
+  getStartDate() {
+    return new Date(Date.now()).setHours(0, 0, 0, 0);
+  }
+
+  getEndDate() {
+    return new Date(Date.now()).setHours(0, 0, 0, 0) + timeIntervalConst.day;
+  }
+
+  getCurrentCostsSum() {
+    return this.currentCostList.getValue().map(cost => cost.costSum);
+  }
+
+  getCurrentCostsNames() {
+    return this.currentCostList.getValue().map(cost => cost._id);
+  }
+
+  getCurrentCostsColor() {
+    const costColorListFromStorage = this.storageService.getLocalStorageElement(storageConstants.costColors);
+    return this.getCurrentCostsNames().map(costCategory => {
+      if (this.currentCostColorList[costCategory]) {
+        return this.currentCostColorList[costCategory];
+      } else {
+        return costColorListFromStorage[costCategory];
+      }
+    });
   }
 
   getUserCategoryCostList(categoryName: string, startDate: number, endDate: number) {

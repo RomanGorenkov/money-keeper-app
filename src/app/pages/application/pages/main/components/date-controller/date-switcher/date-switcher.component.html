@@ -12,12 +12,14 @@
         >
           {{'home.dateController.yourDate' | translate}}
         </label>
+
         <input
           class="date-switcher__date-input"
           type="date"
           (change)="setCustomDate($event)"
         >
       </div>
+
       <button
         *ngIf="!dateSwitcher.customComponent"
         class="date-switcher__button"

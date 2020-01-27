@@ -1,6 +1,5 @@
 @import "../../../../styles/base/colors";
 
-/* Add a black background color to the top navigation */
 .navbar {
   position: absolute;
   bottom: 0;
@@ -12,14 +11,18 @@
 
 .link-list {
   display: flex;
+
+  &__item {
+    width: auto;
+    height: auto;
+  }
+
+  &__item:hover {
+    background-color: $link-item-hover-color;
+    color: $dark-text-color;
+  }
 }
 
-.link-list__item {
-  width: auto;
-  height: auto;
-}
-
-/* Style the links inside the navigation bar */
 .link {
   float: left;
   display: block;
@@ -30,13 +33,6 @@
   font-size: 17px;
 }
 
-/* Change the color of links on hover */
-.link-list__item:hover {
-  background-color: $link-item-hover-color;
-  color: $dark-text-color;
-}
-
-/* Add an active class to highlight the current page */
 .active {
   background-color: $menu-color;
   color: $light-text-color;

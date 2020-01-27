@@ -9,7 +9,7 @@ export const addExpenseInputs: FormInput[] = [
     validators: [
       Validators.required,
       Validators.pattern('^(?!(?:0|0\\.0|0\\.00)$)[+]?\\d+(\\.\\d|\\.\\d[0-9])?$'),
-    ]
+    ],
   },
   {
     type: 'text',
@@ -18,6 +18,6 @@ export const addExpenseInputs: FormInput[] = [
     validators: [
       Validators.required,
       Validators.minLength(6),
-    ]
+    ],
   },
 ];

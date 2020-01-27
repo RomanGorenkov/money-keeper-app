@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { TranslateService } from '@ngx-translate/core';
 
 import { UserPresets } from '../../pages/authorization/interfaces/user-presets.interface';
 import { currencyList } from '../../pages/application/pages/main/constants/currency-list';
@@ -8,7 +9,6 @@ import { apiUrls } from '../../global-constants/api-urls';
 import { storageConstants } from '../../global-constants/storage-constants';
 import { languages } from '../../global-constants/languages';
 import { currencies } from '../../global-constants/currencies';
-import { TranslateService } from '@ngx-translate/core';
 import { StorageService } from '../storage/storage.service';
 import { CostService } from '../cost/cost.service';
 import { DateService } from '../date/date.service';
@@ -56,7 +56,7 @@ export class PresetService {
   }
 
   setUserPresets(userPresets: UserPresets) {
-    if (JSON.stringify(userPresets) !== '{}') {
+    if (Object.keys(userPresets).length !== 0) {
       this.setLanguage(userPresets.language);
       this.setCurrencyByName(userPresets.currencyName);
     }
@@ -86,7 +86,7 @@ export class PresetService {
 
   setCurrencyByName(currencyName: string) {
     if (currencyName) {
-      const presets: UserPresets = JSON.parse(localStorage.getItem(storageConstants.presets));
+      const presets: UserPresets = this.storageService.getLocalStorageElement(storageConstants.presets);
       const currency = currencyList.find(currencyConfig => currencyConfig.name === currencyName);
       this.currency = `${currency.name} ${currency.symbol}`;
       presets.currency = this.currency;
@@ -103,7 +103,7 @@ export class PresetService {
   checkLocalPresets() {
     this.setDefaultPresets();
     if (localStorage.getItem(storageConstants.presets)) {
-      this.setUserPresetsFromStorage(JSON.parse(localStorage.getItem(storageConstants.presets)));
+      this.setUserPresetsFromStorage(this.storageService.getLocalStorageElement(storageConstants.presets));
     }
   }
 

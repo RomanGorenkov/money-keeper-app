@@ -62,13 +62,13 @@ export class ReportGraphsComponent implements OnInit {
   updateChart() {
     this.pieChartData = [];
     this.pieChartLabels = [];
-    this.pieChartData.push(...this.costService.currentCostsSum);
+    this.pieChartData.push(...this.costService.getCurrentCostsSum());
     this.pieChartLabels.push(...this.getExtendedChartLabelsData());
-    this.pieChartColors[reportGraphConstant.currentGraph].backgroundColor = this.costService.currentCostsColor;
+    this.pieChartColors[reportGraphConstant.currentGraph].backgroundColor = this.costService.getCurrentCostsColor();
   }
 
   getExtendedChartLabelsData() {
-    let pieChartLabels = this.costService.currentCostsNames;
+    let pieChartLabels = this.costService.getCurrentCostsNames();
     pieChartLabels = pieChartLabels.map((label: string, index: number) => this.createLabel(label, index));
     return pieChartLabels;
   }
@@ -83,7 +83,7 @@ export class ReportGraphsComponent implements OnInit {
 
   createLabel(label: string, index: number) {
     label = this.translateLabel(label);
-    label += ` (${this.currencyPipe.transform(this.costService.currentCostsSum[index], ' ')}${this.presetService.currencySymbol})`;
+    label += ` (${this.currencyPipe.transform(this.costService.getCurrentCostsSum()[index], ' ')}${this.presetService.currencySymbol})`;
     return makeFirstLetterCapital(label);
   }
 

@@ -47,6 +47,7 @@ export class AddExpenseModalWindowComponent implements OnInit {
 
   addCost() {
     const newCost = this.createNewCost();
+
     this.costService.addCost(newCost)
       .subscribe(
         () => this.dialog.removeDialogComponentFromBody(),

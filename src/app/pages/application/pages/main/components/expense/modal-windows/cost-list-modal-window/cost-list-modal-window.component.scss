@@ -1,21 +1,24 @@
-@import "../../../../mixins/button-font.mixin";
+@import "../../../../mixins/main-font.mixin";
 @import "../../../../mixins/flex-center.mixin";
 @import "../../../../../../../../mixins/form-title.mixin";
 @import "../../../../../../../../styles/base/colors";
 @import "../../../../../../../../styles/layout/flex.mixin";
 
+$max-size: 300px;
+$padding: 5px;
+
 .cost-list{
-  max-width: 300px;
+  max-width: $max-size;
 }
 .cost-list__title{
-  @include button-font();
+  @include main-font();
   @include flex($align-items: center, $justify-content: center);
   height: 30px;
   background-color: $main-color;
 }
 
 .cost-list__list{
-  max-height: 300px;
+  max-height: $max-size;
   overflow-y: scroll;
 }
 
@@ -24,12 +27,12 @@
   *{
     @include flex($align-items: center, $justify-content: center);
     width: auto;
-    padding: 5px;
+    padding: $padding;
   }
 }
 
 .cost-list-description{
-  padding: 5px;
+  padding: $padding;
   font-weight: normal;
   border-bottom: 1px solid gray;
 }

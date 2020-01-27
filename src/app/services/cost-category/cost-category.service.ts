@@ -4,11 +4,12 @@ import { BehaviorSubject } from 'rxjs';
 import { ExpenseItemConfig } from '../../pages/application/pages/main/interfaces/expense-item-config.interface';
 import { expenseItems } from '../../pages/application/pages/main/constants/expense-items-config';
 import { storageConstants } from '../../global-constants/storage-constants';
-import { CostService } from '../cost/cost.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { httpHeader } from '../../global-constants/http-headers';
 import { environment } from '../../../environments/environment';
 import { apiUrls } from '../../global-constants/api-urls';
+import { CostService } from '../cost/cost.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { StorageService } from '../storage/storage.service';
 
 @Injectable()
 export class CostCategoryService {
@@ -17,12 +18,14 @@ export class CostCategoryService {
 
   constructor(
     private costService: CostService,
+    private storageService: StorageService,
     private http: HttpClient,
   ) {
   }
 
   addNewCostCategoryInCurrentCategoryList(categoryImageUrl: string, costCategoryData: ExpenseItemConfig) {
     const newCategory = costCategoryData;
+
     newCategory.imageUrl = categoryImageUrl;
     newCategory.name = newCategory.name.toLowerCase();
     this.addNewUserCostCategoryInCurrentCategoryList(newCategory);
@@ -30,13 +33,16 @@ export class CostCategoryService {
 
   addNewUserCostCategory(costCategoryData) {
     const headers = new HttpHeaders().append(httpHeader.httpHeadersName.xImg, httpHeader.httpHeadersValue.categoryImage);
+
     return this.http.post<string>(`${environment.serverUrl}/${apiUrls.addNewUserCostCategory}`, costCategoryData, {headers});
   }
 
   setCostCategoryListByNameList(categoryNameList: string[]) {
-    const customCategoryListFromStorage: ExpenseItemConfig[] = JSON.parse(localStorage.getItem(storageConstants.customCategoryList));
+    const customCategoryListFromStorage: ExpenseItemConfig[] = this.storageService.getLocalStorageElement(storageConstants.customCategoryList);
+
     this.costCategoryList.next(categoryNameList.map(categoryName => {
       const value = this.costCategoryList.getValue().find(costCategory => costCategory.name === categoryName);
+
       return value || customCategoryListFromStorage.find(costCategory => costCategory.name === categoryName);
     }));
   }

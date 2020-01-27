@@ -11,28 +11,8 @@ export class ImageInputWithMaskComponent extends ImageInputComponent implements 
 
   @Input() maskColor: string;
 
-  constructor() {
-    super();
-  }
-
   ngOnInit() {
     this.previewImage = this.previewImage ? this.previewImage : this.inputData.defaultImageUrl;
-  }
-
-  preview() {
-    const mimeType = this.fileData.type;
-    const imageUrl = URL.createObjectURL(this.fileData);
-    if (mimeType.match(/image\/*/) == null) {
-      return;
-    }
-    const reader = new FileReader();
-    reader.readAsDataURL(this.fileData);
-    reader.onload = () => {
-      if (typeof reader.result === 'string') {
-        this.previewImage = imageUrl;
-      }
-      this.imageSelected.emit(reader.result);
-    };
   }
 
 }

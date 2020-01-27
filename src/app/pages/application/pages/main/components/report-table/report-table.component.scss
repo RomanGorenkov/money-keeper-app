@@ -1,4 +1,4 @@
-@import "../../mixins/button-font.mixin";
+@import "../../mixins/main-font.mixin";
 @import "../../../../../../mixins/form-title.mixin";
 @import "../../../../../../styles/base/colors";
 @import "../../../../../../styles/layout/flex.mixin";
@@ -7,72 +7,41 @@
   height: inherit;
 }
 
-.all-costs {
-  @include flex($flex-direction: column);
-  font-family: sans-serif;
-}
-
 .report-table {
   height: inherit;
   width: 100%;
   overflow-y: auto;
 }
 
-.cost-list__title {
-  @include button-font();
-  @include flex($flex-direction: column, $align-items: center, $justify-content: center);
-  height: 30px;
-  background-color: $main-color;
-}
+.cost {
+  @include flex($flex-direction: column);
 
-.cost-list__list {
-  max-height: 300px;
-  overflow-y: scroll;
-}
+  &__main-info-container {
+    display: flex;
+  }
 
-.cost-list__main-info-container {
-  display: flex;
+  &__description {
+    padding: 10px;
+    border-bottom: 1px solid $main-color;
+    font-weight: normal;
+    font-family: sans-serif;
+  }
 
-  * {
+  &__date, &__value, &__category {
     @include flex($justify-content: center, $align-items: center);
     width: 50%;
     padding: 10px;
   }
-}
 
-.cost-list-description {
-  padding: 10px;
-  font-weight: normal;
-  border-bottom: 1px solid gray;
-}
+  &__date {
+    @include main-font($color: $dark-text-color, $size: 1rem);
+  }
 
-.cost__description {
-  padding: 10px;
-  font-weight: normal;
-  border-bottom: 1px solid $main-color;
-}
+  &__value {
+    @include main-font($color: $report-table-value, $size: 1rem);
+  }
 
-.cost__category {
-  font-weight: bold;
-  color: $main-color;
-}
-
-.cost__main-info-container {
-  display: flex;
-}
-
-.cost__date, .cost__value, .cost__category {
-  @include flex($justify-content: center, $align-items: center);
-  width: 50%;
-  padding: 10px;
-}
-
-.cost__date {
-  font-weight: bold;
-  width: auto;
-}
-
-.cost__value {
-  width: 50%;
-  color: red;
+  &__category {
+    @include main-font($color:$main-color, $size: 1rem);
+  }
 }

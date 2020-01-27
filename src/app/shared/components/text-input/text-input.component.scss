@@ -1,22 +1,25 @@
 @import "../../../styles/base/colors";
 @import "../../../styles/layout/flex.mixin";
+@import "../../../styles/components/solid-border.mixin";
+
+$padding-size: 10px;
 
 .text-input {
+  @include solid-border($color: $gray);
   width: 250px;
-  transition: all 0.30s ease-in-out;
-  outline: none;
   box-sizing: border-box;
-  background: #fff;
   margin: 0 10px;
-  border: 1px solid #ccc;
-  padding: 10px;
-  color: $disabled-color;
+  padding: $padding-size;
+  background: $white;
+  transition: all 0.30s ease-in-out;
   font: 95% Arial, Helvetica, sans-serif;
+  color: $disabled-color;
+  outline: none;
 
   &.ng-touched:not(.ng-valid) {
-    box-shadow: 0 0 5px #f35542;
-    padding: 10px;
-    border: 1px solid #f35542;
+    @include solid-border($color: $error-color);
+    box-shadow: 0 0 5px $error-color;
+    padding: $padding-size;
   }
 
   &.ng-touched.ng-invalid ~ .text-input__error-container .text-input__error-message {
@@ -25,17 +28,15 @@
 }
 
 .text-input:focus {
+  @include solid-border($color: $bar-color);
   box-shadow: 0 0 5px $bar-color;
-  padding: 10px;
-  border: 1px solid $bar-color;
+  padding: $padding-size;
 }
 
 .text-input__error-message {
   display: none;
   color: $error-color;
-  height: 10px;
   font-size: 10px;
-  line-height: 10px;
 }
 
 .text-input__error-container {

@@ -13,7 +13,7 @@ const loginInputs: FormInput[] = [
     validators: [
       Validators.required,
       Validators.pattern(ValidationPattern.Email),
-    ]
+    ],
   },
   {
     type: InputTypes.Password,
@@ -22,7 +22,7 @@ const loginInputs: FormInput[] = [
     validators: [
       Validators.required,
       Validators.minLength(6),
-    ]
+    ],
   },
 ];
 
@@ -33,7 +33,7 @@ const registrationInputs = [
     placeholder: 'authorization.fields.username',
     validators: [
       Validators.required,
-    ]
+    ],
   },
   ...loginInputs,
   {
@@ -43,7 +43,7 @@ const registrationInputs = [
     validators: [
       Validators.required,
       Validators.minLength(6),
-    ]
+    ],
   },
 ];
 
@@ -51,6 +51,7 @@ const registrationInputs = [
 function repeatPasswordValidator(group: FormGroup): { passwordsNotEqual: boolean } {
   const password = group.controls.password.value;
   const passwordConfirmation = group.controls.passwordConfirm.value;
+
   return password === passwordConfirmation ? null : {passwordsNotEqual: true};
 }
 
@@ -58,12 +59,12 @@ export const formConfigs: FormConfigs = {
   registration: {
     formInputs: registrationInputs,
     externalValidators: [
-      repeatPasswordValidator
-    ]
+      repeatPasswordValidator,
+    ],
   },
   login: {
     formInputs: loginInputs,
-    externalValidators: []
-  }
+    externalValidators: [],
+  },
 };
 

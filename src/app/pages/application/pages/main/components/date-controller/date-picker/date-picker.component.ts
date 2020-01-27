@@ -29,10 +29,10 @@ export class DatePickerComponent {
 
   changeDate(timeInterval: number, direction: number) {
     if (direction < 0) {
-      this.dateService.changeCurrentDateByCustomDate(this.dateService.startDate - timeInterval, this.dateService.startDate);
+      this.dateService.changeCurrentDateByCustomDate(this.dateService.getStartDate() - timeInterval, this.dateService.getStartDate());
     } else {
       this.dateService.changeCurrentDateByCustomDate(
-        this.dateService.startDate + timeInterval, this.dateService.startDate + 2 * timeInterval
+        this.dateService.getStartDate() + timeInterval, this.dateService.getStartDate() + 2 * timeInterval
       );
     }
   }

@@ -1,4 +1,4 @@
-@import "../../../mixins/date-controller-button.mixin";
+@import "../../../mixins/button.mixin";
 @import "../../../../../../../styles/layout/flex.mixin";
 
 .expense-list {
@@ -18,8 +18,6 @@
 .modal-window__input {
   font-size: 20px;
   padding: 5px;
-
-
 }
 
 ::-webkit-inner-spin-button {

@@ -39,14 +39,15 @@ export class DropdownMenuComponent implements OnInit {
   }
 
   selectMenuItem(selectValue: string, symbol = '') {
-    console.log(selectValue, symbol);
     const sign = symbol ? ` ${symbol}` : '';
+
     this.presetService[this.action](selectValue + sign);
     this.dropdownChange.emit();
   }
 
   createDropDownMenu() {
     const config: DropdownMenuConfig = dropDownMenuConfig[this.menuName];
+
     this.menuTitle = config.menuTitle;
     this.menuItems = config.menuItems;
     this.action = config.action;

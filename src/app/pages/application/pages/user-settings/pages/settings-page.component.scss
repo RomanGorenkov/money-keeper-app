@@ -2,33 +2,35 @@
 @import "../../../../../mixins/form-title.mixin";
 @import "../../../../../mixins/form-submit-input.mixin";
 @import "../../../../../styles/base/colors";
+@import "../../../../../styles/components/solid-border.mixin";
 @import "../../../../../styles/layout/flex.mixin";
 
 
-.settings-page{
+.settings-page {
   @include application-item();
   @include flex($flex-direction: column, $align-items: center, $justify-content: center);
 
-  &__title{
+  &__title {
     @include form-title(1.2rem);
   }
 
-  &__user-avatar{
+  &__user-avatar {
+    @include solid-border($size: 3px, $color: $main-color);
+    $size: 160px;
     display: block;
-    width: 160px;
-    height: 160px;
-    object-fit: cover;
+    width: $size;
+    height: $size;
     margin: 0 auto;
+    object-fit: cover;
     border-radius: 50%;
-    border: 3px solid $main-color;
   }
 
-  &__form{
+  &__form {
     @include flex($flex-direction: column, $align-items: center);
     width: auto;
   }
 
-  &__label{
+  &__label {
     @include flex($flex-direction: column, $align-items: center);
     text-transform: uppercase;
     color: black;
@@ -36,54 +38,17 @@
     margin-top: 10px;
   }
 
-  &__input-text{
-    //width: 250px;
-    //transition: all 0.30s ease-in-out;
-    //outline: none;
-    //box-sizing: border-box;
-    //background: #fff;
-    //margin: 10px;
-    //border: 1px solid #ccc;
-    //padding: 10px;
-    //color: #555;
-    //font: 95% Arial, Helvetica, sans-serif;
+  &__input-text {
 
-    &.ng-touched:not(.ng-valid){
+    &.ng-touched:not(.ng-valid) {
       box-shadow: 0 0 5px #f35542;
       padding: 10px;
       border: 1px solid #f35542;
     }
   }
-  &__submit-button{
+
+  &__submit-button {
     @include form-submit-input();
   }
-
-
-}
-
-.input-file{
-  width: 0.1px;
-  height: 0.1px;
-  opacity: 0;
-  overflow: hidden;
-  position: absolute;
-  z-index: -1;
-}
-
-.input-file__label {
-  @include form-title($color: white);
-  width: 250px;
-  margin: 5px;
-  background-color: $bar-color;
-  cursor: pointer;
-}
-
-.input-file:focus + .input-file__label,
-.input-file + .input-file__label:hover {
-  background-color: $main-color;
-}
-
-.input-file:focus + .input-file__label{
-  outline: auto 10px -webkit-focus-ring-color
 }
 

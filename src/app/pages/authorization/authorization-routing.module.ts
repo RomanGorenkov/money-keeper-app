@@ -11,22 +11,22 @@ const AuthorizationRouting: Routes = [
       {
         path: '',
         redirectTo: routing.authorisation.login,
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: ':type',
         component: AuthorizationPageComponent,
-      }
+      },
     ],
-  }
+  },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forChild(AuthorizationRouting)
+    RouterModule.forChild(AuthorizationRouting),
   ],
   exports: [
-    RouterModule
+    RouterModule,
   ]
 })
 

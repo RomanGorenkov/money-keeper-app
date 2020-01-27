@@ -1,20 +1,18 @@
-@import "../../application/pages/main/mixins/button-font.mixin";
+@import "../../application/pages/main/mixins/main-font.mixin";
 @import "../../../styles/base/colors";
 @import "../../../styles/layout/flex.mixin";
 
 .overlay {
-  @include flex($flex-direction: column);
+  @include flex($flex-direction: column, $align-items: center, $justify-content: center);
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  align-items: center;
-  justify-content: center;
 }
 
 .black {
-  background: rgba(0, 0, 0, 0.7);
+  background: $modal-background-black;
 }
 
 .clear {
@@ -23,7 +21,7 @@
 
 .dialog {
   @include flex($flex-direction: column);
-  @include button-font();
+  @include main-font();
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   background-color: $main-background-color;
   color: $dark-text-color;

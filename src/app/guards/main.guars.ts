@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-
 import { JwtHelperService } from '@auth0/angular-jwt';
+
 import { routing } from '../global-constants/routing';
 import { storageConstants } from '../global-constants/storage-constants';
 import { CostService } from '../services/cost/cost.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
+
   constructor(
     public router: Router,
     private jwtHelper: JwtHelperService,
@@ -25,6 +26,7 @@ export class AuthGuard implements CanActivate {
 
   isAuthenticated(): boolean {
     const token = localStorage.getItem(storageConstants.token);
+
     this.checkCurrentCostList();
     return !this.jwtHelper.isTokenExpired(token);
   }
@@ -34,4 +36,5 @@ export class AuthGuard implements CanActivate {
       this.costService.setTodayAllUserCosts();
     }
   }
+
 }

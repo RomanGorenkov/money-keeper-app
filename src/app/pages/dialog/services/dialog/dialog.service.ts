@@ -1,10 +1,10 @@
 import { ApplicationRef, ComponentFactoryResolver, ComponentRef, EmbeddedViewRef, Injectable, Injector, Type } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 import { DialogModule } from '../../dialog.module';
 import { DialogComponent } from '../../pages/dialog.component';
 import { DialogConfig } from '../../config/dialog-config';
 import { DialogInjector } from '../../injectors/dialog-injector';
-import { Subscription } from 'rxjs';
 import { dialogOverlayColor } from '../../constants/dialog-overlay-colors';
 
 @Injectable({
@@ -24,6 +24,7 @@ export class DialogService {
 
   appendDialogComponentToBody(dialogConfig: DialogConfig<any>) {
     const map = new WeakMap();
+
     map.set(DialogConfig, dialogConfig);
 
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(DialogComponent);
@@ -32,6 +33,7 @@ export class DialogService {
     this.appRef.attachView(componentRef.hostView);
 
     const domElem = (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
+
     document.body.appendChild(domElem);
     this.dialogComponentRef = componentRef;
     this.onCloseDialogEventSubscribe(componentRef);
@@ -52,10 +54,8 @@ export class DialogService {
   onCloseDialogEventSubscribe(dialogComponentRef: ComponentRef<DialogComponent>) {
     this.closeSubscription = dialogComponentRef.instance.onClose
       .subscribe(
-        () => {
-          this.removeDialogComponentFromBody();
-        },
-      );
+        () => this.removeDialogComponentFromBody(),
+        );
   }
 
   setDialogOverlayColor(overlayColor?: string) {

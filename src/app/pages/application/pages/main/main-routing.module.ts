@@ -7,7 +7,6 @@ import { MainComponent } from './Pages/main.component';
 import { ReportTablePageComponent } from './Pages/report-table-page/report-table-page.component';
 import { ReportGraphsPageComponent } from './Pages/report-graphs-page/report-graphs-page.component';
 
-
 const MainRouting: Routes = [
   {
     path: '',
@@ -16,7 +15,7 @@ const MainRouting: Routes = [
       {
         path: '',
         redirectTo: routing.app.main.home,
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: routing.app.main.home,
@@ -30,10 +29,9 @@ const MainRouting: Routes = [
         path: routing.app.main.reportGraphs,
         component: ReportGraphsPageComponent,
       },
-    ]
-  }
+    ],
+  },
 ];
-
 
 @NgModule({
   imports: [
@@ -41,7 +39,7 @@ const MainRouting: Routes = [
   ],
   exports: [
     RouterModule,
-  ]
+  ],
 })
 
 export class MainRoutingModule {

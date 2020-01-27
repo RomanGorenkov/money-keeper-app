@@ -6,14 +6,17 @@ import { httpHeader } from '../global-constants/http-headers';
 
 @Injectable()
 export class AuthorizationJwtInterceptor implements HttpInterceptor {
+
   intercept(req: HttpRequest<any>, next: HttpHandler) {
+    const token = localStorage.getItem(storageConstants.token);
     let newReq: HttpRequest<any> = req;
-    if (localStorage.getItem(storageConstants.token)) {
-        newReq = newReq.clone({
+
+    if (token) {
+      newReq = newReq.clone({
         headers: newReq.headers
           .append(
             httpHeader.httpHeadersName.authorization,
-            `${httpHeader.httpHeadersValue.authorization}${localStorage.getItem(storageConstants.token)}`
+            `${httpHeader.httpHeadersValue.authorization}${token}`
           )
       });
     }
@@ -27,4 +30,5 @@ export class AuthorizationJwtInterceptor implements HttpInterceptor {
 
     return next.handle(newReq);
   }
+
 }

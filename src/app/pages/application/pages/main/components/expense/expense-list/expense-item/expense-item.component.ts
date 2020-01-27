@@ -8,6 +8,7 @@ import { AddExpenseModalWindowComponent } from '../../modal-windows/add-expense-
 import { DateService } from '../../../../../../../../services/date/date.service';
 import { CostListModalWindowComponent } from '../../modal-windows/cost-list-modal-window/cost-list-modal-window.component';
 import { CostService } from '../../../../../../../../services/cost/cost.service';
+import { switcherNames } from '../../../../constants/date-switcher/switcher-name';
 
 @Component({
   selector: 'app-expense-item',
@@ -34,7 +35,7 @@ export class ExpenseItemComponent implements OnInit {
   }
 
   openModal() {
-    if (this.dateService.currentElement.switcherName === 'today') {
+    if (this.dateService.currentElement.switcherName === switcherNames.Today) {
       this.dialog.open(AddExpenseModalWindowComponent, {
         data: {
           title: this.expenseItemConfig.title,
@@ -61,11 +62,8 @@ export class ExpenseItemComponent implements OnInit {
 
   setCurrentUserCost(currentCostList: UserCosts[]) {
     const category = currentCostList.find(costItem => costItem._id === this.expenseItemConfig.name);
-    if (category) {
-      this.currentCostValue = category.costSum;
-    } else {
-      this.currentCostValue = 0;
-    }
+
+    this.currentCostValue = category ? category.costSum : 0;
   }
 
 }

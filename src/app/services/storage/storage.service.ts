@@ -9,7 +9,7 @@ import { UserSettings } from '../../interfaces/user-settings.interface';
 export class StorageService {
 
   getCostCategoryNameFromStorage() {
-    const categoryList = JSON.parse(localStorage.getItem(storageConstants.customCategoryList)) as ExpenseItemConfig[];
+    const categoryList = this.getLocalStorageElement(storageConstants.customCategoryList) as ExpenseItemConfig[];
     return categoryList ? categoryList.map(costCategory => costCategory.name) : [];
   }
 

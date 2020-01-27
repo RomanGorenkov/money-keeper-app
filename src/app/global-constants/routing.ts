@@ -4,7 +4,6 @@ export const routing = {
     login: 'login',
     registration: 'registration',
   },
-
   app: {
     root: 'main',
     main: {
@@ -13,5 +12,5 @@ export const routing = {
       reportGraphs: 'graphs',
     },
     setting: 'setting',
-  }
+  },
 };

@@ -1,5 +1,5 @@
-@import "../../pages/main/mixins/button-font.mixin";
+@import "../../pages/main/mixins/main-font.mixin";
 
 .total-cost {
-  @include button-font();
+  @include main-font();
 }

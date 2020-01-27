@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormControl, ValidationErrors } from '@angular/forms';
 
 import { errorListHandlers } from '../../../helpers/error-helper';
@@ -10,9 +10,8 @@ import { FormInput } from '../../../pages/authorization/interfaces/form-input.in
   templateUrl: './text-input.component.html',
   styleUrls: ['./text-input.component.scss']
 })
-export class TextInputComponent implements OnInit {
+export class TextInputComponent {
 
-  @Input() value: string;
   @Input() inputData: FormInput;
   @Input() control: FormControl;
 
@@ -20,14 +19,10 @@ export class TextInputComponent implements OnInit {
     return this.control.errors && this.checkErrorKeys(this.control.errors);
   }
 
-  ngOnInit() {
-    this.control.setValue(this.value);
-  }
-
   checkErrorKeys(error: ValidationErrors) {
     const key = Object.keys(error).find(k => k in errorListHandlers);
 
-    return errorListHandlers[key](error);
+    return errorListHandlers[key]();
   }
 
 }

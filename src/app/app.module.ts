@@ -1,9 +1,9 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
+import { BrowserModule } from '@angular/platform-browser';
+import { DatePipe } from '@angular/common';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './pages/app.component';
@@ -17,7 +17,7 @@ import { CostCategoryService } from './services/cost-category/cost-category.serv
 import { CostApiService } from './services/cost-api/cost-api.service';
 import { StorageService } from './services/storage/storage.service';
 import { DateService } from './services/date/date.service';
-
+import { HttpLoaderFactory } from './helpers/http-loader-factory.helper';
 
 @NgModule({
   declarations: [
@@ -32,8 +32,10 @@ import { DateService } from './services/date/date.service';
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
+        deps: [
+          HttpClient,
+        ],
+      },
     }),
   ],
   providers: [
@@ -42,11 +44,10 @@ import { DateService } from './services/date/date.service';
       useClass: AuthorizationJwtInterceptor,
       multi: true,
     },
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: ErrorInterceptor,
-    //   multi: true,
-    // },
+    {
+      provide: JWT_OPTIONS,
+      useValue: JWT_OPTIONS,
+    },
     CostService,
     CostCategoryService,
     CostApiService,
@@ -56,16 +57,13 @@ import { DateService } from './services/date/date.service';
     DateService,
     AuthGuard,
     JwtHelperService,
-    {
-      provide: JWT_OPTIONS,
-      useValue: JWT_OPTIONS,
-    },
+    DatePipe,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent,
+  ],
 })
+
 export class AppModule {
 }
 
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
-}

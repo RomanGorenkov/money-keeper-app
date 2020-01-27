@@ -3,19 +3,17 @@
   (click)="openModal()"
 >
   <ng-container *ngIf="expenseItemConfig">
-    <span
-      class="expense-item__title"
-    >
+    <span class="expense-item__title">
       {{!expenseItemConfig.title ? expenseItemConfig.name : expenseItemConfig.title | translate}}
     </span>
+
     <app-image-with-mask
       class="expense-item__icon"
       [imageForMask]="expenseItemConfig.imageUrl"
       [maskColor]="expenseItemConfig.color"
     ></app-image-with-mask>
-    <span
-      class="expense-item__expense"
-    >
+
+    <span class="expense-item__expense">
       {{currentCostValue| currency:' '}} {{presetService.currencySymbol}}
     </span>
   </ng-container>

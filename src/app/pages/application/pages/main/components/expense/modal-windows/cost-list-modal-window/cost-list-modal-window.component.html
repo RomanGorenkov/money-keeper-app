@@ -13,12 +13,13 @@
     <li class="cost-list__list-item" *ngFor="let cost of costList">
       <div class="cost-list__main-info-container">
         <span class="cost-list__cost-date">{{cost.costDate | date: DateFormat.UIS}}</span>
+
         <span class="cost-list__cost-value">{{cost.costValue | currency:' '}}{{this.presetService.currencySymbol}}</span>
       </div>
+
       <p class="cost-list-description">{{cost.costDescription}}</p>
     </li>
   </ul>
-
 </div>
 
 

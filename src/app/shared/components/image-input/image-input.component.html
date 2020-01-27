@@ -1,8 +1,7 @@
 <div class="image-input">
-
   <img
     class="image-input__preview"
-    [src]="previewImage? previewImage : inputData.defaultImageUrl | safe"
+    [src]="previewImage ? (previewImage | safe) : inputData.defaultImageUrl | safe"
     alt="Image preview"
   >
 
@@ -28,6 +27,5 @@
   >
     {{inputData.placeholder | translate}}
   </label>
-
 </div>
 

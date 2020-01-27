@@ -1,18 +1,16 @@
-import { ValidationErrors } from '@angular/forms';
-
-const username = (error: ValidationErrors) => {
+const username = () => {
   return `errors.username`;
 };
 
-const minlength = (error: ValidationErrors) => {
+const minlength = () => {
   return `errors.length`;
 };
 
-const pattern = (error: ValidationErrors) => {
+const pattern = () => {
   return `errors.pattern`;
 };
 
-const required = (error: ValidationErrors) => {
+const required = () => {
   return `errors.required`;
 };
 

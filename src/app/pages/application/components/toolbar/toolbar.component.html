@@ -1,5 +1,4 @@
 <div class="toolbar">
-
   <button class="toolbar__menu-button" (click)="openToolbar()">
     {{ButtonsSign.BurgerMenu}}
   </button>
@@ -9,7 +8,6 @@
   <div #toolsContainer class="toolbar__tools-container hidden" (click)="onOverlayClicked($event)">
     <div class="toolbar__tools-wrapper" (click)="onToolbarClicked($event)">
       <ul class="tools-list">
-
         <li class="tools-list__item">
           <a [routerLink]="settingUrl" class="tools-list__link">{{'toolbar.settings' | translate}}</a>
         </li>
@@ -31,7 +29,6 @@
             (dropdownChange)="onChangeDropdown($event)"
           ></app-dropdown-menu>
         </li>
-
       </ul>
     </div>
   </div>

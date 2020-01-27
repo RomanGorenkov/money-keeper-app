@@ -8,11 +8,12 @@
     [formControl]="control"
     (change)="selectValue(inputData.value)"
   >
+
   <span
     class="radio-input__mark"
     [ngClass]="{
     'selected-input__mark': isSelected
     }"
-    [ngStyle]="{backgroundColor: isSelected ? inputData.value : '#eee'}"
+    [ngStyle]="{backgroundColor: isSelected ? inputData.value : cssColors.radioInputDefaultColor}"
   ></span>
 </label>

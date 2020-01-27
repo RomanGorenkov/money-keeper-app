@@ -1,5 +1,6 @@
 <div class="authorization-form__container">
   <h2 class="authorization-form__title">{{'authorization.' + formTitle | translate}}</h2>
+
   <form
     (ngSubmit)="submitHandler(this.authorizationForm)"
     class="authorization-form"
@@ -12,6 +13,7 @@
       *ngFor="let input of inputs"
     >
     </app-text-input>
+
     <input
       class="authorization-form__submit"
       [type]="InputTypes.Submit"

@@ -37,6 +37,7 @@ export class AuthenticationService {
       username: email,
       password,
     };
+
     return this.http.post<LoginAnswer>(`${environment.serverUrl}/${apiUrls.login}`, JSON.stringify(loginData));
   }
 
@@ -46,6 +47,7 @@ export class AuthenticationService {
 
   login(loginFormData: FormGroup) {
     const formData: UserLoginData = loginFormData.value;
+
     this.sendLoginData(formData.email, formData.password)
       .subscribe(
         loginAnswer => {
@@ -57,6 +59,7 @@ export class AuthenticationService {
 
   registration(registrationFormData: FormGroup) {
     const formData: UserRegistrationData = registrationFormData.value;
+
     this.sendRegistrationData(formData)
       .subscribe(
         () => this.router.navigate([routing.authorisation.login])

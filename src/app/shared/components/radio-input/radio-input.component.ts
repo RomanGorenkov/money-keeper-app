@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import { RadioInput } from '../../interfaces/radio-input.interface';
+import { cssColors } from '../../../global-constants/css-colors';
 
 @Component({
   selector: 'app-radio-input',
@@ -15,9 +16,7 @@ export class RadioInputComponent {
   @Input() inputData: RadioInput;
   @Output() valueSelected = new EventEmitter<string>();
 
-  get hoverColorClass() {
-    return `${this.inputData.colorName}`;
-  }
+  cssColors = cssColors;
 
   selectValue(value: string) {
     this.valueSelected.emit(value);

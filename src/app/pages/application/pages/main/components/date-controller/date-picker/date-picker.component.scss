@@ -1,4 +1,4 @@
-@import "../../../mixins/date-controller-button.mixin";
+@import "../../../mixins/button.mixin";
 @import "../../../../../../../styles/base/colors";
 @import "../../../../../../../styles/base/sizes";
 @import "../../../../../../../styles/layout/flex.mixin";
@@ -6,7 +6,7 @@
 .date-picker {
   @include flex($justify-content: space-between);
   width: $date-modal-width;
-  height: 40px;
+  height: $date-picker-height;
   border-radius: .125rem;
   background-color: $main-color;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);

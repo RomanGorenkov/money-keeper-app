@@ -42,6 +42,7 @@ export class AddCostCategoryModalWindowComponent implements OnInit {
       config[controlConfig.name] = new FormControl('', controlConfig.validators);
       return config;
     }, {});
+
     controls[addCostCategoryFormConfig.FormControlsName.COLOR] = new FormControl(this.selectedColor, Validators.required);
     this.addCostCategory = new FormGroup(controls);
   }
@@ -56,6 +57,7 @@ export class AddCostCategoryModalWindowComponent implements OnInit {
 
   addNewCostCategory(event) {
     const data = new FormData(event.target);
+
     data.append(addCostCategoryFormConfig.FormControlsName.COLOR, this.selectedColor);
     this.costCategoryService.addNewUserCostCategory(data)
       .subscribe(

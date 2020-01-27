@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { DateSwitcherConfig } from '../../../interfaces/date-switcher-config.interface';
+import { DateSwitcherModalConfig } from '../../../interfaces/date-switcher-modal-config.interfase';
 import { timeIntervalConst } from '../../../constants/time-interval-const';
 import { dateSwitcherConfig } from '../../../constants/date-switcher/date-switcher-config';
 import { DialogConfig } from '../../../../../../dialog/config/dialog-config';
@@ -19,7 +20,7 @@ export class DateSwitcherComponent implements OnInit {
   constructor(
     private dateService: DateService,
     private dialog: DialogService,
-    private config: DialogConfig<any>,
+    private config: DialogConfig<DateSwitcherModalConfig>,
   ) {
   }
 
@@ -46,6 +47,7 @@ export class DateSwitcherComponent implements OnInit {
 
   setCustomDate(event) {
     const startDate = Number(new Date(event.target.value).setHours(0, 0, 0, 0));
+
     this.dateService.changeCurrentDateByCustomDate(startDate, startDate + timeIntervalConst.day);
     this.dialog.removeDialogComponentFromBody();
   }
