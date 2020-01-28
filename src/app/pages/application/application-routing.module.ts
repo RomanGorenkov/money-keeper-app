@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { routing } from '../../global-constants/routing';
+import { roads } from '../../global-constants/roads';
 import { SettingsPageComponent } from './pages/user-settings/pages/settings-page.component';
 import { ApplicationComponent } from './pages/application.component';
 
@@ -15,7 +15,7 @@ const ApplicationRouting: Routes = [
         loadChildren: () => import('./pages/main/main.module').then(m => m.MainModule),
       },
       {
-        path: routing.app.setting,
+        path: roads.app.setting,
         component: SettingsPageComponent,
       },
       {

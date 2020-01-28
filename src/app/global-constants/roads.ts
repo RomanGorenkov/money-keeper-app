@@ -1,4 +1,4 @@
-export const routing = {
+export const roads = {
   authorisation: {
     root: 'authorization',
     login: 'login',

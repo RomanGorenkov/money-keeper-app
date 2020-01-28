@@ -1,16 +1,16 @@
-import { routing } from '../../../global-constants/routing';
+import { roads } from '../../../global-constants/roads';
 
 export const headerButtons: HeaderButtons[] = [
   {
     placeholder: 'authorization.signIn',
     iconColor: 'white',
     iconUrl: '../../../../assets/icons/sign-in-alt-solid.svg',
-    routerUrl: routing.authorisation.login,
+    routerUrl: roads.authorisation.login,
   },
   {
     placeholder: 'authorization.signUp',
     iconColor: 'white',
     iconUrl: '../../../../assets/icons/user-plus-solid.svg',
-    routerUrl: routing.authorisation.registration,
+    routerUrl: roads.authorisation.registration,
   },
 ];

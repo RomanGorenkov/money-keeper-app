@@ -1,15 +1,12 @@
 import { ApplicationRef, ComponentFactoryResolver, ComponentRef, EmbeddedViewRef, Injectable, Injector, Type } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { DialogModule } from '../../dialog.module';
 import { DialogComponent } from '../../pages/dialog.component';
 import { DialogConfig } from '../../config/dialog-config';
 import { DialogInjector } from '../../injectors/dialog-injector';
 import { dialogOverlayColor } from '../../constants/dialog-overlay-colors';
 
-@Injectable({
-  providedIn: DialogModule,
-})
+@Injectable()
 export class DialogService {
 
   dialogComponentRef: ComponentRef<DialogComponent>;

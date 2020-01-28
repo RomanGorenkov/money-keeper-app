@@ -1,4 +1,4 @@
-export const storageConstants = {
+export const storageKeys = {
   token: 'token',
   costColors: 'costColors',
   presets: 'presets',

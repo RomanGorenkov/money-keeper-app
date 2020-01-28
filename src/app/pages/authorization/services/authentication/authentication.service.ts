@@ -6,8 +6,8 @@ import { Router } from '@angular/router';
 import { UserLoginData } from '../../interfaces/user-login-data.interface';
 import { UserRegistrationData } from '../../interfaces/user-registration-data.interface';
 import { LoginAnswer } from '../../interfaces/login-answer.interface';
-import { routing } from '../../../../global-constants/routing';
-import { storageConstants } from '../../../../global-constants/storage-constants';
+import { roads } from '../../../../global-constants/roads';
+import { storageKeys } from '../../../../global-constants/storage-keys';
 import { environment } from '../../../../../environments/environment';
 import { apiUrls } from '../../../../global-constants/api-urls';
 import { CostService } from '../../../../services/cost/cost.service';
@@ -28,21 +28,8 @@ export class AuthenticationService {
   ) {
   }
 
-  static setAccessToken(token: string) {
-    localStorage.setItem(storageConstants.token, token);
-  }
-
-  sendLoginData(email: string, password: string) {
-    const loginData = {
-      username: email,
-      password,
-    };
-
-    return this.http.post<LoginAnswer>(`${environment.serverUrl}/${apiUrls.login}`, JSON.stringify(loginData));
-  }
-
-  sendRegistrationData(userData: UserRegistrationData) {
-    return this.http.post(`${environment.serverUrl}/${apiUrls.registration}`, JSON.stringify(userData));
+  private static setAccessToken(token: string) {
+    localStorage.setItem(storageKeys.token, token);
   }
 
   login(loginFormData: FormGroup) {
@@ -52,7 +39,7 @@ export class AuthenticationService {
       .subscribe(
         loginAnswer => {
           this.setLoginAnswerData(loginAnswer);
-          this.router.navigate([routing.app.root]);
+          this.router.navigate([roads.app.root]);
         },
       );
   }
@@ -62,22 +49,35 @@ export class AuthenticationService {
 
     this.sendRegistrationData(formData)
       .subscribe(
-        () => this.router.navigate([routing.authorisation.login])
+        () => this.router.navigate([roads.authorisation.login])
       );
+  }
+
+  logout() {
+    localStorage.clear();
+    this.router.navigate([roads.authorisation.login]);
   }
 
   private setLoginAnswerData(loginAnswer: LoginAnswer) {
     AuthenticationService.setAccessToken(loginAnswer.access_token);
     this.presetService.setUserPresets(loginAnswer.userPresets);
     this.costCategoryService.setCostCategoryList(loginAnswer.customCategoryList);
-    this.costService.setUserCurrentCostList(loginAnswer.userCosts);
+    this.costService.setCostList(loginAnswer.userCosts);
     this.userService.setUserSettings(loginAnswer.userSettings);
     this.costCategoryService.setCostColorList();
   }
 
-  logout() {
-    localStorage.clear();
-    this.router.navigate([routing.authorisation.login]);
+  private sendLoginData(email: string, password: string) {
+    const loginData = {
+      username: email,
+      password,
+    };
+
+    return this.http.post<LoginAnswer>(`${environment.serverUrl}/${apiUrls.login}`, JSON.stringify(loginData));
+  }
+
+  private sendRegistrationData(userData: UserRegistrationData) {
+    return this.http.post(`${environment.serverUrl}/${apiUrls.registration}`, JSON.stringify(userData));
   }
 
 }

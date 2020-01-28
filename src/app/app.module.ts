@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 import { BrowserModule } from '@angular/platform-browser';
@@ -10,14 +10,14 @@ import { AppComponent } from './pages/app.component';
 import { AuthorizationModule } from './pages/authorization/authorization.module';
 import { PresetService } from './services/preset/preset.service';
 import { AuthorizationJwtInterceptor } from './interceptors/authorization-jwt.Interceptor';
-import { AuthGuard } from './guards/main.guars';
+import { AuthGuard } from './guards/auth-guard';
 import { UserService } from './services/user/user.service';
 import { CostService } from './services/cost/cost.service';
 import { CostCategoryService } from './services/cost-category/cost-category.service';
 import { CostApiService } from './services/cost-api/cost-api.service';
 import { StorageService } from './services/storage/storage.service';
 import { DateService } from './services/date/date.service';
-import { HttpLoaderFactory } from './helpers/http-loader-factory.helper';
+import { HttpLoaderFactory } from './helpers/http-loader-factory';
 
 @NgModule({
   declarations: [

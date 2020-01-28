@@ -70,9 +70,9 @@ enum FormControlsName {
 }
 
 export const addCostCategoryFormConfig = {
-  addCostCategoryInputs,
-  costCategoryColorsRadioInputs,
-  ColorsRadioInput,
-  FormControlsName,
+  textInputs: addCostCategoryInputs,
+  radioInputs: costCategoryColorsRadioInputs,
+  colors: ColorsRadioInput,
+  names: FormControlsName,
 };
 

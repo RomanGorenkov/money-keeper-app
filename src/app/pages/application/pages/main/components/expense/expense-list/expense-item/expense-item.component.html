@@ -13,8 +13,10 @@
       [maskColor]="expenseItemConfig.color"
     ></app-image-with-mask>
 
-    <span class="expense-item__expense">
-      {{currentCostValue| currency:' '}} {{presetService.currencySymbol}}
+    <span
+      class="expense-item__expense"
+      [innerHTML]="(currentCostValue| currency:' ') + ' ' + presetService.currencySymbol"
+    >
     </span>
   </ng-container>
 </button>

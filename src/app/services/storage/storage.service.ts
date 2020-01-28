@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { storageConstants } from '../../global-constants/storage-constants';
+import { storageKeys } from '../../global-constants/storage-keys';
 import { ExpenseItemConfig } from '../../pages/application/pages/main/interfaces/expense-item-config.interface';
 import { UserPresets } from '../../pages/authorization/interfaces/user-presets.interface';
 import { UserSettings } from '../../interfaces/user-settings.interface';
@@ -9,22 +9,22 @@ import { UserSettings } from '../../interfaces/user-settings.interface';
 export class StorageService {
 
   getCostCategoryNameFromStorage() {
-    const categoryList = this.getLocalStorageElement(storageConstants.customCategoryList) as ExpenseItemConfig[];
+    const categoryList = this.getLocalStorageElement<ExpenseItemConfig[]>(storageKeys.customCategoryList);
     return categoryList ? categoryList.map(costCategory => costCategory.name) : [];
   }
 
   updateLocalPresets(presetName: string, presetValue: string) {
-    const stringifyPresets = localStorage.getItem(storageConstants.presets);
+    const stringifyPresets = localStorage.getItem(storageKeys.presets);
     const presets: UserPresets = stringifyPresets ? JSON.parse(stringifyPresets) : {};
     presets[presetName] = presetValue;
-    localStorage.setItem(storageConstants.presets, JSON.stringify(presets));
+    localStorage.setItem(storageKeys.presets, JSON.stringify(presets));
   }
 
   saveUserSettingInLocalStorage(userSettings: UserSettings) {
-    localStorage.setItem(storageConstants.userSettings, JSON.stringify(userSettings));
+    localStorage.setItem(storageKeys.userSettings, JSON.stringify(userSettings));
   }
 
-  getLocalStorageElement(elementName: string) {
+  getLocalStorageElement<T>(elementName: string): T {
     return JSON.parse(localStorage.getItem(elementName));
   }
 

@@ -1,9 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { FormControl, ValidationErrors } from '@angular/forms';
 
-import { errorListHandlers } from '../../../helpers/error-helper';
+import { errorListHandlers } from '../../../helpers/error';
 import { FormInput } from '../../../pages/authorization/interfaces/form-input.interface';
-
 
 @Component({
   selector: 'app-text-input',

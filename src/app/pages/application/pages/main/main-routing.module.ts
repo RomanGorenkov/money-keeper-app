@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { routing } from '../../../../global-constants/routing';
+import { roads } from '../../../../global-constants/roads';
 import { HomeComponent } from './Pages/home/home.component';
 import { MainComponent } from './Pages/main.component';
 import { ReportTablePageComponent } from './Pages/report-table-page/report-table-page.component';
@@ -14,19 +14,19 @@ const MainRouting: Routes = [
     children: [
       {
         path: '',
-        redirectTo: routing.app.main.home,
+        redirectTo: roads.app.main.home,
         pathMatch: 'full',
       },
       {
-        path: routing.app.main.home,
+        path: roads.app.main.home,
         component: HomeComponent,
       },
       {
-        path: routing.app.main.reportTable,
+        path: roads.app.main.reportTable,
         component: ReportTablePageComponent,
       },
       {
-        path: routing.app.main.reportGraphs,
+        path: roads.app.main.reportGraphs,
         component: ReportGraphsPageComponent,
       },
     ],

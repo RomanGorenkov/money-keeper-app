@@ -4,7 +4,7 @@ import { DatePipe } from '@angular/common';
 import { DateSwitcherConfig } from '../../pages/application/pages/main/interfaces/date-switcher-config.interface';
 import { dateSwitcherConfig } from '../../pages/application/pages/main/constants/date-switcher/date-switcher-config';
 import { CostService } from '../cost/cost.service';
-import { Direction } from './enums/date-direction';
+import { Direction } from '../../global-constants/direction';
 import { SwitcherValueType } from '../../pages/application/pages/main/constants/date-switcher/switcher-value-type';
 import { DateFormat } from '../../global-constants/date-format';
 
@@ -49,22 +49,22 @@ export class DateService {
 
   changeCurrentDateBySwitcher(dateSwitcher: DateSwitcherConfig) {
     this.changeCurrentDateElement(dateSwitcher);
-    this.costService.updateCurrentCostList(this.getStartDate(), this.getEndDate());
+    this.costService.changeCostList(this.getStartDate(), this.getEndDate());
   }
 
 
-  changeCurrentDate(startDate: number, endDate: number) {
+  private changeCurrentDate(startDate: number, endDate: number) {
     this.currentElement.startDate = startDate;
     this.currentElement.endDate = endDate;
-    this.costService.updateCurrentCostList(this.getStartDate(), this.getEndDate());
+    this.costService.changeCostList(this.getStartDate(), this.getEndDate());
   }
 
-  changeCurrentDateElement(config: DateSwitcherConfig) {
+  private changeCurrentDateElement(config: DateSwitcherConfig) {
     this.currentDate = this.currentElement.startDate;
     this.currentElement = config;
   }
 
-  checkCurrentDateOnToday(startDate: number, endDate: number) {
+  private checkCurrentDateOnToday(startDate: number, endDate: number) {
     if (startDate === dateSwitcherConfig.timeInterval[dateSwitcherConfig.indexOfTodaySwitcher].startDate) {
       this.changeCurrentDateBySwitcher(dateSwitcherConfig.timeInterval[dateSwitcherConfig.indexOfTodaySwitcher]);
     } else {

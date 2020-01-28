@@ -1,6 +1,9 @@
 <div class="toolbar">
-  <button class="toolbar__menu-button" (click)="openToolbar()">
-    {{ButtonsSign.BurgerMenu}}
+  <button
+    class="toolbar__menu-button"
+    (click)="openToolbar()"
+    [innerHTML]="buttonsSign.BurgerMenu"
+  >
   </button>
 
   <app-total-cost></app-total-cost>
@@ -18,7 +21,8 @@
             getterName="getCurrency"
             [openedDropdown]="openedMenu"
             (dropdownChange)="onChangeDropdown($event)"
-          ></app-dropdown-menu>
+          >
+          </app-dropdown-menu>
         </li>
 
         <li class="tools-list__item">
@@ -27,7 +31,8 @@
             getterName="getLanguage"
             [openedDropdown]="openedMenu"
             (dropdownChange)="onChangeDropdown($event)"
-          ></app-dropdown-menu>
+          >
+          </app-dropdown-menu>
         </li>
       </ul>
     </div>

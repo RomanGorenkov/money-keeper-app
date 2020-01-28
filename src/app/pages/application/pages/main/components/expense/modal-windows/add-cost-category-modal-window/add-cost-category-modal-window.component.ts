@@ -19,7 +19,7 @@ export class AddCostCategoryModalWindowComponent implements OnInit {
 
   InputTypes = InputTypes;
   inputs: FormInput[];
-  colors: RadioInput[];
+  radioInputs: RadioInput[];
   addCostCategory: FormGroup;
   selectedColor: string;
   FileExpansions = FileExpansions;
@@ -31,9 +31,9 @@ export class AddCostCategoryModalWindowComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.inputs = addCostCategoryFormConfig.addCostCategoryInputs;
-    this.colors = addCostCategoryFormConfig.costCategoryColorsRadioInputs;
-    this.selectedColor = this.colors[addCostCategoryFormConfig.ColorsRadioInput.BLUE].value;
+    this.inputs = addCostCategoryFormConfig.textInputs;
+    this.radioInputs = addCostCategoryFormConfig.radioInputs;
+    this.selectedColor = this.radioInputs[addCostCategoryFormConfig.colors.BLUE].value;
     this.createForm();
   }
 
@@ -43,7 +43,7 @@ export class AddCostCategoryModalWindowComponent implements OnInit {
       return config;
     }, {});
 
-    controls[addCostCategoryFormConfig.FormControlsName.COLOR] = new FormControl(this.selectedColor, Validators.required);
+    controls[addCostCategoryFormConfig.names.COLOR] = new FormControl(this.selectedColor, Validators.required);
     this.addCostCategory = new FormGroup(controls);
   }
 
@@ -58,7 +58,7 @@ export class AddCostCategoryModalWindowComponent implements OnInit {
   addNewCostCategory(event) {
     const data = new FormData(event.target);
 
-    data.append(addCostCategoryFormConfig.FormControlsName.COLOR, this.selectedColor);
+    data.append(addCostCategoryFormConfig.names.COLOR, this.selectedColor);
     this.costCategoryService.addNewUserCostCategory(data)
       .subscribe(
         (imageUrl) => {

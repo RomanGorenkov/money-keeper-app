@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { DialogComponent } from './pages/dialog.component';
 import { InsertionDirective } from './directives/insertion.directive';
 import { DialogConfig } from './config/dialog-config';
+import { DialogService } from './services/dialog/dialog.service';
 
 @NgModule({
   imports: [
@@ -11,6 +12,7 @@ import { DialogConfig } from './config/dialog-config';
   ],
   providers: [
     DialogConfig,
+    DialogService,
   ],
   declarations: [
     DialogComponent,

@@ -8,9 +8,10 @@ import { UserCosts } from '../../pages/authorization/interfaces/user-costs.inter
 import { CostCategoryColorList } from '../../pages/application/pages/main/interfaces/cost-color-list.interface';
 import { timeIntervalConst } from '../../pages/application/pages/main/constants/time-interval-const';
 import { expenseItems } from '../../pages/application/pages/main/constants/expense-items-config';
-import { storageConstants } from '../../global-constants/storage-constants';
+import { storageKeys } from '../../global-constants/storage-keys';
 import { CostApiService } from '../cost-api/cost-api.service';
 import { StorageService } from '../storage/storage.service';
+import { Direction } from '../../global-constants/direction';
 
 @Injectable()
 export class CostService {
@@ -26,7 +27,11 @@ export class CostService {
   }
 
   static sortCostListByDate(costList: CostDto[]) {
-    return costList.sort((a, b) => a.costDate < b.costDate ? 1 : -1);
+    return costList.sort((a, b) => a.costDate < b.costDate ? Direction.Forward : Direction.Back);
+  }
+
+  private static getDefaultCostCategoryName() {
+    return expenseItems.map(costCategory => costCategory.name);
   }
 
   addCost(costDto: CostDto) {
@@ -36,54 +41,15 @@ export class CostService {
       );
   }
 
-  addCostInCurrentCostList(costDto: CostDto) {
-    if (this.checkCostCategoryInCurrentCostList(costDto.costType)) {
-      this.addNewCostInExistingCategory(costDto);
-    } else {
-      this.addNewCostInCurrentCostList(costDto);
-    }
-
-  }
-
-  addNewCostInExistingCategory(costDto: CostDto) {
-    const currentCostList = this.currentCostList.getValue().map(costCategory => {
-      if (costCategory._id === costDto.costType) {
-        costCategory.costList.push(costDto);
-        costCategory.costSum += costDto.costValue;
-      }
-      return costCategory;
-    });
-    this.currentCostList.next(currentCostList);
-  }
-
-  addNewCostInCurrentCostList(costDto: CostDto) {
-    this.currentCostList.getValue().push(
-      {
-        _id: costDto.costType,
-        costSum: costDto.costValue,
-        costList: [costDto]
-      }
-    );
-    this.currentCostList.next(this.currentCostList.getValue());
-  }
-
-  checkCostCategoryInCurrentCostList(categoryName: string) {
-    return this.currentCostList.getValue().some(costCategory => costCategory._id === categoryName);
-  }
-
-  updateCurrentCostList(startDate = this.getStartDate(), endDate = this.getEndDate()) {
+  changeCostList(startDate = this.getStartDate(), endDate = this.getEndDate()) {
     this.costApiService.getCurrentAllUserCosts(startDate, endDate)
       .subscribe(
-        costList => this.setUserCurrentCostList(costList),
+        costList => this.setCostList(costList),
       );
   }
 
-  filterCostListByDateInterval(costList: CostDto[], startDate: number, endDate: number) {
-    return costList.filter(cost => cost.costDate > startDate && cost.costDate < endDate);
-  }
-
   getTotalCost() {
-    return this.getCurrentCostsSum().reduce((totalSum, sum) => totalSum + sum, 0);
+    return this.getCostsSums().reduce((totalSum, sum) => totalSum + sum, 0);
   }
 
   getStartDate() {
@@ -94,17 +60,17 @@ export class CostService {
     return new Date(Date.now()).setHours(0, 0, 0, 0) + timeIntervalConst.day;
   }
 
-  getCurrentCostsSum() {
+  getCostsSums() {
     return this.currentCostList.getValue().map(cost => cost.costSum);
   }
 
-  getCurrentCostsNames() {
+  getCostsNames() {
     return this.currentCostList.getValue().map(cost => cost._id);
   }
 
-  getCurrentCostsColor() {
-    const costColorListFromStorage = this.storageService.getLocalStorageElement(storageConstants.costColors);
-    return this.getCurrentCostsNames().map(costCategory => {
+  getCostsColors() {
+    const costColorListFromStorage = this.storageService.getLocalStorageElement<CostCategoryColorList>(storageKeys.costColors);
+    return this.getCostsNames().map(costCategory => {
       if (this.currentCostColorList[costCategory]) {
         return this.currentCostColorList[costCategory];
       } else {
@@ -113,7 +79,7 @@ export class CostService {
     });
   }
 
-  getUserCategoryCostList(categoryName: string, startDate: number, endDate: number) {
+  getCostListByCategory(categoryName: string, startDate: number, endDate: number) {
     const category = this.currentCostList.getValue().find(costCategory => costCategory._id === categoryName);
     if (category) {
       const categoryCostList = category.costList;
@@ -122,25 +88,59 @@ export class CostService {
   }
 
   getAllCostsNames() {
-    const defaultNames = this.getDefaultCostCategoryName();
+    const defaultNames = CostService.getDefaultCostCategoryName();
     const nameFromStorage = this.storageService.getCostCategoryNameFromStorage();
-    const currentCostName = this.currentCostList.getValue().map(cost => cost._id);
-    return [...new Set([...defaultNames, ...nameFromStorage, ...currentCostName])];
+    return [...new Set([...defaultNames, ...nameFromStorage])];
   }
 
-  getDefaultCostCategoryName() {
-    return expenseItems.map(costCategory => costCategory.name);
-  }
-
-  setTodayAllUserCosts() {
+  setTodayCosts() {
     this.costApiService.getTodayAllUserCosts()
       .subscribe(
-        costList => this.setUserCurrentCostList(costList),
+        costList => this.setCostList(costList),
       );
   }
 
-  setUserCurrentCostList(costsList: UserCosts[]) {
+  setCostList(costsList: UserCosts[]) {
     this.currentCostList.next(costsList);
+  }
+
+  private addCostInCurrentCostList(costDto: CostDto) {
+    if (this.isCategoryInCostList(costDto.costType)) {
+      this.addCostInExistingCategory(costDto);
+    } else {
+      this.addCostWithCategoryInCostList(costDto);
+    }
+
+  }
+
+  private addCostInExistingCategory(costDto: CostDto) {
+    const currentCostList = this.currentCostList.getValue().map(costCategory => {
+      if (costCategory._id === costDto.costType) {
+        costCategory.costList.push(costDto);
+        costCategory.costSum += costDto.costValue;
+      }
+      return costCategory;
+    });
+    this.currentCostList.next(currentCostList);
+  }
+
+  private addCostWithCategoryInCostList(costDto: CostDto) {
+    this.currentCostList.getValue().push(
+      {
+        _id: costDto.costType,
+        costSum: costDto.costValue,
+        costList: [costDto]
+      }
+    );
+    this.currentCostList.next(this.currentCostList.getValue());
+  }
+
+  private isCategoryInCostList(categoryName: string) {
+    return this.currentCostList.getValue().some(costCategory => costCategory._id === categoryName);
+  }
+
+  private filterCostListByDateInterval(costList: CostDto[], startDate: number, endDate: number) {
+    return costList.filter(cost => cost.costDate > startDate && cost.costDate < endDate);
   }
 
 }

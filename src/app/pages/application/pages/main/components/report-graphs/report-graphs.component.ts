@@ -6,8 +6,9 @@ import { reportGraphConstant } from '../../constants/report-graph-constants';
 import { CostService } from '../../../../../../services/cost/cost.service';
 import { PresetService } from '../../../../../../services/preset/preset.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
-import { makeFirstLetterCapital } from '../../../../../../helpers/string-helper';
+import { makeFirstLetterCapital } from '../../../../../../helpers/string';
 import { ChartType } from '../../constants/chart-type';
+import { chartCurrency } from '../../../../../../global-constants/chart-currency';
 
 @Component({
   selector: 'app-report-graphs',
@@ -62,13 +63,13 @@ export class ReportGraphsComponent implements OnInit {
   updateChart() {
     this.pieChartData = [];
     this.pieChartLabels = [];
-    this.pieChartData.push(...this.costService.getCurrentCostsSum());
+    this.pieChartData.push(...this.costService.getCostsSums());
     this.pieChartLabels.push(...this.getExtendedChartLabelsData());
-    this.pieChartColors[reportGraphConstant.currentGraph].backgroundColor = this.costService.getCurrentCostsColor();
+    this.pieChartColors[reportGraphConstant.currentGraph].backgroundColor = this.costService.getCostsColors();
   }
 
   getExtendedChartLabelsData() {
-    let pieChartLabels = this.costService.getCurrentCostsNames();
+    let pieChartLabels = this.costService.getCostsNames();
     pieChartLabels = pieChartLabels.map((label: string, index: number) => this.createLabel(label, index));
     return pieChartLabels;
   }
@@ -83,7 +84,8 @@ export class ReportGraphsComponent implements OnInit {
 
   createLabel(label: string, index: number) {
     label = this.translateLabel(label);
-    label += ` (${this.currencyPipe.transform(this.costService.getCurrentCostsSum()[index], ' ')}${this.presetService.currencySymbol})`;
+    label += ` (${this.currencyPipe.transform(this.costService.getCostsSums()[index], ' ')}`;
+    label += ` ${chartCurrency.get(this.presetService.currencySymbol)})`;
     return makeFirstLetterCapital(label);
   }
 

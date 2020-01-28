@@ -1,3 +1,5 @@
-<span class="total-cost">
-  {{'toolbar.total' | translate}}: {{costService.getTotalCost() | currency:' '}}{{presetService.currencySymbol}}
+<span
+  class="total-cost"
+  [innerHTML]="('toolbar.total' | translate) + ':' + (costService.getTotalCost() | currency:' ') + presetService.currencySymbol"
+>
 </span>

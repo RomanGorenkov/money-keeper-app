@@ -5,7 +5,7 @@ import { UserSettings } from '../../interfaces/user-settings.interface';
 import { environment } from '../../../environments/environment';
 import { httpHeader } from '../../global-constants/http-headers';
 import { apiUrls } from '../../global-constants/api-urls';
-import { storageConstants } from '../../global-constants/storage-constants';
+import { storageKeys } from '../../global-constants/storage-keys';
 import { StorageService } from '../storage/storage.service';
 
 @Injectable()
@@ -28,19 +28,13 @@ export class UserService {
   }
 
   uploadLocalUserSettings() {
-    const userSettings: UserSettings = this.storageService.getLocalStorageElement(storageConstants.userSettings);
+    const userSettings = this.storageService.getLocalStorageElement<UserSettings>(storageKeys.userSettings);
 
     this.updateUserSettings(userSettings);
   }
 
-  updateUserSettings(userSettings: UserSettings) {
-    if (userSettings) {
-      Object.entries(userSettings).forEach(([key, value]) => this[key] = value);
-    }
-  }
-
   saveUserSettings(userSettings) {
-    const headers = new HttpHeaders().append(httpHeader.httpHeadersName.xImg, httpHeader.httpHeadersValue.userAvatar);
+    const headers = new HttpHeaders().append(httpHeader.name.xImg, httpHeader.value.userAvatar);
 
     return this.http.post<UserSettings>(`${environment.serverUrl}/${apiUrls.userSettings}`, userSettings, {headers})
       .subscribe(
@@ -53,6 +47,12 @@ export class UserService {
   setUserSettings(userSettings: UserSettings) {
     this.updateUserSettings(userSettings);
     this.storageService.saveUserSettingInLocalStorage(this.userSettings);
+  }
+
+  private updateUserSettings(userSettings: UserSettings) {
+    if (userSettings) {
+      Object.entries(userSettings).forEach(([key, value]) => this[key] = value);
+    }
   }
 
 }

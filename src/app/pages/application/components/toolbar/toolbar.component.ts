@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 
-import { routing } from '../../../../global-constants/routing';
-import { ButtonsSign } from '../../../../global-constants/buttonsSign';
+import { roads } from '../../../../global-constants/roads';
+import { ButtonsSign } from '../../../../global-constants/buttons-sign';
 import { TagNames } from '../../../../global-constants/tag-names';
 
 @Component({
@@ -13,9 +13,9 @@ export class ToolbarComponent {
 
   @ViewChild('toolsContainer', {static: false}) private toolsContainer: ElementRef;
 
-  ButtonsSign = ButtonsSign;
+  buttonsSign = ButtonsSign;
   openedMenu: string = null;
-  settingUrl = routing.app.setting;
+  settingUrl = roads.app.setting;
 
   openToolbar(): void {
     if (this.toolsContainer.nativeElement.classList.contains('hidden')) {

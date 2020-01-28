@@ -12,6 +12,6 @@ const httpHeadersValue = {
 };
 
 export const httpHeader = {
-  httpHeadersName,
-  httpHeadersValue,
+  name: httpHeadersName,
+  value: httpHeadersValue,
 };

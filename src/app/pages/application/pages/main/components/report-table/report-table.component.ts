@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { CostDto } from '../../interfaces/cost-dto.intarfece';
 import { CostService } from '../../../../../../services/cost/cost.service';
-import { makeFirstLetterCapital } from '../../../../../../helpers/string-helper';
+import { makeFirstLetterCapital } from '../../../../../../helpers/string';
 import { DateFormat } from '../../../../../../global-constants/date-format';
 import { PresetService } from '../../../../../../services/preset/preset.service';
 

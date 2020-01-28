@@ -5,7 +5,7 @@ import { dialogOverlayColor } from '../../../../../../dialog/constants/dialog-ov
 import { DateService } from '../../../../../../../services/date/date.service';
 import { DialogService } from '../../../../../../dialog/services/dialog/dialog.service';
 import { DateSwitcherComponent } from '../date-switcher/date-switcher.component';
-import { ButtonsSign } from '../../../../../../../global-constants/buttonsSign';
+import { ButtonsSign } from '../../../../../../../global-constants/buttons-sign';
 
 @Component({
   selector: 'app-date-picker',
@@ -15,7 +15,7 @@ import { ButtonsSign } from '../../../../../../../global-constants/buttonsSign';
 export class DatePickerComponent {
 
   timeInterval = timeIntervalConst.day;
-  ButtonsSign = ButtonsSign;
+  buttonsSign = ButtonsSign;
 
   constructor(
     private dateService: DateService,

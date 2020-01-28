@@ -2,8 +2,8 @@
   <button
     class="date-picker__day-switcher"
     (click)="changeDate(timeInterval, this.dateService.Direction.Back)"
+    [innerHTML]= buttonsSign.LeftArrow
   >
-    {{ButtonsSign.LeftArrow}}
   </button>
 
   <button
@@ -17,7 +17,7 @@
   <button
     class="date-picker__day-switcher"
     (click)="changeDate(timeInterval, this.dateService.Direction.Forward)"
+    [innerHTML]= buttonsSign.RightArrow
   >
-    {{ButtonsSign.RightArrow}}
   </button>
 </div>

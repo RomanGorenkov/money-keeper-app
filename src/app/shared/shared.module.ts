@@ -30,7 +30,7 @@ import { SafePipe } from './pipes/safe.pipe';
     RadioInputComponent,
     ImageInputWithMaskComponent,
     ImageWithMaskComponent,
-  ]
+  ],
 })
 
 export class SharedModule {

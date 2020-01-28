@@ -6,7 +6,7 @@ import { DialogConfig } from '../../../../../../../dialog/config/dialog-config';
 import { CostService } from '../../../../../../../../services/cost/cost.service';
 import { DateService } from '../../../../../../../../services/date/date.service';
 import { PresetService } from '../../../../../../../../services/preset/preset.service';
-import { makeFirstLetterCapital } from '../../../../../../../../helpers/string-helper';
+import { makeFirstLetterCapital } from '../../../../../../../../helpers/string';
 import { DateFormat } from '../../../../../../../../global-constants/date-format';
 
 
@@ -38,7 +38,7 @@ export class CostListModalWindowComponent implements OnInit {
   }
 
   getUserCategoryCostList() {
-    this.costList = this.costService.getUserCategoryCostList(this.name, this.startDate, this.endDate);
+    this.costList = this.costService.getCostListByCategory(this.name, this.startDate, this.endDate);
   }
 
   setDateLimit() {

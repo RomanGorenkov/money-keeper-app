@@ -3,7 +3,7 @@ import { FormGroup, Validators } from '@angular/forms';
 import { FormInput } from '../interfaces/form-input.interface';
 import { FormConfigs } from '../interfaces/form-configs.interface';
 import { InputTypes } from '../../../global-constants/input-types';
-import { ValidationPattern } from '../../../global-constants/validation-pattern';
+import { ValidationPatterns } from '../../../global-constants/validation-patterns';
 
 const loginInputs: FormInput[] = [
   {
@@ -12,7 +12,7 @@ const loginInputs: FormInput[] = [
     placeholder: 'authorization.fields.email',
     validators: [
       Validators.required,
-      Validators.pattern(ValidationPattern.Email),
+      Validators.pattern(ValidationPatterns.Email),
     ],
   },
   {

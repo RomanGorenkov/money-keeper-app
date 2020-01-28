@@ -4,8 +4,9 @@
   <button
     class="dropdown__open-button"
     (click)="onClick()"
+    [innerHTML]="presetService[this.getterName]"
   >
-    {{presetService[this.getterName]}}
+<!--    {{presetService[this.getterName]}}-->
   </button>
 
   <div
@@ -16,8 +17,8 @@
       class="dropdown__item"
       *ngFor="let menuItem of menuItems"
       (click)="selectMenuItem(menuItem.name, menuItem.symbol)"
+      [innerHTML]="menuItem.name + (menuItem.symbol ? ' ' + menuItem.symbol : '')"
     >
-      {{menuItem.name}} {{menuItem.symbol}}
     </button>
   </div>
 </div>

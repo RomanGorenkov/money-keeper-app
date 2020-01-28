@@ -1,6 +1,4 @@
-import { ApiUrls } from '../interfaces/api-urls.interface';
-
-export const apiUrls: ApiUrls = {
+export const apiUrls = {
   login: 'auth/login',
   registration: 'auth/registration',
   currency: 'users/currency',

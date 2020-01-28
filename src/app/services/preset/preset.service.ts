@@ -6,7 +6,7 @@ import { UserPresets } from '../../pages/authorization/interfaces/user-presets.i
 import { currencyList } from '../../pages/application/pages/main/constants/currency-list';
 import { environment } from '../../../environments/environment';
 import { apiUrls } from '../../global-constants/api-urls';
-import { storageConstants } from '../../global-constants/storage-constants';
+import { storageKeys } from '../../global-constants/storage-keys';
 import { languages } from '../../global-constants/languages';
 import { currencies } from '../../global-constants/currencies';
 import { StorageService } from '../storage/storage.service';
@@ -30,7 +30,7 @@ export class PresetService {
   }
 
   get currencySymbol() {
-    return this.currency.slice(-1);
+    return this.currency.split(' ').pop();
   }
 
   get getLanguage() {
@@ -42,7 +42,8 @@ export class PresetService {
   }
 
   changeCurrency(currency: string) {
-    this.http.post(`${environment.serverUrl}/${apiUrls.currency}`, JSON.stringify({currency: currency.slice(0, -2)}))
+    console.log(currency);
+    this.http.post(`${environment.serverUrl}/${apiUrls.currency}`, JSON.stringify({currency: currency.split(' ').shift()}))
       .subscribe(
         () => this.setCurrency(currency),
       );
@@ -56,19 +57,19 @@ export class PresetService {
   }
 
   setUserPresets(userPresets: UserPresets) {
-    if (Object.keys(userPresets).length !== 0) {
+    if (Object.keys(userPresets).length) {
       this.setLanguage(userPresets.language);
       this.setCurrencyByName(userPresets.currencyName);
     }
   }
 
 
-  setUserPresetsFromStorage(userPresets: UserPresets) {
+  private setUserPresetsFromStorage(userPresets: UserPresets) {
     this.setLanguage(userPresets.language);
     this.setCurrency(userPresets.currency);
   }
 
-  setLanguage(language: string) {
+  private setLanguage(language: string) {
     if (language) {
       this.language = language;
       this.translate.use(language);
@@ -76,34 +77,33 @@ export class PresetService {
     }
   }
 
-  setCurrency(currency: string) {
+  private setCurrency(currency: string) {
     if (currency) {
       this.currency = currency;
       this.storageService.updateLocalPresets('currency', currency);
-      this.costService.updateCurrentCostList(this.dateService.currentElement.startDate, this.dateService.currentElement.endDate);
+      this.costService.changeCostList(this.dateService.currentElement.startDate, this.dateService.currentElement.endDate);
     }
   }
 
-  setCurrencyByName(currencyName: string) {
+  private setCurrencyByName(currencyName: string) {
     if (currencyName) {
-      const presets: UserPresets = this.storageService.getLocalStorageElement(storageConstants.presets);
       const currency = currencyList.find(currencyConfig => currencyConfig.name === currencyName);
+
       this.currency = `${currency.name} ${currency.symbol}`;
-      presets.currency = this.currency;
-      localStorage.setItem(storageConstants.presets, JSON.stringify(presets));
+      this.storageService.updateLocalPresets('currency', this.currency);
     }
   }
 
-  setDefaultPresets() {
+  private setDefaultPresets() {
     this.currency = currencies.rub;
     this.language = languages.english;
     this.translate.use(this.language);
   }
 
-  checkLocalPresets() {
+  private checkLocalPresets() {
     this.setDefaultPresets();
-    if (localStorage.getItem(storageConstants.presets)) {
-      this.setUserPresetsFromStorage(this.storageService.getLocalStorageElement(storageConstants.presets));
+    if (localStorage.getItem(storageKeys.presets)) {
+      this.setUserPresetsFromStorage(this.storageService.getLocalStorageElement<UserPresets>(storageKeys.presets));
     }
   }
 

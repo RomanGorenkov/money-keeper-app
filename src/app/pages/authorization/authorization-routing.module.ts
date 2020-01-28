@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AuthorizationPageComponent } from './pages/authorization-page/authorization-page.component';
-import { routing } from '../../global-constants/routing';
+import { roads } from '../../global-constants/roads';
 
 const AuthorizationRouting: Routes = [
   {
@@ -10,7 +10,7 @@ const AuthorizationRouting: Routes = [
     children: [
       {
         path: '',
-        redirectTo: routing.authorisation.login,
+        redirectTo: roads.authorisation.login,
         pathMatch: 'full',
       },
       {
