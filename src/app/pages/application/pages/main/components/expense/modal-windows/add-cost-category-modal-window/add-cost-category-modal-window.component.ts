@@ -47,7 +47,7 @@ export class AddCostCategoryModalWindowComponent implements OnInit {
     this.addCostCategory = new FormGroup(controls);
   }
 
-  getSelectedColor(color: string) {
+  setSelectedColor(color: string) {
     this.selectedColor = color;
   }
 
@@ -56,6 +56,7 @@ export class AddCostCategoryModalWindowComponent implements OnInit {
   }
 
   addNewCostCategory(event) {
+    console.log(JSON.stringify(event.target));
     const data = new FormData(event.target);
 
     data.append(addCostCategoryFormConfig.names.COLOR, this.selectedColor);

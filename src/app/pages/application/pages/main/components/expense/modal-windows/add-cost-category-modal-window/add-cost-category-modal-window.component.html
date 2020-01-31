@@ -27,7 +27,7 @@
     <div class="add-cost-category__colors-wrapper">
       <app-radio-input
         *ngFor="let input of radioInputs"
-        (valueSelected)="getSelectedColor($event)"
+        (valueSelected)="setSelectedColor($event)"
         [isSelected]="selectedColor === input.value"
         [control]="getControl(input.name)"
         [inputData]="input"

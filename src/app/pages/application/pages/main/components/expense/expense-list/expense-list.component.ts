@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { ExpenseItemConfig } from '../../../interfaces/expense-item-config.interface';
 import { CostService } from '../../../../../../../services/cost/cost.service';
@@ -9,7 +9,7 @@ import { CostCategoryService } from '../../../../../../../services/cost-category
   templateUrl: './expense-list.component.html',
   styleUrls: ['./expense-list.component.scss']
 })
-export class ExpenseListComponent {
+export class ExpenseListComponent implements OnInit {
 
   categoryList: ExpenseItemConfig[] = [];
 
@@ -17,10 +17,13 @@ export class ExpenseListComponent {
     private costCategoryService: CostCategoryService,
     private costService: CostService,
   ) {
+  }
+
+  ngOnInit() {
     this.subscribeOnCategoryListChange();
   }
 
-  subscribeOnCategoryListChange() {
+  private subscribeOnCategoryListChange() {
     this.costCategoryService.setCostCategoryListByNameList(this.costService.getAllCostsNames());
     this.costCategoryService.costCategoryList
       .subscribe(

@@ -53,14 +53,14 @@ export class ExpenseItemComponent implements OnInit {
     }
   }
 
-  subscribeOnChangeCurrentCostList() {
+  private subscribeOnChangeCurrentCostList() {
     this.costService.currentCostList
       .subscribe(
         currentCostList => this.setCurrentUserCost(currentCostList),
       );
   }
 
-  setCurrentUserCost(currentCostList: UserCosts[]) {
+  private setCurrentUserCost(currentCostList: UserCosts[]) {
     const category = currentCostList.find(costItem => costItem._id === this.expenseItemConfig.name);
 
     this.currentCostValue = category ? category.costSum : 0;

@@ -1,25 +1,149 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { async, TestBed } from '@angular/core/testing';
+import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { ImageWithMaskComponent } from '../../../../../../../../shared/components/image-with-mask/image-with-mask.component';
+import { PresetService } from '../../../../../../../../services/preset/preset.service';
+import { CostService } from '../../../../../../../../services/cost/cost.service';
+import { DialogService } from '../../../../../../../dialog/services/dialog/dialog.service';
+import { DateService } from '../../../../../../../../services/date/date.service';
 import { AddCostCategoryModalWindowComponent } from './add-cost-category-modal-window.component';
+import { TextInputComponent } from '../../../../../../../../shared/components/text-input/text-input.component';
+import { ImageInputWithMaskComponent } from '../../../../../../../../shared/components/image-input-with-mask/image-input-with-mask.component';
+import { RadioInputComponent } from '../../../../../../../../shared/components/radio-input/radio-input.component';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, Input } from '@angular/core';
+import { ExpenseItemConfig } from '../../../../interfaces/expense-item-config.interface';
+import { CostCategoryService } from '../../../../../../../../services/cost-category/cost-category.service';
+import { addCostCategoryFormConfig } from '../../../../constants/add-cost-category-form-config';
+import { FormInput } from '../../../../../../../authorization/interfaces/form-input.interface';
+
+@Component({
+  selector: 'app-expense-item',
+  template: '<div></div>',
+})
+class ExpenseItemComponent {
+
+  @Input() expenseItemConfig: ExpenseItemConfig;
+  @Input() iconId: string;
+
+}
 
 describe('AddCostCategoryModalWindowComponent', () => {
-  let component: AddCostCategoryModalWindowComponent;
-  let fixture: ComponentFixture<AddCostCategoryModalWindowComponent>;
+
+  let fixture;
+  let component;
+  let componentAny: any;
+
+  const mockCostCategoryService = {
+    addNewUserCostCategory: (data: FormData) => {
+    },
+  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddCostCategoryModalWindowComponent ]
-    })
-    .compileComponents();
+      imports: [
+        ReactiveFormsModule,
+        TranslateModule.forRoot({
+          loader: {provide: TranslateLoader, useClass: TranslateFakeLoader},
+        }),
+      ],
+      declarations: [
+        AddCostCategoryModalWindowComponent,
+        TextInputComponent,
+        ImageInputWithMaskComponent,
+        RadioInputComponent,
+        ImageWithMaskComponent,
+        ExpenseItemComponent,
+      ],
+      providers: [
+        {
+          provide: DialogService,
+          useValue: {},
+        },
+        {
+          provide: PresetService,
+          useValue: {},
+        },
+        {
+          provide: CostService,
+          useValue: {},
+        },
+        {
+          provide: CostCategoryService,
+          useValue: mockCostCategoryService,
+        },
+        {
+          provide: DateService,
+          useValue: {},
+        }
+      ],
+    },)
+      .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AddCostCategoryModalWindowComponent);
     component = fixture.componentInstance;
+    componentAny = component;
     fixture.detectChanges();
   });
 
   it('should create', () => {
+    const createFormSpy = spyOn(component, 'createForm');
+
+    component.ngOnInit();
+
+    expect(component.inputs).toBe(addCostCategoryFormConfig.textInputs);
+    expect(component.radioInputs).toBe(addCostCategoryFormConfig.radioInputs);
+    expect(component.selectedColor).toBe(component.radioInputs[addCostCategoryFormConfig.colors.BLUE].value);
+    expect(createFormSpy).toHaveBeenCalled();
     expect(component).toBeTruthy();
+  });
+
+  it('should test createForm function return correct FormGroup', () => {
+    const expectValue = {
+      categoryImage: '',
+      name: '',
+      color: addCostCategoryFormConfig.radioInputs[addCostCategoryFormConfig.colors.BLUE].value,
+    };
+    component.addCostCategory = null;
+
+    component.ngOnInit();
+
+    expect(component.addCostCategory instanceof FormGroup).toBeTrue();
+    expect(component.addCostCategory.value).toEqual(expectValue);
+  });
+
+  it('should test setSelectedColor function set current selectedColor', () => {
+    const testColor = 'rgba(103,102,100,0.9)';
+
+    component.selectedColor = null;
+    component.setSelectedColor(testColor);
+
+    expect(typeof component.selectedColor === 'string').toBeTrue();
+    expect(component.selectedColor).toBe(testColor);
+  });
+
+  it('should test getControl function return FormControl by controlName', () => {
+    const controlConfig = addCostCategoryFormConfig.textInputs[0];
+    const testControl = component.getControl(controlConfig.name);
+
+    expect(testControl instanceof FormControl).toBeTrue();
+  });
+
+  it('should test addNewCostCategory function set cost category data', () => {
+    const costCategoryService = fixture.debugElement.injector.get(CostCategoryService);
+    const addNewUserCostCategorySpy = spyOn(costCategoryService, 'addNewUserCostCategory');
+    const event = {target: {value: 'test'}};
+
+    // component.addCostCategory.controls.map( control => console.log(control));
+    Object.keys(component.addCostCategory.controls).map(controlName => {
+      component.addCostCategory.controls[controlName].patchValue('test');
+      console.log(component.addCostCategory.controls[controlName]);
+    });
+    // for(const control in component.addCostCategory.controls){
+    //   console.log(component.addCostCategory.controls[control])
+    // }
+    expect(addNewUserCostCategorySpy).toHaveBeenCalled();
+
   });
 });

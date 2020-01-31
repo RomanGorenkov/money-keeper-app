@@ -96,6 +96,7 @@
             "styles": [
               "src/styles.scss"
             ],
+            "codeCoverage": true,
             "scripts": []
           }
         },

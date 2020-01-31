@@ -15,7 +15,7 @@ import { InputTypes } from '../../../../global-constants/input-types';
 })
 export class AuthorizationFormComponent implements OnInit {
 
-  InputTypes = InputTypes;
+  inputTypes = InputTypes;
   formTitle: string;
   inputs: FormInput[];
   authorizationForm: FormGroup;
@@ -39,7 +39,7 @@ export class AuthorizationFormComponent implements OnInit {
       .subscribe(
         ({type}) => {
           this.formTitle = type;
-          this.inputs = formConfigs[type].formInputs;
+          this.inputs = formConfigs[type].formInputs || [];
           this.createForm(type);
         },
       );
@@ -52,7 +52,7 @@ export class AuthorizationFormComponent implements OnInit {
     }, {});
 
     this.authorizationForm = new FormGroup(controls, {
-      validators: formConfigs[type].externalValidators,
+      validators: formConfigs[type].externalValidators|| [],
     });
   }
 

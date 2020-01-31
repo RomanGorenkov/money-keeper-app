@@ -1,3 +1,4 @@
+import { HeaderButtons } from '../interfaces/header-buttons.interface'
 import { roads } from '../../../global-constants/roads';
 
 export const headerButtons: HeaderButtons[] = [

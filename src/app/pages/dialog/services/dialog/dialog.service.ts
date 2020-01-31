@@ -19,7 +19,7 @@ export class DialogService {
   ) {
   }
 
-  appendDialogComponentToBody(dialogConfig: DialogConfig<any>) {
+  private appendDialogComponentToBody(dialogConfig: DialogConfig<any>) {
     const map = new WeakMap();
 
     map.set(DialogConfig, dialogConfig);
