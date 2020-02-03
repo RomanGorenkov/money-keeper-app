@@ -29,19 +29,19 @@ export class CostListModalWindowComponent implements OnInit {
     private dateService: DateService,
     public presetService: PresetService,
   ) {
-    this.name = config.data.name;
-    this.setDateLimit();
   }
 
   ngOnInit() {
-    this.getUserCategoryCostList();
+    this.name = this.config.data.name;
+    this.setDateLimit();
+    this.setUserCategoryCostList();
   }
 
-  getUserCategoryCostList() {
+  private setUserCategoryCostList() {
     this.costList = this.costService.getCostListByCategory(this.name, this.startDate, this.endDate);
   }
 
-  setDateLimit() {
+  private setDateLimit() {
     this.startDate = this.dateService.currentElement.startDate;
     this.endDate = this.startDate + this.dateService.currentElement.endDate;
   }
