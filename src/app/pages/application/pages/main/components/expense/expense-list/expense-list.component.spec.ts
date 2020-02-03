@@ -1,18 +1,18 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
+import { Component, Input } from '@angular/core';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 import { ExpenseItemConfig } from '../../../interfaces/expense-item-config.interface';
+import { expenseItems } from '../../../constants/expense-items-config';
 import { ExpenseListComponent } from './expense-list.component';
 import { CostCategoryService } from '../../../../../../../services/cost-category/cost-category.service';
 import { CostService } from '../../../../../../../services/cost/cost.service';
 import { AddExpenseItemComponent } from './add-expense-item/add-expense-item.component';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { ImageWithMaskComponent } from '../../../../../../../shared/components/image-with-mask/image-with-mask.component';
 import { DialogService } from '../../../../../../dialog/services/dialog/dialog.service';
-import { expenseItems } from '../../../constants/expense-items-config';
 import { PresetService } from '../../../../../../../services/preset/preset.service';
 import { DateService } from '../../../../../../../services/date/date.service';
-import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-expense-item',
@@ -22,6 +22,7 @@ class ExpenseItemComponent {
 
   @Input() expenseItemConfig: ExpenseItemConfig;
   @Input() iconId: string;
+
 }
 
 describe('ExpenseListComponent', () => {
@@ -38,22 +39,13 @@ describe('ExpenseListComponent', () => {
   const mockCostService = {
     getAllCostsNames: () => {},
   };
-  const translations: any = {
-    test: 'This is a test',
-  };
-
-  class FakeLoader implements TranslateLoader {
-    getTranslation(lang: string): Observable<any> {
-      return of(translations);
-    }
-  }
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         TranslateModule.forRoot({
-          loader: {provide: TranslateLoader, useClass: FakeLoader},
-        })
+          loader: {provide: TranslateLoader, useClass: TranslateFakeLoader},
+        }),
       ],
       declarations: [
         ExpenseListComponent,
@@ -81,7 +73,7 @@ describe('ExpenseListComponent', () => {
         {
           provide: DateService,
           useValue: {},
-        }
+        },
       ],
     },)
       .compileComponents();

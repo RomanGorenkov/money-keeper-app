@@ -1,14 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
-
-import { ExpenseItemComponent } from './expense-item.component';
 import { BehaviorSubject } from 'rxjs';
+
+import { UserCosts } from '../../../../../../../authorization/interfaces/user-costs.interface';
+import { ExpenseItemComponent } from './expense-item.component';
 import { ImageWithMaskComponent } from '../../../../../../../../shared/components/image-with-mask/image-with-mask.component';
 import { PresetService } from '../../../../../../../../services/preset/preset.service';
 import { CostService } from '../../../../../../../../services/cost/cost.service';
 import { DialogService } from '../../../../../../../dialog/services/dialog/dialog.service';
 import { DateService } from '../../../../../../../../services/date/date.service';
-import { UserCosts } from '../../../../../../../authorization/interfaces/user-costs.interface';
 
 describe('ExpenseItemComponent', () => {
 
@@ -84,12 +84,11 @@ describe('ExpenseItemComponent', () => {
     fixture.detectChanges();
   });
 
-
   describe('ExpenseItemComponent should create with different costList', () => {
+
     let currentCostListSubscribeSpy;
     let setCurrentUserCostSpy;
     let costService;
-
 
     beforeEach(() => {
       component.expenseItemConfig = {
@@ -102,6 +101,7 @@ describe('ExpenseItemComponent', () => {
       costService = fixture.debugElement.injector.get(CostService);
       setCurrentUserCostSpy = spyOn(componentAny, 'setCurrentUserCost').and.callThrough()
     });
+
     it('should create with costList', () => {
       currentCostListSubscribeSpy = spyOn(costService.currentCostList, 'subscribe').and.callThrough();
 
@@ -125,6 +125,8 @@ describe('ExpenseItemComponent', () => {
       expect(currentCostListSubscribeSpy).toHaveBeenCalled();
       expect(setCurrentUserCostSpy).toHaveBeenCalled();
       expect(component).toBeTruthy();
-    })
+    });
+
   });
+
 });

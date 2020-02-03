@@ -1,5 +1,7 @@
 import { async, TestBed } from '@angular/core/testing';
 import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
+
+import { CostDto } from '../../../../interfaces/cost-dto.intarfece';
 import { DialogService } from '../../../../../../../dialog/services/dialog/dialog.service';
 import { PresetService } from '../../../../../../../../services/preset/preset.service';
 import { CostService } from '../../../../../../../../services/cost/cost.service';
@@ -8,7 +10,6 @@ import { DateService } from '../../../../../../../../services/date/date.service'
 import { CostListModalWindowComponent } from './cost-list-modal-window.component';
 import { InformationSpanComponent } from '../../../information-span/information-span.component';
 import { DialogConfig } from '../../../../../../../dialog/config/dialog-config';
-import { CostDto } from '../../../../interfaces/cost-dto.intarfece';
 
 describe('CostListModalWindowComponent', () => {
 
@@ -47,9 +48,8 @@ describe('CostListModalWindowComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        // ReactiveFormsModule,
         TranslateModule.forRoot({
-          loader: { provide: TranslateLoader, useClass: TranslateFakeLoader },
+          loader: {provide: TranslateLoader, useClass: TranslateFakeLoader},
         }),
       ],
       declarations: [
@@ -92,7 +92,6 @@ describe('CostListModalWindowComponent', () => {
     componentAny = component;
     component.config = mockConfig;
     fixture.detectChanges();
-
   });
 
   it('should test create CostListModalWindowComponent', () => {
@@ -129,5 +128,5 @@ describe('CostListModalWindowComponent', () => {
     const testWord = component.makeFirstLetterCapital('test');
 
     expect(testWord).toBe('Test');
-  })
+  });
 });

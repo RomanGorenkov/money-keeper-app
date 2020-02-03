@@ -7,7 +7,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 import { SharedModule } from '../../../../shared/shared.module';
 import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { formConfigs } from '../../constants/form-configs';
 import { InputTypes } from '../../../../global-constants/input-types';
 
@@ -90,6 +90,7 @@ describe('AuthorizationFormComponent', () => {
 
     component.formTitle = 'login';
     component.submitHandler(component.authorizationForm);
+
     expect(loginSpy).toHaveBeenCalled();
     expect(loginSpy).toHaveBeenCalledWith(component.authorizationForm);
   });
@@ -99,6 +100,7 @@ describe('AuthorizationFormComponent', () => {
     const getControlNameSpy = spyOn(component.authorizationForm, 'get');
 
     component.getControl(controlName);
+
     expect(getControlNameSpy).toHaveBeenCalled();
     expect(getControlNameSpy).toHaveBeenCalledWith(controlName);
   });

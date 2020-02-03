@@ -12,6 +12,7 @@ describe('AddExpenseItemComponent', () => {
   let component: AddExpenseItemComponent;
   let fixture: ComponentFixture<AddExpenseItemComponent>;
   let modal;
+
   const buttonsSign = ButtonsSign;
   const modalDialogService = {
     open: <C, D>(componentType: Type<C>, dialogConfig: DialogConfig<D>) => {}

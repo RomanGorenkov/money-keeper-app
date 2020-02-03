@@ -1,5 +1,8 @@
+import { Component, Input } from '@angular/core';
 import { async, TestBed } from '@angular/core/testing';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
+
 import { ImageWithMaskComponent } from '../../../../../../../../shared/components/image-with-mask/image-with-mask.component';
 import { PresetService } from '../../../../../../../../services/preset/preset.service';
 import { CostService } from '../../../../../../../../services/cost/cost.service';
@@ -9,11 +12,10 @@ import { AddCostCategoryModalWindowComponent } from './add-cost-category-modal-w
 import { TextInputComponent } from '../../../../../../../../shared/components/text-input/text-input.component';
 import { ImageInputWithMaskComponent } from '../../../../../../../../shared/components/image-input-with-mask/image-input-with-mask.component';
 import { RadioInputComponent } from '../../../../../../../../shared/components/radio-input/radio-input.component';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Component, Input } from '@angular/core';
 import { ExpenseItemConfig } from '../../../../interfaces/expense-item-config.interface';
 import { CostCategoryService } from '../../../../../../../../services/cost-category/cost-category.service';
 import { addCostCategoryFormConfig } from '../../../../constants/add-cost-category-form-config';
+import { ValueTypes } from '../../../../../../../../global-constants/valueTypes';
 
 @Component({
   selector: 'app-expense-item',
@@ -73,7 +75,7 @@ describe('AddCostCategoryModalWindowComponent', () => {
         {
           provide: DateService,
           useValue: {},
-        }
+        },
       ],
     },)
       .compileComponents();
@@ -105,7 +107,6 @@ describe('AddCostCategoryModalWindowComponent', () => {
       color: addCostCategoryFormConfig.radioInputs[addCostCategoryFormConfig.colors.BLUE].value,
     };
     component.addCostCategory = null;
-
     component.ngOnInit();
 
     expect(component.addCostCategory instanceof FormGroup).toBeTrue();
@@ -118,7 +119,7 @@ describe('AddCostCategoryModalWindowComponent', () => {
     component.selectedColor = null;
     component.setSelectedColor(testColor);
 
-    expect(typeof component.selectedColor === 'string').toBeTrue();
+    expect(typeof component.selectedColor === ValueTypes.STRING).toBeTrue();
     expect(component.selectedColor).toBe(testColor);
   });
 
@@ -129,20 +130,4 @@ describe('AddCostCategoryModalWindowComponent', () => {
     expect(testControl instanceof FormControl).toBeTrue();
   });
 
-  it('should test addNewCostCategory function set cost category data', () => {
-    const costCategoryService = fixture.debugElement.injector.get(CostCategoryService);
-    const addNewUserCostCategorySpy = spyOn(costCategoryService, 'addNewUserCostCategory');
-    const event = {target: {value: 'test'}};
-
-    // component.addCostCategory.controls.map( control => console.log(control));
-    // Object.keys(component.addCostCategory.controls).map(controlName => {
-      // component.addCostCategory.controls[controlName].patchValue('test');
-      // console.log(component.addCostCategory.controls[controlName]);
-    // });
-    // for(const control in component.addCostCategory.controls){
-    //   console.log(component.addCostCategory.controls[control])
-    // }
-    // expect(addNewUserCostCategorySpy).toHaveBeenCalled();
-
-  });
 });
