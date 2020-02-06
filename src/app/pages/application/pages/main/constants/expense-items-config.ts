@@ -1,6 +1,6 @@
-import { ExpenseItemConfig } from '../interfaces/expense-item-config.interface';
+import { CostItemConfig } from '../interfaces/expense-item-config.interface';
 
-export const expenseItems: ExpenseItemConfig[] = [
+export const expenseItems: CostItemConfig[] = [
   {
     title: 'home.category.home',
     name: 'home',

@@ -21,15 +21,15 @@ export class CostListModalWindowComponent implements OnInit {
   costList: CostDto[];
   name: string;
   private startDate: number;
-  private endDate: number;
-
   constructor(
     public config: DialogConfig<CostListModalConfig>,
+    public presetService: PresetService,
     private costService: CostService,
     private dateService: DateService,
-    public presetService: PresetService,
   ) {
   }
+
+  private endDate: number;
 
   ngOnInit() {
     this.name = this.config.data.name;

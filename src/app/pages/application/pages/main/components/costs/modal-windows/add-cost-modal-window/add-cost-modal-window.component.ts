@@ -12,17 +12,17 @@ import { CostService } from '../../../../../../../../services/cost/cost.service'
 
 @Component({
   selector: 'app-add-expense-modal-window',
-  templateUrl: './add-expense-modal-window.component.html',
-  styleUrls: ['./add-expense-modal-window.component.scss']
+  templateUrl: './add-cost-modal-window.component.html',
+  styleUrls: ['./add-cost-modal-window.component.scss']
 })
-export class AddExpenseModalWindowComponent implements OnInit {
+export class AddCostModalWindowComponent implements OnInit {
 
   inputs: FormInput[];
   addExpenseForm: FormGroup;
 
   constructor(
-    private dialog: DialogService,
     public config: DialogConfig<AddCostModalConfig>,
+    private dialog: DialogService,
     private costService: CostService,
   ) {
   }

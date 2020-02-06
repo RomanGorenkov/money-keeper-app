@@ -4,11 +4,11 @@
 @import "../../../../../../../../styles/base/colors";
 @import "../../../../../../../../styles/layout/flex.mixin";
 
-.expense-item{
+.expense-item {
   @include main-font();
   @include expense-item-button();
 
-  &__icon{
+  &__icon {
     $size: 100px;
     width: $size;
     height: $size;
@@ -20,11 +20,11 @@
     border-radius: 25%;
   }
 
-  &__title{
+  &__title {
     @include form-title();
   }
 
-  &__expense{
+  &__expense {
     @include flex($align-items: center, $justify-content: center);
     box-sizing: border-box;
     width: calc(140px - 4px);
@@ -32,7 +32,7 @@
     background-color: $main-color;
   }
 
-  &__expense, &__title{
+  &__expense, &__title {
     padding: 2.5px;
   }
 }

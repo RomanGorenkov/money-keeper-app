@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { environment } from '../../../environments/environment';
-import { apiUrls } from '../../global-constants/api-urls';
 import { CostDto } from '../../pages/application/pages/main/interfaces/cost-dto.intarfece';
 import { UserCosts } from '../../pages/authorization/interfaces/user-costs.interface';
+import { environment } from '../../../environments/environment';
+import { apiUrls } from '../../global-constants/api-urls';
 
 @Injectable()
 export class CostApiService {

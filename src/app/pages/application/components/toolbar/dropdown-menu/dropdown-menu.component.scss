@@ -2,9 +2,10 @@
 
 $color-shadow: rgba(255, 255, 255, 0.1);
 $main-padding: 15px;
+$dropdown-width: 100px;
 
 .dropdown__open-button {
-  width: 100px;
+  width: $dropdown-width;
   background-color: $accent-color;
   color: $light-text-color;
   padding: $main-padding;
@@ -15,17 +16,19 @@ $main-padding: 15px;
 
   &::after {
     $size: 5px;
+    $border: 2px solid $light-text-color;
     content: " ";
     display: inline-block;
     width: $size;
     height: $size;
     margin: 0 5px 2px;
     transform: rotate(45deg);
-    border-bottom: 2px solid $light-text-color;
-    border-right: 2px solid $light-text-color;
+    border-bottom: $border;
+    border-right: $border;
   }
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     background-color: $color-shadow;
   }
 }
@@ -56,7 +59,7 @@ $main-padding: 15px;
 }
 
 .dropdown__item {
-  width: 100px;
+  width: $dropdown-width;
   color: $light-text-color;
   padding: 12px $main-padding;
   text-decoration: none;

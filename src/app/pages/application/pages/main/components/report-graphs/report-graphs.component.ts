@@ -1,11 +1,11 @@
 import { Color } from 'ng2-charts';
 import { Component, OnInit } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 import { reportGraphConstant } from '../../constants/report-graph-constants';
 import { CostService } from '../../../../../../services/cost/cost.service';
 import { PresetService } from '../../../../../../services/preset/preset.service';
-import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { makeFirstLetterCapital } from '../../../../../../helpers/string';
 import { ChartType } from '../../constants/chart-type';
 import { chartCurrency } from '../../../../../../global-constants/chart-currency';
@@ -16,7 +16,6 @@ import { chartCurrency } from '../../../../../../global-constants/chart-currency
   styleUrls: ['./report-graphs.component.scss'],
   providers: [
     TranslatePipe,
-    CurrencyPipe,
   ],
 })
 export class ReportGraphsComponent implements OnInit {

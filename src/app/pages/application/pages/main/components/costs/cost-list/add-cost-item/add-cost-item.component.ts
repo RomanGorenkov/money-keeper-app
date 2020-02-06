@@ -8,10 +8,10 @@ import {
 
 @Component({
   selector: 'app-add-expense-item',
-  templateUrl: './add-expense-item.component.html',
-  styleUrls: ['./add-expense-item.component.scss']
+  templateUrl: './add-cost-item.component.html',
+  styleUrls: ['./add-cost-item.component.scss']
 })
-export class AddExpenseItemComponent {
+export class AddCostItemComponent {
 
   buttonsSign = ButtonsSign;
 

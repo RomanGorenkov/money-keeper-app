@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Type } from '@angular/core';
 
-import { AddExpenseItemComponent } from './add-expense-item.component';
+import { AddCostItemComponent } from './add-cost-item.component';
 import { DialogService } from '../../../../../../../dialog/services/dialog/dialog.service';
 import { ButtonsSign } from '../../../../../../../../global-constants/buttons-sign';
 import { DialogConfig } from '../../../../../../../dialog/config/dialog-config';
@@ -9,9 +9,9 @@ import { AddCostCategoryModalWindowComponent } from '../../modal-windows/add-cos
 
 describe('AddExpenseItemComponent', () => {
 
-  let component: AddExpenseItemComponent;
-  let fixture: ComponentFixture<AddExpenseItemComponent>;
-  let modal;
+  let component: AddCostItemComponent;
+  let fixture: ComponentFixture<AddCostItemComponent>;
+  let dialogService: DialogService;
 
   const buttonsSign = ButtonsSign;
   const modalDialogService = {
@@ -21,7 +21,7 @@ describe('AddExpenseItemComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AddExpenseItemComponent,
+        AddCostItemComponent,
       ],
       providers: [
         {
@@ -34,13 +34,13 @@ describe('AddExpenseItemComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddExpenseItemComponent);
+    fixture = TestBed.createComponent(AddCostItemComponent);
     component = fixture.componentInstance;
-    modal = fixture.debugElement.injector.get(DialogService);
+    dialogService = fixture.debugElement.injector.get(DialogService);
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create AddCostItemComponent', () => {
     expect(component).toBeTruthy();
   });
 
@@ -54,11 +54,11 @@ describe('AddExpenseItemComponent', () => {
     expect(compiled.querySelector('button').textContent).toContain('+');
   });
 
-  it('should called open', () => {
-    const openSpy = spyOn(modal, 'open');
+  it('should test openModal function called open function', () => {
+    const openSpy = spyOn(dialogService, 'open');
 
     component.openModal();
-    expect(openSpy).toHaveBeenCalled();
+
     expect(openSpy).toHaveBeenCalledWith(AddCostCategoryModalWindowComponent, {});
   });
 

@@ -2,11 +2,12 @@ import { async, TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 import { BehaviorSubject, of } from 'rxjs';
 
-import { CostService } from './cost.service';
+import { UserCosts } from '../../pages/authorization/interfaces/user-costs.interface';
 import { CostDto } from '../../pages/application/pages/main/interfaces/cost-dto.intarfece';
+import { CostService } from './cost.service';
 import { CostApiService } from '../cost-api/cost-api.service';
 import { StorageService } from '../storage/storage.service';
-import { UserCosts } from '../../pages/authorization/interfaces/user-costs.interface';
+import { Direction } from '../../global-constants/direction';
 
 describe('CostService', () => {
 
@@ -77,8 +78,9 @@ describe('CostService', () => {
 
   it('should test sortCostListByDate function return correct array', () => {
     const sortCostList = CostService.sortCostListByDate([...mockCostList]);
+    const expectedCostList = [...mockCostList].sort((a, b) => a.costDate < b.costDate ? Direction.Forward : Direction.Back);
 
-    expect(sortCostList).toEqual([mockCostList[0], mockCostList[2], mockCostList[1]]);
+    expect(sortCostList).toEqual(expectedCostList);
   });
 
   it('should test setCostList function set new costList value', () => {
@@ -134,28 +136,35 @@ describe('CostService', () => {
 
   describe('should test addCostInCurrentCostList function must call correct add cost strategy by existing category in cost list', () => {
 
-    it('should test addCostInCurrentCostList function with existing category in cost list', () => {
-      spyOn(costService, 'isCategoryInCostList').and.returnValue(true);
-      const addCostInExistingCategorySpy = spyOn(costService, 'addCostInExistingCategory');
+    let isCategoryInCostListSpy;
+    let addCostInExistingCategorySpy;
+    let addCostWithCategoryInCostListSpy;
 
+    beforeEach(() => {
+      isCategoryInCostListSpy = spyOn(costService, 'isCategoryInCostList');
+      addCostInExistingCategorySpy = spyOn(costService, 'addCostInExistingCategory');
+      addCostWithCategoryInCostListSpy = spyOn(costService, 'addCostWithCategoryInCostList');
+    });
+
+    it('should test addCostInCurrentCostList function with existing category in cost list', () => {
+      isCategoryInCostListSpy.and.returnValue(true);
       costService.addCostInCurrentCostList(mockCost);
 
-      expect(addCostInExistingCategorySpy).toHaveBeenCalled();
       expect(addCostInExistingCategorySpy).toHaveBeenCalledWith(mockCost);
+      expect(addCostWithCategoryInCostListSpy).not.toHaveBeenCalled();
     });
 
     it('should test addCostInCurrentCostList function with nonexistent category in cost list', () => {
-      spyOn(costService, 'isCategoryInCostList').and.returnValue(false);
-      const addCostWithCategoryInCostListSpy = spyOn(costService, 'addCostWithCategoryInCostList');
-
+      isCategoryInCostListSpy.and.returnValue(false);
       costService.addCostInCurrentCostList(mockCost);
 
-      expect(addCostWithCategoryInCostListSpy).toHaveBeenCalled();
       expect(addCostWithCategoryInCostListSpy).toHaveBeenCalledWith(mockCost);
+      expect(addCostInExistingCategorySpy).not.toHaveBeenCalled();
     });
+
   });
 
-  it('should test setTodayCosts function must update cost list', async(() => {
+  it('should test setTodayCosts function must update cost list', () => {
     const response = mockUserCosts;
     const costApiService = TestBed.get(CostApiService);
     const getTodayAllUserCostsSpy = spyOn(costApiService, 'getTodayAllUserCosts').and.returnValue(of(response));
@@ -166,7 +175,7 @@ describe('CostService', () => {
     expect(getTodayAllUserCostsSpy).toHaveBeenCalled();
     expect(setCostListSpy).toHaveBeenCalled();
     expect(setCostListSpy).toHaveBeenCalledWith(response);
-  }));
+  });
 
 });
 

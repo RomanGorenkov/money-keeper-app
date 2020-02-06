@@ -28,7 +28,7 @@ export class UserService {
   }
 
   uploadLocalUserSettings() {
-    const userSettings = this.storageService.getLocalStorageElement<UserSettings>(storageKeys.userSettings);
+    const userSettings = this.storageService.getStorageElement<UserSettings>(storageKeys.userSettings);
 
     this.updateUserSettings(userSettings);
   }
@@ -46,7 +46,7 @@ export class UserService {
 
   setUserSettings(userSettings: UserSettings) {
     this.updateUserSettings(userSettings);
-    this.storageService.saveUserSettingInLocalStorage(this.userSettings);
+    this.storageService.saveUserSettingInStorage(this.userSettings);
   }
 
   private updateUserSettings(userSettings: UserSettings) {

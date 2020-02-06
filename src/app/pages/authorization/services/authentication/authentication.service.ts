@@ -53,11 +53,6 @@ export class AuthenticationService {
       );
   }
 
-  logout() {
-    localStorage.clear();
-    this.router.navigate([roads.authorisation.login]);
-  }
-
   private setLoginAnswerData(loginAnswer: LoginAnswer) {
     AuthenticationService.setAccessToken(loginAnswer.access_token);
     this.presetService.setUserPresets(loginAnswer.userPresets);

@@ -3,6 +3,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { roads } from '../../../../global-constants/roads';
 import { ButtonsSign } from '../../../../global-constants/buttons-sign';
 import { TagNames } from '../../../../global-constants/tag-names';
+import { CssStateClasses } from '../../../../global-constants/css- state-classes';
 
 @Component({
   selector: 'app-toolbar',
@@ -17,11 +18,11 @@ export class ToolbarComponent {
   openedMenu: string = null;
   settingUrl = roads.app.setting;
 
-  openToolbar(): void {
-    if (this.toolsContainer.nativeElement.classList.contains('hidden')) {
-      this.toolsContainer.nativeElement.classList.remove('hidden');
+  toggleToolbar(): void {
+    if (this.toolsContainer.nativeElement.classList.contains(CssStateClasses.hidden)) {
+      this.toolsContainer.nativeElement.classList.remove(CssStateClasses.hidden);
     } else {
-      this.toolsContainer.nativeElement.classList.add('hidden');
+      this.toolsContainer.nativeElement.classList.add(CssStateClasses.hidden);
       this.openedMenu = null;
     }
   }
@@ -32,7 +33,7 @@ export class ToolbarComponent {
 
   onOverlayClicked(event: MouseEvent) {
     if (event.target === this.toolsContainer.nativeElement) {
-      this.openToolbar();
+      this.toggleToolbar();
     }
   }
 

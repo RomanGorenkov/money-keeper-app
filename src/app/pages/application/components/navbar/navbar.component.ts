@@ -11,6 +11,7 @@ import { navbarConfigs } from '../../pages/main/constants/navbar-config';
 export class NavbarComponent implements OnInit {
 
   @Input() navbarName: string;
+
   linkItems: NavbarConfig[];
 
   ngOnInit() {

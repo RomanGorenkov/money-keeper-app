@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { MainModule } from './pages/main/main.module';
 import { ApplicationComponent } from './pages/application.component';
@@ -17,7 +17,7 @@ import { TotalCostComponent } from './components/total-cost/total-cost.component
     MainModule,
     UserSettingsModule,
     CommonModule,
-    TranslateModule,
+    TranslateModule.forChild(),
   ],
   declarations: [
     ApplicationComponent,
@@ -26,9 +26,7 @@ import { TotalCostComponent } from './components/total-cost/total-cost.component
     DropdownMenuComponent,
     TotalCostComponent,
   ],
-  providers: [
-    TranslatePipe,
-  ],
+  providers: [],
   exports: [
     ToolbarComponent,
     NavbarComponent,

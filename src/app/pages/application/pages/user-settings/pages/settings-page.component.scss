@@ -5,7 +5,6 @@
 @import "../../../../../styles/components/solid-border.mixin";
 @import "../../../../../styles/layout/flex.mixin";
 
-
 .settings-page {
   @include application-item();
   @include flex($flex-direction: column, $align-items: center, $justify-content: center);
@@ -39,11 +38,10 @@
   }
 
   &__input-text {
-
     &.ng-touched:not(.ng-valid) {
-      box-shadow: 0 0 5px #f35542;
+      box-shadow: 0 0 5px $error-color;
       padding: 10px;
-      border: 1px solid #f35542;
+      border: 1px solid $error-color;
     }
   }
 

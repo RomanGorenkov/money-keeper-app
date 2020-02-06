@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-import { ExpenseItemConfig } from '../../pages/application/pages/main/interfaces/expense-item-config.interface';
+import { CostItemConfig } from '../../pages/application/pages/main/interfaces/expense-item-config.interface';
 import { expenseItems } from '../../pages/application/pages/main/constants/expense-items-config';
 import { storageKeys } from '../../global-constants/storage-keys';
 import { httpHeader } from '../../global-constants/http-headers';
@@ -14,7 +14,7 @@ import { StorageService } from '../storage/storage.service';
 @Injectable()
 export class CostCategoryService {
 
-  costCategoryList = new BehaviorSubject<ExpenseItemConfig[]>(expenseItems);
+  costCategoryList = new BehaviorSubject<CostItemConfig[]>(expenseItems);
 
   constructor(
     private costService: CostService,
@@ -23,7 +23,7 @@ export class CostCategoryService {
   ) {
   }
 
-  addNewCostCategoryInCurrentCategoryList(categoryImageUrl: string, costCategoryData: ExpenseItemConfig) {
+  addNewCostCategoryInCurrentCategoryList(categoryImageUrl: string, costCategoryData: CostItemConfig) {
     const newCategory = costCategoryData;
 
     newCategory.imageUrl = categoryImageUrl;
@@ -38,7 +38,7 @@ export class CostCategoryService {
   }
 
   setCostCategoryListByNameList(categoryNameList: string[]) {
-    const customCategoryListFromStorage = this.storageService.getLocalStorageElement<ExpenseItemConfig[]>(storageKeys.customCategoryList);
+    const customCategoryListFromStorage = this.storageService.getStorageElement<CostItemConfig[]>(storageKeys.customCategoryList);
 
     this.costCategoryList.next(categoryNameList.map(categoryName => {
       const value = this.costCategoryList.getValue().find(costCategory => costCategory.name === categoryName);
@@ -47,10 +47,10 @@ export class CostCategoryService {
     }));
   }
 
-  setCostCategoryList(categoryList: ExpenseItemConfig[]) {
+  setCostCategoryList(categoryList: CostItemConfig[]) {
     if (categoryList.length) {
       this.costCategoryList.next([...this.costCategoryList.getValue(), ...categoryList]);
-      localStorage.setItem(storageKeys.customCategoryList, JSON.stringify(this.costCategoryList.getValue()));
+      this.storageService.saveCostCategoryListInStorage(this.costCategoryList.getValue());
     }
   }
 
@@ -58,10 +58,10 @@ export class CostCategoryService {
     this.costCategoryList.getValue().map(categoryConfig => {
       this.costService.currentCostColorList[categoryConfig.name] = categoryConfig.color;
     });
-    localStorage.setItem(storageKeys.costColors, JSON.stringify(this.costService.currentCostColorList));
+    this.storageService.saveCostColorsInStorage(this.costService.currentCostColorList);
   }
 
-  private addNewUserCostCategoryInCurrentCategoryList(userCostCategory: ExpenseItemConfig) {
+  private addNewUserCostCategoryInCurrentCategoryList(userCostCategory: CostItemConfig) {
     this.setCostCategoryList([userCostCategory]);
     this.setCostColorList();
   }

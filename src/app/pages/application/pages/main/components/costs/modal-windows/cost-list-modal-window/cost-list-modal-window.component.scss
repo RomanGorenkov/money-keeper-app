@@ -7,31 +7,33 @@
 $max-size: 300px;
 $padding: 5px;
 
-.cost-list{
+.cost-list {
   max-width: $max-size;
 }
-.cost-list__title{
+
+.cost-list__title {
   @include main-font();
   @include flex($align-items: center, $justify-content: center);
   height: 30px;
   background-color: $main-color;
 }
 
-.cost-list__list{
+.cost-list__list {
   max-height: $max-size;
   overflow-y: scroll;
 }
 
-.cost-list__main-info-container{
+.cost-list__main-info-container {
   @include flex($justify-content: space-between);
-  *{
+
+  * {
     @include flex($align-items: center, $justify-content: center);
     width: auto;
     padding: $padding;
   }
 }
 
-.cost-list-description{
+.cost-list-description {
   padding: $padding;
   font-weight: normal;
   border-bottom: 1px solid gray;

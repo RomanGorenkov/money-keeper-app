@@ -103,7 +103,7 @@ export class PresetService {
   private checkLocalPresets() {
     this.setDefaultPresets();
     if (localStorage.getItem(storageKeys.presets)) {
-      this.setUserPresetsFromStorage(this.storageService.getLocalStorageElement<UserPresets>(storageKeys.presets));
+      this.setUserPresetsFromStorage(this.storageService.getStorageElement<UserPresets>(storageKeys.presets));
     }
   }
 

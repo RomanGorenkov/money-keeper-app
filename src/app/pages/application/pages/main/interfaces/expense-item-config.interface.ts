@@ -1,4 +1,4 @@
-export interface ExpenseItemConfig {
+export interface CostItemConfig {
   title?: string;
   name: string;
   imageUrl: string;

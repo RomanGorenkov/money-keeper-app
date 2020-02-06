@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { ExpenseItemConfig } from '../../../../interfaces/expense-item-config.interface';
+import { CostItemConfig } from '../../../../interfaces/expense-item-config.interface';
 import { UserCosts } from '../../../../../../../authorization/interfaces/user-costs.interface';
 import { PresetService } from '../../../../../../../../services/preset/preset.service';
 import { DialogService } from '../../../../../../../dialog/services/dialog/dialog.service';
-import { AddExpenseModalWindowComponent } from '../../modal-windows/add-expense-modal-window/add-expense-modal-window.component';
+import { AddCostModalWindowComponent } from '../../modal-windows/add-cost-modal-window/add-cost-modal-window.component';
 import { DateService } from '../../../../../../../../services/date/date.service';
 import { CostListModalWindowComponent } from '../../modal-windows/cost-list-modal-window/cost-list-modal-window.component';
 import { CostService } from '../../../../../../../../services/cost/cost.service';
@@ -12,12 +12,12 @@ import { switcherNames } from '../../../../constants/date-switcher/switcher-name
 
 @Component({
   selector: 'app-expense-item',
-  templateUrl: './expense-item.component.html',
-  styleUrls: ['./expense-item.component.scss']
+  templateUrl: './cost-item.component.html',
+  styleUrls: ['./cost-item.component.scss']
 })
-export class ExpenseItemComponent implements OnInit {
+export class CostItemComponent implements OnInit {
 
-  @Input() expenseItemConfig: ExpenseItemConfig;
+  @Input() expenseItemConfig: CostItemConfig;
   @Input() iconId: string;
 
   currentCostValue = 0;
@@ -36,19 +36,19 @@ export class ExpenseItemComponent implements OnInit {
 
   openModal() {
     if (this.dateService.currentElement.switcherName === switcherNames.Today) {
-      this.dialog.open(AddExpenseModalWindowComponent, {
+      this.dialog.open(AddCostModalWindowComponent, {
         data: {
           title: this.expenseItemConfig.title,
           name: this.expenseItemConfig.name,
           color: this.expenseItemConfig.color,
-        }
+        },
       });
     } else {
       this.dialog.open(CostListModalWindowComponent, {
         data: {
-          name: this.expenseItemConfig.name,
           title: this.expenseItemConfig.title,
-        }
+          name: this.expenseItemConfig.name,
+        },
       });
     }
   }

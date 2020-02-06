@@ -2,7 +2,6 @@
 @import "../../../../../../../../mixins/form-submit-input.mixin";
 @import "../../../../../../../../styles/layout/flex.mixin";
 
-
 .add-cost-category__title {
   @include form-title(1.2rem);
 }
@@ -19,7 +18,6 @@
   width: 100%;
 }
 
-.add-cost-category__submit-button{
+.add-cost-category__submit-button {
   @include form-submit-input();
 }
-

@@ -2,13 +2,13 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { AuthorizationFormComponent } from './authorization-form.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { BehaviorSubject } from 'rxjs';
 
+import { formConfigs } from '../../constants/form-configs';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 import { SharedModule } from '../../../../shared/shared.module';
-import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { BehaviorSubject, Subject } from 'rxjs';
-import { formConfigs } from '../../constants/form-configs';
 import { InputTypes } from '../../../../global-constants/input-types';
 
 describe('AuthorizationFormComponent', () => {
@@ -25,7 +25,8 @@ describe('AuthorizationFormComponent', () => {
     },
   };
   const mockAuthenticationService = {
-    login: (FormData: FormGroup) => {},
+    login: (FormData: FormGroup) => {
+    },
   };
 
   beforeEach(async(() => {
@@ -48,7 +49,7 @@ describe('AuthorizationFormComponent', () => {
         },
         {
           provide: ActivatedRoute,
-          useValue: mockActivatedRoute
+          useValue: mockActivatedRoute,
         },
       ],
     },)
@@ -62,46 +63,39 @@ describe('AuthorizationFormComponent', () => {
     router = TestBed.get(Router);
     route = TestBed.get(ActivatedRoute);
     component.authorizationForm = new FormGroup({
-      firstName: new FormControl(''),
-      lastName: new FormControl(''),
+      email: new FormControl(''),
+      password: new FormControl(''),
     });
     fixture.detectChanges();
   });
 
-  it('should create', done => {
-    const sub = new Subject<any>();
+  it('should create AuthorizationFormComponent with mock login data', () => {
     const createFormSpy = spyOn(componentAny, 'createForm');
 
     component.ngOnInit();
-    sub.subscribe(() => {
-      expect(component.formTitle).toBe('login');
-      expect(component.inputs).toBe(formConfigs.login.formInputs);
-      expect(createFormSpy).toHaveBeenCalled();
-      expect(createFormSpy).toHaveBeenCalledWith('login');
-      expect(component).toBeTruthy();
-      done();
-    });
-    sub.next({type: 'login'});
+
+    expect(component.formTitle).toBe('login');
+    expect(component.inputs).toBe(formConfigs.login.formInputs);
+    expect(createFormSpy).toHaveBeenCalledWith('login');
+    expect(component).toBeTruthy();
   });
 
-  it(`should test submitHandler function`, () => {
+  it(`should test submitHandler function use submit logic by mock rout params`, () => {
     const auth = fixture.debugElement.injector.get(AuthenticationService);
     const loginSpy = spyOn(auth, 'login');
 
     component.formTitle = 'login';
     component.submitHandler(component.authorizationForm);
 
-    expect(loginSpy).toHaveBeenCalled();
     expect(loginSpy).toHaveBeenCalledWith(component.authorizationForm);
   });
 
   it(`should test getControl function`, () => {
-    const controlName = 'firstName';
+    const controlName = 'email';
     const getControlNameSpy = spyOn(component.authorizationForm, 'get');
 
     component.getControl(controlName);
 
-    expect(getControlNameSpy).toHaveBeenCalled();
     expect(getControlNameSpy).toHaveBeenCalledWith(controlName);
   });
 

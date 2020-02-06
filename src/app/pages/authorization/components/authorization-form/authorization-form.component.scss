@@ -4,7 +4,6 @@
 @import "../../../../styles/base/sizes";
 @import "../../../../styles/layout/flex.mixin";
 
-
 .authorization-form__container {
   @include flex($flex-direction: column, $justify-content: center, $align-items: center);
   width: 100vw;
@@ -14,7 +13,6 @@
 
 .authorization-form__title {
   @include form-title();
-
 }
 
 .authorization-form {

@@ -1,4 +1,4 @@
-import { LOCALE_ID, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 import { BrowserModule } from '@angular/platform-browser';
@@ -18,6 +18,7 @@ import { CostApiService } from './services/cost-api/cost-api.service';
 import { StorageService } from './services/storage/storage.service';
 import { DateService } from './services/date/date.service';
 import { HttpLoaderFactory } from './helpers/http-loader-factory';
+import { ErrorInterceptor } from './interceptors/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,11 @@ import { HttpLoaderFactory } from './helpers/http-loader-factory';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthorizationJwtInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
       multi: true,
     },
     {

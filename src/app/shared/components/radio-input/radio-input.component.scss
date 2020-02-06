@@ -8,7 +8,7 @@
   width: auto;
   position: relative;
   padding-left: 35px;
-  margin: 10px 10px;
+  margin: 10px;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -22,7 +22,6 @@
     height: 0;
     width: 0;
   }
-
 
   &__input:checked ~ .radio-input__mark {
     background-color: $bar-color;

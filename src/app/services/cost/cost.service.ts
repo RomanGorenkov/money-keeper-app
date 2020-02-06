@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
@@ -20,7 +19,6 @@ export class CostService {
   currentCostList = new BehaviorSubject<UserCosts[]>([]);
 
   constructor(
-    private http: HttpClient,
     private costApiService: CostApiService,
     private storageService: StorageService,
   ) {
@@ -69,7 +67,7 @@ export class CostService {
   }
 
   getCostsColors() {
-    const costColorListFromStorage = this.storageService.getLocalStorageElement<CostCategoryColorList>(storageKeys.costColors);
+    const costColorListFromStorage = this.storageService.getStorageElement<CostCategoryColorList>(storageKeys.costColors);
     return this.getCostsNames().map(costCategory => {
       if (this.currentCostColorList[costCategory]) {
         return this.currentCostColorList[costCategory];

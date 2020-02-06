@@ -3,6 +3,8 @@ import { async, TestBed } from '@angular/core/testing';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
+import { CostItemConfig } from '../../../../interfaces/expense-item-config.interface';
+import { addCostCategoryFormConfig } from '../../../../constants/add-cost-category-form-config';
 import { ImageWithMaskComponent } from '../../../../../../../../shared/components/image-with-mask/image-with-mask.component';
 import { PresetService } from '../../../../../../../../services/preset/preset.service';
 import { CostService } from '../../../../../../../../services/cost/cost.service';
@@ -12,9 +14,7 @@ import { AddCostCategoryModalWindowComponent } from './add-cost-category-modal-w
 import { TextInputComponent } from '../../../../../../../../shared/components/text-input/text-input.component';
 import { ImageInputWithMaskComponent } from '../../../../../../../../shared/components/image-input-with-mask/image-input-with-mask.component';
 import { RadioInputComponent } from '../../../../../../../../shared/components/radio-input/radio-input.component';
-import { ExpenseItemConfig } from '../../../../interfaces/expense-item-config.interface';
 import { CostCategoryService } from '../../../../../../../../services/cost-category/cost-category.service';
-import { addCostCategoryFormConfig } from '../../../../constants/add-cost-category-form-config';
 import { ValueTypes } from '../../../../../../../../global-constants/valueTypes';
 
 @Component({
@@ -23,7 +23,7 @@ import { ValueTypes } from '../../../../../../../../global-constants/valueTypes'
 })
 class ExpenseItemComponent {
 
-  @Input() expenseItemConfig: ExpenseItemConfig;
+  @Input() expenseItemConfig: CostItemConfig;
   @Input() iconId: string;
 
 }
@@ -88,7 +88,7 @@ describe('AddCostCategoryModalWindowComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create AddCostCategoryModalWindowComponent', () => {
     const createFormSpy = spyOn(component, 'createForm');
 
     component.ngOnInit();
@@ -106,6 +106,7 @@ describe('AddCostCategoryModalWindowComponent', () => {
       name: '',
       color: addCostCategoryFormConfig.radioInputs[addCostCategoryFormConfig.colors.BLUE].value,
     };
+
     component.addCostCategory = null;
     component.ngOnInit();
 

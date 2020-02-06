@@ -17,9 +17,9 @@ export class DropdownMenuComponent implements OnInit {
   @Input() openedDropdown: string;
   @Output() dropdownChange: EventEmitter<string> = new EventEmitter();
 
-  private action: string;
   menuTitle: string;
   menuItems: DropdownMenuItem[] = [];
+  private action: string;
 
   constructor(
     private presetService: PresetService,

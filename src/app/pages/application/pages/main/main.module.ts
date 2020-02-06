@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
 import { TranslateModule } from '@ngx-translate/core';
@@ -12,20 +12,16 @@ import { ReportGraphsPageComponent } from './Pages/report-graphs-page/report-gra
 import { DatePickerComponent } from './components/date-controller/date-picker/date-picker.component';
 import { DateSwitcherComponent } from './components/date-controller/date-switcher/date-switcher.component';
 import { DateControllerComponent } from './components/date-controller/date-controller.component';
-import { ExpenseListComponent } from './components/expense/expense-list/expense-list.component';
-import { ExpenseItemComponent } from './components/expense/expense-list/expense-item/expense-item.component';
-import { AddExpenseItemComponent } from './components/expense/expense-list/add-expense-item/add-expense-item.component';
+import { CostListComponent } from './components/costs/cost-list/cost-list.component';
+import { CostItemComponent } from './components/costs/cost-list/cost-item/cost-item.component';
+import { AddCostItemComponent } from './components/costs/cost-list/add-cost-item/add-cost-item.component';
 import { DialogModule } from '../../../dialog/dialog.module';
-import { CostListModalWindowComponent } from './components/expense/modal-windows/cost-list-modal-window/cost-list-modal-window.component';
+import { CostListModalWindowComponent } from './components/costs/modal-windows/cost-list-modal-window/cost-list-modal-window.component';
 import { SharedModule } from '../../../../shared/shared.module';
 import { ReportTableComponent } from './components/report-table/report-table.component';
 import { ReportGraphsComponent } from './components/report-graphs/report-graphs.component';
-import {
-  AddExpenseModalWindowComponent
-} from './components/expense/modal-windows/add-expense-modal-window/add-expense-modal-window.component';
-import {
-  AddCostCategoryModalWindowComponent
-} from './components/expense/modal-windows/add-cost-category-modal-window/add-cost-category-modal-window.component';
+import { AddCostModalWindowComponent } from './components/costs/modal-windows/add-cost-modal-window/add-cost-modal-window.component';
+import { AddCostCategoryModalWindowComponent } from './components/costs/modal-windows/add-cost-category-modal-window/add-cost-category-modal-window.component';
 import { InformationSpanComponent } from './components/information-span/information-span.component';
 
 @NgModule({
@@ -47,17 +43,19 @@ import { InformationSpanComponent } from './components/information-span/informat
     DatePickerComponent,
     DateSwitcherComponent,
     DateControllerComponent,
-    ExpenseListComponent,
-    ExpenseItemComponent,
-    AddExpenseItemComponent,
+    CostListComponent,
+    CostItemComponent,
+    AddCostItemComponent,
     CostListModalWindowComponent,
     ReportTableComponent,
     ReportGraphsComponent,
-    AddExpenseModalWindowComponent,
+    AddCostModalWindowComponent,
     AddCostCategoryModalWindowComponent,
     InformationSpanComponent,
   ],
-  providers: [],
+  providers: [
+    CurrencyPipe,
+  ],
   exports: [
     MainComponent,
     HomeComponent,
@@ -66,7 +64,7 @@ import { InformationSpanComponent } from './components/information-span/informat
   ],
   entryComponents: [
     AddCostCategoryModalWindowComponent,
-    AddExpenseModalWindowComponent,
+    AddCostModalWindowComponent,
     CostListModalWindowComponent,
     DateSwitcherComponent,
   ],

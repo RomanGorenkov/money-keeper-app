@@ -1,13 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, Input } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
-import { ExpenseItemConfig } from '../../../interfaces/expense-item-config.interface';
+import { CostItemConfig } from '../../../interfaces/expense-item-config.interface';
 import { expenseItems } from '../../../constants/expense-items-config';
-import { ExpenseListComponent } from './expense-list.component';
+import { CostListComponent } from './cost-list.component';
 import { CostCategoryService } from '../../../../../../../services/cost-category/cost-category.service';
 import { CostService } from '../../../../../../../services/cost/cost.service';
-import { AddExpenseItemComponent } from './add-expense-item/add-expense-item.component';
+import { AddCostItemComponent } from './add-cost-item/add-cost-item.component';
 import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { ImageWithMaskComponent } from '../../../../../../../shared/components/image-with-mask/image-with-mask.component';
 import { DialogService } from '../../../../../../dialog/services/dialog/dialog.service';
@@ -20,24 +20,26 @@ import { DateService } from '../../../../../../../services/date/date.service';
 })
 class ExpenseItemComponent {
 
-  @Input() expenseItemConfig: ExpenseItemConfig;
+  @Input() expenseItemConfig: CostItemConfig;
   @Input() iconId: string;
 
 }
 
 describe('ExpenseListComponent', () => {
 
-  let component: ExpenseListComponent;
-  let fixture: ComponentFixture<ExpenseListComponent>;
+  let component: CostListComponent;
+  let fixture: ComponentFixture<CostListComponent>;
 
   const mockCostCategoryService = {
-    setCostCategoryListByNameList: (categoryNameList: string[]) => {},
+    setCostCategoryListByNameList: (categoryNameList: string[]) => {
+    },
     get costCategoryList() {
       return new BehaviorSubject(expenseItems);
     },
   };
   const mockCostService = {
-    getAllCostsNames: () => {},
+    getAllCostsNames: () => {
+    },
   };
 
   beforeEach(async(() => {
@@ -48,9 +50,9 @@ describe('ExpenseListComponent', () => {
         }),
       ],
       declarations: [
-        ExpenseListComponent,
+        CostListComponent,
         ExpenseItemComponent,
-        AddExpenseItemComponent,
+        AddCostItemComponent,
         ImageWithMaskComponent,
       ],
       providers: [
@@ -80,13 +82,12 @@ describe('ExpenseListComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ExpenseListComponent);
+    fixture = TestBed.createComponent(CostListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', done => {
-    const sub = new Subject<ExpenseItemConfig[]>();
+  it('should create CostListComponent', () => {
     const costCategoryService = fixture.debugElement.injector.get(CostCategoryService);
     const costService = fixture.debugElement.injector.get(CostService);
     const setCostCategoryListByNameListSpy = spyOn(costCategoryService, 'setCostCategoryListByNameList');
@@ -95,16 +96,11 @@ describe('ExpenseListComponent', () => {
 
     component.ngOnInit();
 
-    sub.subscribe(() => {
-      expect(getAllCostsNamesSpy).toHaveBeenCalled();
-      expect(setCostCategoryListByNameListSpy).toHaveBeenCalled();
-      expect(setCostCategoryListByNameListSpy).toHaveBeenCalledWith(['test']);
-      expect(component).toBeTruthy();
-      expect(costCategoryListSubscribeSpy).toHaveBeenCalled();
-      expect(component.categoryList).toEqual(expenseItems);
-      done();
-    });
-    sub.next(expenseItems);
+    expect(getAllCostsNamesSpy).toHaveBeenCalled();
+    expect(setCostCategoryListByNameListSpy).toHaveBeenCalledWith(['test']);
+    expect(component).toBeTruthy();
+    expect(costCategoryListSubscribeSpy).toHaveBeenCalled();
+    expect(component.categoryList).toEqual(expenseItems);
   });
 
 });
