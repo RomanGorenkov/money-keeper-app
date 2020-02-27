@@ -1,6 +1,6 @@
-@import "../../../styles/base/colors";
-@import "../../../styles/layout/flex.mixin";
-@import "../../../styles/components/solid-border.mixin";
+@import '../../../styles/base/colors';
+@import '../../../styles/layout/flex.mixin';
+@import '../../../styles/components/solid-border.mixin';
 
 $padding-size: 10px;
 
@@ -11,7 +11,7 @@ $padding-size: 10px;
   margin: 0 10px;
   padding: $padding-size;
   background: $white;
-  transition: all 0.30s ease-in-out;
+  transition: all 0.3s ease-in-out;
   font: 95% Arial, Helvetica, sans-serif;
   color: $disabled-color;
   outline: none;

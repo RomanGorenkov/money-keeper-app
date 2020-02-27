@@ -1,5 +1,5 @@
 <label class="radio-input">
-  {{inputData.label | translate}}
+  {{ inputData.label | translate }}
   <input
     class="radio-input__input"
     type="radio"
@@ -7,13 +7,15 @@
     [name]="inputData.name"
     [formControl]="control"
     (change)="selectValue(inputData.value)"
-  >
+  />
 
   <span
     class="radio-input__mark"
     [ngClass]="{
-    'selected-input__mark': isSelected
+      'selected-input__mark': isSelected
     }"
-    [ngStyle]="{backgroundColor: isSelected ? inputData.value : cssColors.radioInputDefaultColor}"
+    [ngStyle]="{
+      backgroundColor: isSelected ? inputData.value : cssColors.radioInputDefaultColor
+    }"
   ></span>
 </label>

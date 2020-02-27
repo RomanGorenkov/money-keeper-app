@@ -1,4 +1,4 @@
-import { DropdownMenuItem } from '../interfaces/dropdown-menu-item.interfase';
+import { DropdownMenuItem } from '../interfaces/dropdown-menu-item.interfase'
 
 export const languageList: DropdownMenuItem[] = [
   {
@@ -7,4 +7,4 @@ export const languageList: DropdownMenuItem[] = [
   {
     name: 'ru',
   },
-];
+]

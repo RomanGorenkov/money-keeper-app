@@ -1,6 +1,6 @@
-@import "../../../mixins/form-title.mixin";
-@import "../../../styles/base/colors";
-@import "../../../styles/base/colors";
+@import '../../../mixins/form-title.mixin';
+@import '../../../styles/base/colors';
+@import '../../../styles/base/colors';
 
 .image-input {
   @include flex($flex-direction: column, $align-items: center);
@@ -43,6 +43,6 @@
   }
 
   &__input:focus + &__input-label {
-    outline: auto 10px -webkit-focus-ring-color
+    outline: auto 10px -webkit-focus-ring-color;
   }
 }

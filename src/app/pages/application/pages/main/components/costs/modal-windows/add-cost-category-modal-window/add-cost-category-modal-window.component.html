@@ -1,12 +1,10 @@
 <div class="add-cost-category">
-  <h2 class="add-cost-category__title">{{'addCostCategory.title' | translate}}</h2>
+  <h2 class="add-cost-category__title">
+    {{ 'addCostCategory.title' | translate }}
+  </h2>
 
-  <form
-    class="add-cost-category__form"
-    [formGroup]="addCostCategory"
-    (ngSubmit)="addNewCostCategory($event)"
-  >
-    <ng-container *ngFor="let input of inputs" [ngSwitch]=input.type>
+  <form class="add-cost-category__form" [formGroup]="addCostCategory" (ngSubmit)="addNewCostCategory($event)">
+    <ng-container *ngFor="let input of inputs" [ngSwitch]="input.type">
       <app-text-input
         *ngSwitchCase="InputTypes.Text"
         [inputData]="input"
@@ -22,7 +20,9 @@
       ></app-image-input-with-mask>
     </ng-container>
 
-    <h3 class="add-cost-category__subtitle">{{'addCostCategory.colorSwitcher' | translate}}</h3>
+    <h3 class="add-cost-category__subtitle">
+      {{ 'addCostCategory.colorSwitcher' | translate }}
+    </h3>
 
     <div class="add-cost-category__colors-wrapper">
       <app-radio-input

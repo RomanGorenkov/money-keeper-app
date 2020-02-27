@@ -1,28 +1,27 @@
-import { async, TestBed } from '@angular/core/testing';
-import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { async, TestBed } from '@angular/core/testing'
+import { TranslateFakeLoader, TranslateLoader, TranslateModule } from '@ngx-translate/core'
 
-import { CostDto } from '../../../../interfaces/cost-dto.intarfece';
-import { DialogService } from '../../../../../../../dialog/services/dialog/dialog.service';
-import { PresetService } from '../../../../../../../../services/preset/preset.service';
-import { CostService } from '../../../../../../../../services/cost/cost.service';
-import { CostCategoryService } from '../../../../../../../../services/cost-category/cost-category.service';
-import { DateService } from '../../../../../../../../services/date/date.service';
-import { CostListModalWindowComponent } from './cost-list-modal-window.component';
-import { InformationSpanComponent } from '../../../information-span/information-span.component';
-import { DialogConfig } from '../../../../../../../dialog/config/dialog-config';
+import { CostDto } from '../../../../interfaces/cost-dto.intarfece'
+import { DialogService } from '../../../../../../../dialog/services/dialog/dialog.service'
+import { PresetService } from '../../../../../../../../services/preset/preset.service'
+import { CostService } from '../../../../../../../../services/cost/cost.service'
+import { CostCategoryService } from '../../../../../../../../services/cost-category/cost-category.service'
+import { DateService } from '../../../../../../../../services/date/date.service'
+import { CostListModalWindowComponent } from './cost-list-modal-window.component'
+import { InformationSpanComponent } from '../../../information-span/information-span.component'
+import { DialogConfig } from '../../../../../../../dialog/config/dialog-config'
 
 describe('CostListModalWindowComponent', () => {
-
-  let fixture;
-  let component;
-  let componentAny: any;
+  let fixture
+  let component
+  let componentAny: any
 
   const mockConfig = {
     data: {
       name: 'test',
       title: 'test',
     },
-  };
+  }
 
   const mockCostList: CostDto[] = [
     {
@@ -31,31 +30,30 @@ describe('CostListModalWindowComponent', () => {
       costValue: 100,
       costDate: 1,
     },
-  ];
+  ]
 
   const mockDateService = {
     currentElement: {
       startDate: 0,
       endDate: 1,
     },
-  };
+  }
 
   const mockCostService = {
-    getCostListByCategory: (categoryName: string, startDate: number, endDate: number) => {
-    },
-  };
+    getCostListByCategory: (categoryName: string, startDate: number, endDate: number) => {},
+  }
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         TranslateModule.forRoot({
-          loader: {provide: TranslateLoader, useClass: TranslateFakeLoader},
+          loader: {
+            provide: TranslateLoader,
+            useClass: TranslateFakeLoader,
+          },
         }),
       ],
-      declarations: [
-        CostListModalWindowComponent,
-        InformationSpanComponent,
-      ],
+      declarations: [CostListModalWindowComponent, InformationSpanComponent],
       providers: [
         {
           provide: DialogService,
@@ -82,51 +80,50 @@ describe('CostListModalWindowComponent', () => {
           useValue: mockDateService,
         },
       ],
-    })
-      .compileComponents();
-  }));
+    }).compileComponents()
+  }))
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CostListModalWindowComponent);
-    component = fixture.componentInstance;
-    componentAny = component;
-    component.config = mockConfig;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(CostListModalWindowComponent)
+    component = fixture.componentInstance
+    componentAny = component
+    component.config = mockConfig
+    fixture.detectChanges()
+  })
 
   it('should test create CostListModalWindowComponent', () => {
-    const setDateLimitSpy = spyOn(component, 'setDateLimit');
-    const setUserCategoryCostListSpy = spyOn(component, 'setUserCategoryCostList');
+    const setDateLimitSpy = spyOn(component, 'setDateLimit')
+    const setUserCategoryCostListSpy = spyOn(component, 'setUserCategoryCostList')
 
-    component.ngOnInit();
+    component.ngOnInit()
 
-    expect(setDateLimitSpy).toHaveBeenCalled();
-    expect(setUserCategoryCostListSpy).toHaveBeenCalled();
-    expect(component.name).toBe(mockConfig.data.name);
-  });
+    expect(setDateLimitSpy).toHaveBeenCalled()
+    expect(setUserCategoryCostListSpy).toHaveBeenCalled()
+    expect(component.name).toBe(mockConfig.data.name)
+  })
 
   it('should test setUserCategoryCostList function set costList', () => {
-    const costService = fixture.debugElement.injector.get(CostService);
-    const getCostListByCategorySpy = spyOn(costService, 'getCostListByCategory').and.returnValue(mockCostList);
+    const costService = fixture.debugElement.injector.get(CostService)
+    const getCostListByCategorySpy = spyOn(costService, 'getCostListByCategory').and.returnValue(mockCostList)
 
-    component.setUserCategoryCostList();
+    component.setUserCategoryCostList()
 
-    expect(getCostListByCategorySpy).toHaveBeenCalled();
-    expect(component.costList).toEqual(mockCostList);
-  });
+    expect(getCostListByCategorySpy).toHaveBeenCalled()
+    expect(component.costList).toEqual(mockCostList)
+  })
 
   it('should test setDateLimit function set start and end date', () => {
-    const dateService = fixture.debugElement.injector.get(DateService);
+    const dateService = fixture.debugElement.injector.get(DateService)
 
-    component.setDateLimit();
+    component.setDateLimit()
 
-    expect(component.startDate).toBe(dateService.currentElement.startDate);
-    expect(component.endDate).toBe(dateService.currentElement.endDate);
-  });
+    expect(component.startDate).toBe(dateService.currentElement.startDate)
+    expect(component.endDate).toBe(dateService.currentElement.endDate)
+  })
 
   it('should test makeFirstLetterCapital function make first later capital', () => {
-    const testWord = component.makeFirstLetterCapital('test');
+    const testWord = component.makeFirstLetterCapital('test')
 
-    expect(testWord).toBe('Test');
-  });
-});
+    expect(testWord).toBe('Test')
+  })
+})

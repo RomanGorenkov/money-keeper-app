@@ -1,5 +1,5 @@
-@import "../../../mixins/button.mixin";
-@import "../../../../../../../styles/layout/flex.mixin";
+@import '../../../mixins/button.mixin';
+@import '../../../../../../../styles/layout/flex.mixin';
 
 .expense-list {
   @include flex($flex-wrap: wrap, $justify-content: space-around, $align-items: center);
@@ -12,7 +12,6 @@
 .modal-window__label {
   @include flex($flex-direction: column);
   padding: 10px;
-
 }
 
 .modal-window__input {
@@ -27,4 +26,3 @@
 .modal-window__button {
   @include button(100%);
 }
-

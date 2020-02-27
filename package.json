@@ -11,6 +11,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-devkit/build-angular": "^0.900.1",
     "@angular/animations": "~8.2.14",
     "@angular/common": "~8.2.14",
     "@angular/compiler": "~8.2.14",
@@ -30,7 +31,6 @@
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.803.23",
     "@angular/cli": "~8.3.23",
     "@angular/compiler-cli": "~8.2.14",
     "@angular/language-service": "~8.2.14",
@@ -45,9 +45,17 @@
     "karma-coverage-istanbul-reporter": "~2.1.1",
     "karma-jasmine": "~3.1.0",
     "karma-jasmine-html-reporter": "^1.5.1",
+    "prettier": "1.19.1",
     "protractor": "~5.4.0",
     "ts-node": "~8.6.2",
     "tslint": "~6.0.0",
     "typescript": "^3.5.3"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "trailingComma": "all",
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": true
   }
 }

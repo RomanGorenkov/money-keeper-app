@@ -1,3 +1,3 @@
 export interface DialogOverlayColors {
-  [overlayColor: string]: string;
+  [overlayColor: string]: string
 }

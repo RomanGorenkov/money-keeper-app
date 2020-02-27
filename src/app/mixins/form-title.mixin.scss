@@ -1,4 +1,4 @@
-@import "../styles/layout/flex.mixin";
+@import '../styles/layout/flex.mixin';
 
 @mixin form-title($font-size: 95%, $color: black) {
   @include flex($align-items: center, $justify-content: center);

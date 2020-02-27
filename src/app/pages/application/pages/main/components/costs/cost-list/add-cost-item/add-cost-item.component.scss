@@ -1,9 +1,8 @@
-@import "../../../../mixins/expense-item-button.mixin";
-@import "../../../../mixins/main-font.mixin";
+@import '../../../../mixins/expense-item-button.mixin';
+@import '../../../../mixins/main-font.mixin';
 
 .add-expense-item {
   @include expense-item-button();
   color: $bar-color;
   font-size: 40px;
 }
-

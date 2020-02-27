@@ -1,5 +1,7 @@
 <span
   class="total-cost"
-  [innerHTML]="('toolbar.total' | translate) + ':' + (costService.getTotalCost() | currency:' ') + presetService.currencySymbol"
+  [innerHTML]="
+    ('toolbar.total' | translate) + ':' + (costService.getTotalCost() | currency: ' ') + presetService.currencySymbol
+  "
 >
 </span>

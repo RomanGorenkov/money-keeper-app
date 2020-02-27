@@ -1,10 +1,5 @@
 <div class="toolbar">
-  <button
-    class="toolbar__menu-button"
-    (click)="toggleToolbar()"
-    [innerHTML]="buttonsSign.BurgerMenu"
-  >
-  </button>
+  <button class="toolbar__menu-button" (click)="toggleToolbar()" [innerHTML]="buttonsSign.BurgerMenu"></button>
 
   <app-total-cost></app-total-cost>
 
@@ -12,7 +7,7 @@
     <div class="toolbar__tools-wrapper" (click)="onToolbarClicked($event)">
       <ul class="tools-list">
         <li class="tools-list__item">
-          <a [routerLink]="settingUrl" class="tools-list__link">{{'toolbar.settings' | translate}}</a>
+          <a [routerLink]="settingUrl" class="tools-list__link">{{ 'toolbar.settings' | translate }}</a>
         </li>
 
         <li class="tools-list__item">

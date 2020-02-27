@@ -1,8 +1,7 @@
 export interface CostDto {
-  costType: string;
-  costDescription: string;
-  costValue: number;
-  costDate: number;
-  costLocalizationKey?: string;
+  costType: string
+  costDescription: string
+  costValue: number
+  costDate: number
+  costLocalizationKey?: string
 }
-

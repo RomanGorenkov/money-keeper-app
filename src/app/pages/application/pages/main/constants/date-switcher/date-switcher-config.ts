@@ -1,12 +1,12 @@
-import { DateSwitcherConfig } from '../../interfaces/date-switcher-config.interface';
-import { timeIntervalConst } from '../time-interval-const';
-import { switcherNames } from './switcher-name';
-import { SwitcherValueType } from './switcher-value-type';
+import { DateSwitcherConfig } from '../../interfaces/date-switcher-config.interface'
+import { timeIntervalConst } from '../time-interval-const'
+import { switcherNames } from './switcher-name'
+import { SwitcherValueType } from './switcher-value-type'
 
-const sundayIndex = 0;
+const sundayIndex = 0
 
 function getCurrentDate() {
-  return new Date().setHours(0, 0, 0, 0);
+  return new Date().setHours(0, 0, 0, 0)
 }
 
 const timeInterval: DateSwitcherConfig[] = [
@@ -16,82 +16,81 @@ const timeInterval: DateSwitcherConfig[] = [
     startDate: 0,
     endDate: timeIntervalConst.day,
     valueType: SwitcherValueType.DATE,
-    customComponent: switcherNames.UserDate
+    customComponent: switcherNames.UserDate,
   },
   {
     switcherPlaceholder: 'home.dateController.today',
     switcherName: switcherNames.Today,
     get startDate() {
-      return getCurrentDate();
+      return getCurrentDate()
     },
     get endDate() {
-      return getCurrentDate() + timeIntervalConst.day;
+      return getCurrentDate() + timeIntervalConst.day
     },
-    valueType: SwitcherValueType.DATE
+    valueType: SwitcherValueType.DATE,
   },
   {
     switcherPlaceholder: 'home.dateController.yesterday',
     switcherName: switcherNames.Yesterday,
     get startDate() {
-      return getCurrentDate() - timeIntervalConst.day;
+      return getCurrentDate() - timeIntervalConst.day
     },
     get endDate() {
-      return getCurrentDate();
+      return getCurrentDate()
     },
-    valueType: SwitcherValueType.DATE
+    valueType: SwitcherValueType.DATE,
   },
   {
     switcherPlaceholder: 'home.dateController.week',
     switcherName: switcherNames.Week,
     get startDate() {
-      const currentDayIndex = new Date(getCurrentDate()).getDay();
+      const currentDayIndex = new Date(getCurrentDate()).getDay()
 
       if (new Date(getCurrentDate()).getDay() === sundayIndex) {
-        return getCurrentDate() - timeIntervalConst.week;
+        return getCurrentDate() - timeIntervalConst.week
       } else {
-        return getCurrentDate() - currentDayIndex * timeIntervalConst.day;
+        return getCurrentDate() - currentDayIndex * timeIntervalConst.day
       }
     },
     endDate: getCurrentDate() + timeIntervalConst.day,
-    valueType: SwitcherValueType.STRING
+    valueType: SwitcherValueType.STRING,
   },
   {
     switcherPlaceholder: 'home.dateController.mouth',
     switcherName: switcherNames.Mouth,
     get startDate() {
-      return new Date(getCurrentDate()).setDate(1);
+      return new Date(getCurrentDate()).setDate(1)
     },
     get endDate() {
-      return getCurrentDate() + timeIntervalConst.day;
+      return getCurrentDate() + timeIntervalConst.day
     },
-    valueType: SwitcherValueType.STRING
+    valueType: SwitcherValueType.STRING,
   },
   {
     switcherPlaceholder: 'home.dateController.year',
     switcherName: switcherNames.Year,
     get startDate() {
-      return new Date(getCurrentDate()).setFullYear(new Date().getFullYear() - 1);
+      return new Date(getCurrentDate()).setFullYear(new Date().getFullYear() - 1)
     },
     get endDate() {
-      return getCurrentDate() + timeIntervalConst.day;
+      return getCurrentDate() + timeIntervalConst.day
     },
-    valueType: SwitcherValueType.STRING
+    valueType: SwitcherValueType.STRING,
   },
   {
     switcherPlaceholder: 'home.dateController.allTime',
     switcherName: switcherNames.AllTime,
     startDate: 0,
     get endDate() {
-      return getCurrentDate() + timeIntervalConst.day;
+      return getCurrentDate() + timeIntervalConst.day
     },
-    valueType: SwitcherValueType.STRING
+    valueType: SwitcherValueType.STRING,
   },
-];
-
+]
 
 export const dateSwitcherConfig = {
   timeInterval,
   switcherNames,
   indexOfTodaySwitcher: 1,
   indexOfCustomSwitcher: 0,
-};
+}

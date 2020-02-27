@@ -3,4 +3,4 @@ export const currencies = {
   byn: 'BYN &#1038;',
   usd: 'USD &#36;',
   eur: 'EUR &#8364;',
-};
+}

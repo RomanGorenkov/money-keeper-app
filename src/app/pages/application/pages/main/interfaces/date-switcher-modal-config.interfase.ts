@@ -1,3 +1,3 @@
 export interface DateSwitcherModalConfig {
-  dateSwitcherName: string;
+  dateSwitcherName: string
 }

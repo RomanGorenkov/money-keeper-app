@@ -1,24 +1,16 @@
 <div class="dropdown">
-  <span class="dropdown__name">{{menuTitle | translate}}</span>
+  <span class="dropdown__name">{{ menuTitle | translate }}</span>
 
-  <button
-    class="dropdown__open-button"
-    (click)="onClick()"
-    [innerHTML]="presetService[this.getterName]"
-  >
-<!--    {{presetService[this.getterName]}}-->
+  <button class="dropdown__open-button" (click)="onClick()" [innerHTML]="presetService[this.getterName]">
+    <!--    {{presetService[this.getterName]}}-->
   </button>
 
-  <div
-    class="dropdown__content"
-    [class.show]="openedDropdown === menuName"
-  >
+  <div class="dropdown__content" [class.show]="openedDropdown === menuName">
     <button
       class="dropdown__item"
       *ngFor="let menuItem of menuItems"
       (click)="selectMenuItem(menuItem.name, menuItem.symbol)"
       [innerHTML]="menuItem.name + (menuItem.symbol ? ' ' + menuItem.symbol : '')"
-    >
-    </button>
+    ></button>
   </div>
 </div>

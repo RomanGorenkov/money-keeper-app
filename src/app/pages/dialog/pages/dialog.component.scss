@@ -1,6 +1,6 @@
-@import "../../application/pages/main/mixins/main-font.mixin";
-@import "../../../styles/base/colors";
-@import "../../../styles/layout/flex.mixin";
+@import '../../application/pages/main/mixins/main-font.mixin';
+@import '../../../styles/base/colors';
+@import '../../../styles/layout/flex.mixin';
 
 .overlay {
   @include flex($flex-direction: column, $align-items: center, $justify-content: center);

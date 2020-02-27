@@ -1,10 +1,7 @@
-<button
-  class="expense-item"
-  (click)="openModal()"
->
+<button class="expense-item" (click)="openModal()">
   <ng-container *ngIf="expenseItemConfig">
     <span class="expense-item__title">
-      {{!expenseItemConfig.title ? expenseItemConfig.name : expenseItemConfig.title | translate}}
+      {{ !expenseItemConfig.title ? expenseItemConfig.name : (expenseItemConfig.title | translate) }}
     </span>
 
     <app-image-with-mask
@@ -15,9 +12,8 @@
 
     <span
       class="expense-item__expense"
-      [innerHTML]="(currentCostValue| currency:' ') + ' ' + presetService.currencySymbol"
+      [innerHTML]="(currentCostValue | currency: ' ') + ' ' + presetService.currencySymbol"
     >
     </span>
   </ng-container>
 </button>
-

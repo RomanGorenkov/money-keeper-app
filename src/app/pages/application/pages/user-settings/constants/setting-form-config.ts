@@ -1,7 +1,7 @@
-import { Validators } from '@angular/forms';
+import { Validators } from '@angular/forms'
 
-import { FormInput } from '../../../../authorization/interfaces/form-input.interface';
-import { InputTypes } from '../../../../../global-constants/input-types';
+import { FormInput } from '../../../../authorization/interfaces/form-input.interface'
+import { InputTypes } from '../../../../../global-constants/input-types'
 
 export const settingInputs: FormInput[] = [
   {
@@ -15,8 +15,6 @@ export const settingInputs: FormInput[] = [
     type: InputTypes.Text,
     name: 'username',
     placeholder: 'settings.username',
-    validators: [
-      Validators.required,
-    ],
+    validators: [Validators.required],
   },
-];
+]

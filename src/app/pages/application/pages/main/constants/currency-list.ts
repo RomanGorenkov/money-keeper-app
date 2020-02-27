@@ -1,5 +1,5 @@
-import { DropdownMenuItem } from '../interfaces/dropdown-menu-item.interfase';
-import { currencies } from '../../../../../global-constants/currencies';
+import { DropdownMenuItem } from '../interfaces/dropdown-menu-item.interfase'
+import { currencies } from '../../../../../global-constants/currencies'
 
 export const currencyList: DropdownMenuItem[] = [
   {
@@ -18,4 +18,4 @@ export const currencyList: DropdownMenuItem[] = [
     name: currencies.eur.split(' ').shift(),
     symbol: currencies.eur.split(' ').pop(),
   },
-];
+]

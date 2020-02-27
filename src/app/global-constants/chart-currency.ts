@@ -3,6 +3,6 @@ const currencyList = [
   ['&#1038;', 'Ў'],
   ['&#36;', '$'],
   ['&#8364;', '€'],
-];
+]
 
-export const chartCurrency = new Map<string, string>(currencyList as [string, string][]);
+export const chartCurrency = new Map<string, string>(currencyList as [string, string][])

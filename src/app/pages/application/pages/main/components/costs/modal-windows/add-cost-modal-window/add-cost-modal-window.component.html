@@ -1,12 +1,8 @@
 <h3 class="add-expense-form__title">
-  {{!config.data.title ? config.data.name : config.data.title | translate}}
+  {{ !config.data.title ? config.data.name : (config.data.title | translate) }}
 </h3>
 
-<form
-  class="add-expense-form__form"
-  [formGroup]="addExpenseForm"
-  (ngSubmit)="addCost()"
->
+<form class="add-expense-form__form" [formGroup]="addExpenseForm" (ngSubmit)="addCost()">
   <app-text-input
     class="authorization-form__input"
     [inputData]="input"

@@ -9,4 +9,4 @@ export const apiUrls = {
   getAllUserCosts: 'costs/all-categories',
   addNewUserCostCategory: 'costs/add-category',
   getCustomUserCategory: 'costs/get-custom-categories',
-};
+}

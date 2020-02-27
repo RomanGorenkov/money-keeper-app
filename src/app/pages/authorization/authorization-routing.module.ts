@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core'
+import { RouterModule, Routes } from '@angular/router'
 
-import { AuthorizationPageComponent } from './pages/authorization-page/authorization-page.component';
-import { roads } from '../../global-constants/roads';
+import { AuthorizationPageComponent } from './pages/authorization-page/authorization-page.component'
+import { roads } from '../../global-constants/roads'
 
 const AuthorizationRouting: Routes = [
   {
@@ -19,16 +19,10 @@ const AuthorizationRouting: Routes = [
       },
     ],
   },
-];
+]
 
 @NgModule({
-  imports: [
-    RouterModule.forChild(AuthorizationRouting),
-  ],
-  exports: [
-    RouterModule,
-  ]
+  imports: [RouterModule.forChild(AuthorizationRouting)],
+  exports: [RouterModule],
 })
-
-export class AuthorizationRoutingModule {
-}
+export class AuthorizationRoutingModule {}

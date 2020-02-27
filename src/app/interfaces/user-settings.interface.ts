@@ -1,4 +1,4 @@
 export interface UserSettings {
-  username?: string;
-  userAvatarUrl?: string;
+  username?: string
+  userAvatarUrl?: string
 }

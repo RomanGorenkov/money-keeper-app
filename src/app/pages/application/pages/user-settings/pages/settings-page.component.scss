@@ -1,9 +1,9 @@
-@import "../../../mixins/application-item.mixin";
-@import "../../../../../mixins/form-title.mixin";
-@import "../../../../../mixins/form-submit-input.mixin";
-@import "../../../../../styles/base/colors";
-@import "../../../../../styles/components/solid-border.mixin";
-@import "../../../../../styles/layout/flex.mixin";
+@import '../../../mixins/application-item.mixin';
+@import '../../../../../mixins/form-title.mixin';
+@import '../../../../../mixins/form-submit-input.mixin';
+@import '../../../../../styles/base/colors';
+@import '../../../../../styles/components/solid-border.mixin';
+@import '../../../../../styles/layout/flex.mixin';
 
 .settings-page {
   @include application-item();
@@ -49,4 +49,3 @@
     @include form-submit-input();
   }
 }
-

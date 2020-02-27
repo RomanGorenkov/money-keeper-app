@@ -1,8 +1,8 @@
-@import "../../../../mixins/main-font.mixin";
-@import "../../../../mixins/expense-item-button.mixin";
-@import "../../../../../../../../mixins/form-title.mixin";
-@import "../../../../../../../../styles/base/colors";
-@import "../../../../../../../../styles/layout/flex.mixin";
+@import '../../../../mixins/main-font.mixin';
+@import '../../../../mixins/expense-item-button.mixin';
+@import '../../../../../../../../mixins/form-title.mixin';
+@import '../../../../../../../../styles/base/colors';
+@import '../../../../../../../../styles/layout/flex.mixin';
 
 .expense-item {
   @include main-font();
@@ -32,11 +32,8 @@
     background-color: $main-color;
   }
 
-  &__expense, &__title {
+  &__expense,
+  &__title {
     padding: 2.5px;
   }
 }
-
-
-
-

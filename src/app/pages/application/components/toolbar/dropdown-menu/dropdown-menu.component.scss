@@ -1,4 +1,4 @@
-@import "../../../../../styles/base/colors";
+@import '../../../../../styles/base/colors';
 
 $color-shadow: rgba(255, 255, 255, 0.1);
 $main-padding: 15px;
@@ -17,7 +17,7 @@ $dropdown-width: 100px;
   &::after {
     $size: 5px;
     $border: 2px solid $light-text-color;
-    content: " ";
+    content: ' ';
     display: inline-block;
     width: $size;
     height: $size;
@@ -77,6 +77,3 @@ $dropdown-width: 100px;
 .show {
   display: block;
 }
-
-
-

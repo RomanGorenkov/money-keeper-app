@@ -1,5 +1,5 @@
 export interface UserPresets {
-  language?: string;
-  currencyName?: string;
-  currency?: string;
+  language?: string
+  currencyName?: string
+  currency?: string
 }

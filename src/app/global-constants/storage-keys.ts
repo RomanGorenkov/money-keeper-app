@@ -4,4 +4,4 @@ export const storageKeys = {
   presets: 'presets',
   customCategoryList: 'customCategoryList',
   userSettings: 'userSettings',
-};
+}

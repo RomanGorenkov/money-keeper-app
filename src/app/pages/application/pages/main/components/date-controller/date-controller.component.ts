@@ -1,9 +1,8 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
 
 @Component({
   selector: 'app-date-controller',
   templateUrl: './date-controller.component.html',
-  styleUrls: ['./date-controller.component.scss']
+  styleUrls: ['./date-controller.component.scss'],
 })
-export class DateControllerComponent {
-}
+export class DateControllerComponent {}

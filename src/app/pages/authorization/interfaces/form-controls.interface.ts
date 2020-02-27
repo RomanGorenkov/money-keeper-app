@@ -1,6 +1,5 @@
-import { FormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms'
 
 export interface FormControls {
-  [key: string]: FormControl;
+  [key: string]: FormControl
 }
-

@@ -1,6 +1,6 @@
-@import "../../../../../../../../mixins/form-title.mixin";
-@import "../../../../../../../../mixins/form-submit-input.mixin";
-@import "../../../../../../../../styles/layout/flex.mixin";
+@import '../../../../../../../../mixins/form-title.mixin';
+@import '../../../../../../../../mixins/form-submit-input.mixin';
+@import '../../../../../../../../styles/layout/flex.mixin';
 
 .add-cost-category__title {
   @include form-title(1.2rem);

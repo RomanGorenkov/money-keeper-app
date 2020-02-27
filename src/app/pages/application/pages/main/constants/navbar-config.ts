@@ -11,8 +11,8 @@ const mainPages = [
     pageUrl: 'graphs',
     pageName: 'navbar.graphs',
   },
-];
+]
 
 export const navbarConfigs = {
   mainPages,
-};
+}

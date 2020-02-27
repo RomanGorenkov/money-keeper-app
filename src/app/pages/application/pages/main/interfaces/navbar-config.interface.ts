@@ -1,4 +1,4 @@
 export interface NavbarConfig {
-  pageUrl: string;
-  pageName: string;
+  pageUrl: string
+  pageName: string
 }

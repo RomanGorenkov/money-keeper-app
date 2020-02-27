@@ -1,6 +1,6 @@
-import { FormInput } from '../../../../authorization/interfaces/form-input.interface';
-import { Validators } from '@angular/forms';
-import { RadioInput } from '../../../../../shared/interfaces/radio-input.interface';
+import { FormInput } from '../../../../authorization/interfaces/form-input.interface'
+import { Validators } from '@angular/forms'
+import { RadioInput } from '../../../../../shared/interfaces/radio-input.interface'
 
 const addCostCategoryInputs: FormInput[] = [
   {
@@ -8,19 +8,15 @@ const addCostCategoryInputs: FormInput[] = [
     name: 'categoryImage',
     placeholder: 'addCostCategory.imageInput',
     defaultImageUrl: '../../../../../assets/img/plus.png',
-    validators: [
-      Validators.required,
-    ],
+    validators: [Validators.required],
   },
   {
     type: 'text',
     name: 'name',
     placeholder: 'addCostCategory.categoryName',
-    validators: [
-      Validators.required,
-    ],
+    validators: [Validators.required],
   },
-];
+]
 
 const costCategoryColorsRadioInputs: RadioInput[] = [
   {
@@ -53,7 +49,7 @@ const costCategoryColorsRadioInputs: RadioInput[] = [
     name: 'color',
     colorName: 'peach',
   },
-];
+]
 
 enum ColorsRadioInput {
   RED,
@@ -74,5 +70,4 @@ export const addCostCategoryFormConfig = {
   radioInputs: costCategoryColorsRadioInputs,
   colors: ColorsRadioInput,
   names: FormControlsName,
-};
-
+}

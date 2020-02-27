@@ -1,3 +1,3 @@
-import { SafeResourceUrl } from '@angular/platform-browser';
+import { SafeResourceUrl } from '@angular/platform-browser'
 
-export type Preview = string | ArrayBuffer | SafeResourceUrl;
+export type Preview = string | ArrayBuffer | SafeResourceUrl

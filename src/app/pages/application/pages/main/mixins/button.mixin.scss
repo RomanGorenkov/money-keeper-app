@@ -1,4 +1,4 @@
-@import "../../../../../styles/base/colors";
+@import '../../../../../styles/base/colors';
 
 @mixin button($width) {
   height: 100%;
@@ -13,4 +13,3 @@
     background-color: $main-hover;
   }
 }
-

@@ -1,14 +1,10 @@
 <div class="settings-page">
   <h2 class="settings-page__title">
-    {{'settings.title' | translate}}
+    {{ 'settings.title' | translate }}
   </h2>
 
-  <form
-    (ngSubmit)="submit($event)"
-    class="settings-page__form"
-    [formGroup]="settingForm"
-  >
-    <ng-container *ngFor="let input of inputs" [ngSwitch]=input.type>
+  <form (ngSubmit)="submit($event)" class="settings-page__form" [formGroup]="settingForm">
+    <ng-container *ngFor="let input of inputs" [ngSwitch]="input.type">
       <app-text-input
         *ngSwitchCase="InputTypes.Text"
         [inputData]="input"
@@ -26,10 +22,9 @@
 
     <input
       class="settings-page__submit-button"
-      [type]=InputTypes.Submit
+      [type]="InputTypes.Submit"
       [attr.value]="'settings.save' | translate"
       [disabled]="settingForm.pristine || settingForm.invalid"
     />
   </form>
 </div>
-

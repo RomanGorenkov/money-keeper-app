@@ -1,5 +1,5 @@
 import { HeaderButtons } from '../interfaces/header-buttons.interface'
-import { roads } from '../../../global-constants/roads';
+import { roads } from '../../../global-constants/roads'
 
 export const headerButtons: HeaderButtons[] = [
   {
@@ -14,4 +14,4 @@ export const headerButtons: HeaderButtons[] = [
     iconUrl: '../../../../assets/icons/user-plus-solid.svg',
     routerUrl: roads.authorisation.registration,
   },
-];
+]

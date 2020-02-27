@@ -1,3 +1,3 @@
 export interface ReportGraphConstants {
-  currentGraph: number;
+  currentGraph: number
 }

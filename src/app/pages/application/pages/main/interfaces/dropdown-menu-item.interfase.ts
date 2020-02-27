@@ -1,4 +1,4 @@
 export interface DropdownMenuItem {
-  name: string;
-  symbol?: string;
+  name: string
+  symbol?: string
 }

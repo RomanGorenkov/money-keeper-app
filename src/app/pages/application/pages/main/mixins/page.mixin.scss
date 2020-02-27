@@ -1,4 +1,4 @@
-@import "../../../../../styles/base/sizes";
+@import '../../../../../styles/base/sizes';
 
 @mixin app-page {
   height: calc(100vh - #{$navbar-height} - #{$toolbar-height} - #{$date-picker-container-height});

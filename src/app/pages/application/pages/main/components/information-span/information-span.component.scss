@@ -1,4 +1,4 @@
-@import "../../../../../../mixins/form-title.mixin";
+@import '../../../../../../mixins/form-title.mixin';
 
 .information-span {
   @include form-title();

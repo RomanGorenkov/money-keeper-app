@@ -1,6 +1,6 @@
 export interface CostItemConfig {
-  title?: string;
-  name: string;
-  imageUrl: string;
-  color: string;
+  title?: string
+  name: string
+  imageUrl: string
+  color: string
 }

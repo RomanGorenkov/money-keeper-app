@@ -1,7 +1,7 @@
-@import "../../../../mixins/button.mixin";
-@import "../../../../../../../../mixins/form-title.mixin";
-@import "../../../../../../../../mixins/form-submit-input.mixin";
-@import "../../../../../../../../styles/layout/flex.mixin";
+@import '../../../../mixins/button.mixin';
+@import '../../../../../../../../mixins/form-title.mixin';
+@import '../../../../../../../../mixins/form-submit-input.mixin';
+@import '../../../../../../../../styles/layout/flex.mixin';
 
 @mixin element-margin($margin) {
   margin: $margin;

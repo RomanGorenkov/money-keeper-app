@@ -1,3 +1,3 @@
 export interface CostCategoryColorList {
-  [costCategoryName: string]: string;
+  [costCategoryName: string]: string
 }

@@ -1,8 +1,8 @@
-@import "../../../../mixins/form-title.mixin";
-@import "../../../../mixins/form-submit-input.mixin";
-@import "../../../../styles/base/colors";
-@import "../../../../styles/base/sizes";
-@import "../../../../styles/layout/flex.mixin";
+@import '../../../../mixins/form-title.mixin';
+@import '../../../../mixins/form-submit-input.mixin';
+@import '../../../../styles/base/colors';
+@import '../../../../styles/base/sizes';
+@import '../../../../styles/layout/flex.mixin';
 
 .authorization-form__container {
   @include flex($flex-direction: column, $justify-content: center, $align-items: center);
@@ -27,7 +27,5 @@
 }
 
 .authorization-form__submit {
-  @include form-submit-input()
+  @include form-submit-input();
 }
-
-

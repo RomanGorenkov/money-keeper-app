@@ -1,5 +1,5 @@
-@import "../../../styles/base/sizes";
+@import '../../../styles/base/sizes';
 
 @mixin application-item {
-  height: calc(100vh - #{$navbar-height} - #{$toolbar-height})
+  height: calc(100vh - #{$navbar-height} - #{$toolbar-height});
 }

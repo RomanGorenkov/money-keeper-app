@@ -1,6 +1,6 @@
-@import "../../../../styles/base/colors";
-@import "../../../../styles/base/sizes";
-@import "../../../../styles/layout/flex.mixin";
+@import '../../../../styles/base/colors';
+@import '../../../../styles/base/sizes';
+@import '../../../../styles/layout/flex.mixin';
 
 .toolbar {
   @include flex($align-items: center, $justify-content: space-around);

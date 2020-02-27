@@ -1,9 +1,9 @@
-import { ValidatorFn } from '@angular/forms';
+import { ValidatorFn } from '@angular/forms'
 
 export interface FormInput {
-  type: string;
-  name: string;
-  placeholder: string;
-  validators: ValidatorFn[];
-  defaultImageUrl?: string | ArrayBuffer;
+  type: string
+  name: string
+  placeholder: string
+  validators: ValidatorFn[]
+  defaultImageUrl?: string | ArrayBuffer
 }

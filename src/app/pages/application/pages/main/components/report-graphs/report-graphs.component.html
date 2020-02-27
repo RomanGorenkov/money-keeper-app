@@ -1,14 +1,14 @@
-<app-information-span
-  [inputData]="pieChartData.length">
-</app-information-span>
+<app-information-span [inputData]="pieChartData.length"> </app-information-span>
 
 <div class="report-graphs__chart">
-  <canvas class="report-graphs__canvas" baseChart
-          [data]="pieChartData"
-          [labels]="pieChartLabels"
-          [chartType]="pieChartType"
-          [colors]="pieChartColors"
-          [options]="pieChartOptions"
+  <canvas
+    class="report-graphs__canvas"
+    baseChart
+    [data]="pieChartData"
+    [labels]="pieChartLabels"
+    [chartType]="pieChartType"
+    [colors]="pieChartColors"
+    [options]="pieChartOptions"
   >
   </canvas>
 </div>

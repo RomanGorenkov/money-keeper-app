@@ -1,57 +1,52 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core'
+import { FormControl, FormGroup } from '@angular/forms'
 
-import { CostDto } from '../../../../interfaces/cost-dto.intarfece';
-import { FormInput } from '../../../../../../../authorization/interfaces/form-input.interface';
-import { AddCostModalConfig } from '../../../../interfaces/add-cost-modal-config.interface';
-import { FormControls } from '../../../../../../../authorization/interfaces/form-controls.interface';
-import { addExpenseInputs } from '../../../../constants/add-cost-form-config';
-import { DialogService } from '../../../../../../../dialog/services/dialog/dialog.service';
-import { DialogConfig } from '../../../../../../../dialog/config/dialog-config';
-import { CostService } from '../../../../../../../../services/cost/cost.service';
+import { CostDto } from '../../../../interfaces/cost-dto.intarfece'
+import { FormInput } from '../../../../../../../authorization/interfaces/form-input.interface'
+import { AddCostModalConfig } from '../../../../interfaces/add-cost-modal-config.interface'
+import { FormControls } from '../../../../../../../authorization/interfaces/form-controls.interface'
+import { addExpenseInputs } from '../../../../constants/add-cost-form-config'
+import { DialogService } from '../../../../../../../dialog/services/dialog/dialog.service'
+import { DialogConfig } from '../../../../../../../dialog/config/dialog-config'
+import { CostService } from '../../../../../../../../services/cost/cost.service'
 
 @Component({
   selector: 'app-add-expense-modal-window',
   templateUrl: './add-cost-modal-window.component.html',
-  styleUrls: ['./add-cost-modal-window.component.scss']
+  styleUrls: ['./add-cost-modal-window.component.scss'],
 })
 export class AddCostModalWindowComponent implements OnInit {
-
-  inputs: FormInput[];
-  addExpenseForm: FormGroup;
+  inputs: FormInput[]
+  addExpenseForm: FormGroup
 
   constructor(
     public config: DialogConfig<AddCostModalConfig>,
     private dialog: DialogService,
-    private costService: CostService,
-  ) {
-  }
+    private costService: CostService
+  ) {}
 
   ngOnInit() {
-    this.inputs = addExpenseInputs;
-    this.createForm();
+    this.inputs = addExpenseInputs
+    this.createForm()
   }
 
   private createForm() {
     const controls: FormControls = this.inputs.reduce((config, controlConfig) => {
-      config[controlConfig.name] = new FormControl('', controlConfig.validators);
-      return config;
-    }, {});
+      config[controlConfig.name] = new FormControl('', controlConfig.validators)
+      return config
+    }, {})
 
-    this.addExpenseForm = new FormGroup(controls);
+    this.addExpenseForm = new FormGroup(controls)
   }
 
   getControl(controlName: string): FormControl {
-    return this.addExpenseForm.get(controlName) as FormControl;
+    return this.addExpenseForm.get(controlName) as FormControl
   }
 
   addCost() {
-    const newCost = this.createNewCost();
+    const newCost = this.createNewCost()
 
-    this.costService.addCost(newCost)
-      .subscribe(
-        () => this.dialog.removeDialogComponentFromBody(),
-      );
+    this.costService.addCost(newCost).subscribe(() => this.dialog.removeDialogComponentFromBody())
   }
 
   createNewCost(): CostDto {
@@ -61,7 +56,6 @@ export class AddCostModalWindowComponent implements OnInit {
       costDescription: this.addExpenseForm.value.description,
       costValue: parseFloat(this.addExpenseForm.value.expense),
       costLocalizationKey: this.config.data.title,
-    };
+    }
   }
-
 }

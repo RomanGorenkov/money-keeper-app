@@ -1,14 +1,11 @@
 <div class="image-input">
   <img
     class="image-input__preview"
-    [src]="previewImage ? (previewImage | safe) : inputData.defaultImageUrl | safe"
+    [src]="previewImage ? (previewImage | safe) : (inputData.defaultImageUrl | safe)"
     alt="Image preview"
-  >
+  />
 
-  <span
-    class="image-input__error-span"
-    *ngIf="!validFileFormat"
-  >
+  <span class="image-input__error-span" *ngIf="!validFileFormat">
     Invalid image format
   </span>
 
@@ -21,11 +18,7 @@
     (change)="changePreviewImage($event)"
   />
 
-  <label
-    class="image-input__input-label"
-    [for]="inputData.name"
-  >
-    {{inputData.placeholder | translate}}
+  <label class="image-input__input-label" [for]="inputData.name">
+    {{ inputData.placeholder | translate }}
   </label>
 </div>
-

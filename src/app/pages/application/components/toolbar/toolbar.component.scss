@@ -1,7 +1,7 @@
-@import "../../../../styles/base/colors";
-@import "../../../../styles/base/sizes";
-@import "../../../../styles/layout/flex.mixin";
-@import "../../../../styles/components/solid-border.mixin";
+@import '../../../../styles/base/colors';
+@import '../../../../styles/base/sizes';
+@import '../../../../styles/layout/flex.mixin';
+@import '../../../../styles/components/solid-border.mixin';
 
 .toolbar {
   @include flex($align-items: center);
@@ -29,7 +29,7 @@
     left: 0;
     width: 100%;
     height: $tools-container-height;
-    transition: left .5s;
+    transition: left 0.5s;
     z-index: 2;
   }
 
@@ -39,7 +39,7 @@
     height: 100%;
     flex-direction: column;
     background-color: $menu-color;
-    box-shadow: $box-shadow
+    box-shadow: $box-shadow;
   }
 }
 
@@ -53,7 +53,7 @@
   border-bottom: 1px solid gray;
 
   &:hover {
-    background-color: rgba(255, 255, 255, .1);
+    background-color: rgba(255, 255, 255, 0.1);
     cursor: pointer;
   }
 }

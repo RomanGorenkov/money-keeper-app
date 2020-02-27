@@ -2,22 +2,16 @@
   <button
     class="date-picker__day-switcher"
     (click)="changeDate(timeInterval, this.dateService.Direction.Back)"
-    [innerHTML]= buttonsSign.LeftArrow
-  >
-  </button>
+    [innerHTML]="buttonsSign.LeftArrow"
+  ></button>
 
-  <button
-    class="day-menu"
-    aria-label="Date"
-    (click)="openDateSwitcher()"
-  >
-    {{dateService.valueToDisplay | translate}}
+  <button class="day-menu" aria-label="Date" (click)="openDateSwitcher()">
+    {{ dateService.valueToDisplay | translate }}
   </button>
 
   <button
     class="date-picker__day-switcher"
     (click)="changeDate(timeInterval, this.dateService.Direction.Forward)"
-    [innerHTML]= buttonsSign.RightArrow
-  >
-  </button>
+    [innerHTML]="buttonsSign.RightArrow"
+  ></button>
 </div>

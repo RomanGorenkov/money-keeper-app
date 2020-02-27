@@ -1,7 +1,7 @@
-@import "../../mixins/main-font.mixin";
-@import "../../../../../../mixins/form-title.mixin";
-@import "../../../../../../styles/base/colors";
-@import "../../../../../../styles/layout/flex.mixin";
+@import '../../mixins/main-font.mixin';
+@import '../../../../../../mixins/form-title.mixin';
+@import '../../../../../../styles/base/colors';
+@import '../../../../../../styles/layout/flex.mixin';
 
 :host {
   height: inherit;
@@ -27,7 +27,9 @@
     font-family: sans-serif;
   }
 
-  &__date, &__value, &__category {
+  &__date,
+  &__value,
+  &__category {
     @include flex($justify-content: center, $align-items: center);
     width: 50%;
     padding: 10px;
@@ -42,6 +44,6 @@
   }
 
   &__category {
-    @include main-font($color:$main-color, $size: 1rem);
+    @include main-font($color: $main-color, $size: 1rem);
   }
 }

@@ -1,5 +1,5 @@
-@import "../../../mixins/form-title.mixin";
-@import "../../../styles/base/colors";
+@import '../../../mixins/form-title.mixin';
+@import '../../../styles/base/colors';
 
 .radio-input {
   @include flex($justify-content: left);
@@ -45,7 +45,7 @@
     &:after {
       $position: 9px;
       $size: 8px;
-      content: "";
+      content: '';
       position: absolute;
       display: none;
       top: $position;

@@ -1,4 +1,4 @@
-import { CostItemConfig } from '../interfaces/expense-item-config.interface';
+import { CostItemConfig } from '../interfaces/expense-item-config.interface'
 
 export const expenseItems: CostItemConfig[] = [
   {
@@ -61,4 +61,4 @@ export const expenseItems: CostItemConfig[] = [
     imageUrl: '../../../../../assets/icons/restaurant.svg',
     color: 'rgba(217,217,217,0.9)',
   },
-];
+]

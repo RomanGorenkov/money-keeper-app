@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core'
+import { RouterModule, Routes } from '@angular/router'
 
-import { roads } from '../../global-constants/roads';
-import { SettingsPageComponent } from './pages/user-settings/pages/settings-page.component';
-import { ApplicationComponent } from './pages/application.component';
+import { roads } from '../../global-constants/roads'
+import { SettingsPageComponent } from './pages/user-settings/pages/settings-page.component'
+import { ApplicationComponent } from './pages/application.component'
 
 const ApplicationRouting: Routes = [
   {
@@ -25,16 +25,10 @@ const ApplicationRouting: Routes = [
       },
     ],
   },
-];
+]
 
 @NgModule({
-  imports: [
-    RouterModule.forChild(ApplicationRouting),
-  ],
-  exports: [
-    RouterModule,
-  ],
+  imports: [RouterModule.forChild(ApplicationRouting)],
+  exports: [RouterModule],
 })
-
-export class ApplicationRoutingModule {
-}
+export class ApplicationRoutingModule {}

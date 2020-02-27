@@ -1,5 +1,5 @@
-@import "../../../../../styles/base/colors";
-@import "../../../../../styles/layout/flex.mixin";
+@import '../../../../../styles/base/colors';
+@import '../../../../../styles/layout/flex.mixin';
 
 @mixin expense-item-button {
   @include flex($flex-direction: column, $justify-content: center, $align-items: center);
